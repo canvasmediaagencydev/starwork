@@ -75,7 +75,7 @@ export default function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        isScrolled
+        isScrolled || isMobileMenuOpen
           ? 'bg-white shadow-md'
           : 'bg-transparent'
       }`}
@@ -103,14 +103,14 @@ export default function Navbar() {
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
                 className={`text-sm font-medium transition-all duration-300 relative group ${
-                  isScrolled
+                  isScrolled || isMobileMenuOpen
                     ? 'text-gray-700 hover:text-gray-900'
                     : 'text-white hover:text-white'
                 }`}
               >
                 {link.name}
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
-                  isScrolled ? 'bg-gray-900' : 'bg-white'
+                  isScrolled || isMobileMenuOpen ? 'bg-gray-900' : 'bg-white'
                 }`} />
               </Link>
             ))}
@@ -121,7 +121,7 @@ export default function Navbar() {
             <Link
               href="tel:+66XXXXXXXXX"
               className={`text-sm font-medium transition-colors duration-300 ${
-                isScrolled
+                isScrolled || isMobileMenuOpen
                   ? 'text-gray-700 hover:text-gray-900'
                   : 'text-white/90 hover:text-white'
               }`}
@@ -131,7 +131,7 @@ export default function Navbar() {
             <Link
               href="#booking"
               className={`px-6 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 ${
-                isScrolled
+                isScrolled || isMobileMenuOpen
                   ? 'bg-gray-900 text-white hover:bg-gray-800'
                   : 'bg-white text-gray-900 hover:bg-gray-100'
               }`}
@@ -144,7 +144,7 @@ export default function Navbar() {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className={`lg:hidden p-2 transition-colors duration-300 ${
-              isScrolled
+              isScrolled || isMobileMenuOpen
                 ? 'text-gray-900'
                 : 'text-white'
             }`}
@@ -153,17 +153,17 @@ export default function Navbar() {
             <div className="w-6 h-5 flex flex-col justify-between">
               <span
                 className={`w-full h-0.5 transition-all duration-300 ${
-                  isScrolled ? 'bg-gray-900' : 'bg-white'
+                  isScrolled || isMobileMenuOpen ? 'bg-gray-900' : 'bg-white'
                 } ${isMobileMenuOpen ? 'rotate-45 translate-y-2' : ''}`}
               />
               <span
                 className={`w-full h-0.5 transition-all duration-300 ${
-                  isScrolled ? 'bg-gray-900' : 'bg-white'
+                  isScrolled || isMobileMenuOpen ? 'bg-gray-900' : 'bg-white'
                 } ${isMobileMenuOpen ? 'opacity-0' : ''}`}
               />
               <span
                 className={`w-full h-0.5 transition-all duration-300 ${
-                  isScrolled ? 'bg-gray-900' : 'bg-white'
+                  isScrolled || isMobileMenuOpen ? 'bg-gray-900' : 'bg-white'
                 } ${isMobileMenuOpen ? '-rotate-45 -translate-y-2' : ''}`}
               />
             </div>

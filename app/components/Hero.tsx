@@ -79,7 +79,7 @@ export default function Hero() {
       </div>
 
       {/* Content */}
-      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-12">
+      <div className="relative z-20 w-full max-w-7xl mx-auto px-6 lg:px-12 pt-24">
         <div className="max-w-4xl animate-fade-in-up">
           {/* Small text */}
           <div className="flex items-center gap-3 mb-10 opacity-90">
