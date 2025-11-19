@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -36,18 +37,14 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-24">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-3 group relative z-50">
-            <div className={`text-3xl font-black tracking-tight transition-colors duration-300 ${
-              isScrolled ? 'text-gray-900' : 'text-white'
-            }`}>
-              STARWORK
-            </div>
-            <div className={`hidden sm:block h-8 w-px transition-colors duration-300 ${
-              isScrolled ? 'bg-gray-300' : 'bg-white/30'
-            }`} />
-            <div className={`hidden sm:block text-sm font-medium transition-colors duration-300 ${
-              isScrolled ? 'text-gray-600' : 'text-white/80'
-            }`}>
-              Chiang Mai
+            <div className="relative h-12 w-40">
+              <Image
+                src="https://starworkchiangmai.com/wp-content/uploads/2020/05/starwork-logo-4.png"
+                alt="StarWork Chiang Mai"
+                fill
+                className="object-contain"
+                priority
+              />
             </div>
           </Link>
 

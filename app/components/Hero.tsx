@@ -1,49 +1,71 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
 import { HiLocationMarker } from 'react-icons/hi';
 
 export default function Hero() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    const video = document.querySelector('video');
-    if (video) {
-      video.addEventListener('loadeddata', () => {
-        setIsVideoLoaded(true);
+    const video = videoRef.current;
+    if (!video) return;
+
+    const handleLoadedData = () => {
+      setIsVideoLoaded(true);
+      video.play().catch((error) => {
+        console.log('Video play failed:', error);
       });
-      video.addEventListener('error', () => {
-        setHasError(true);
-      });
+    };
+
+    const handleError = () => {
+      setHasError(true);
+    };
+
+    video.addEventListener('loadeddata', handleLoadedData);
+    video.addEventListener('error', handleError);
+
+    // Try to play immediately if already loaded
+    if (video.readyState >= 2) {
+      handleLoadedData();
     }
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoadedData);
+      video.removeEventListener('error', handleError);
+    };
   }, []);
+
+  const scrollToContent = () => {
+    window.scrollTo({
+      top: window.innerHeight,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <section className="relative h-screen flex items-center overflow-hidden">
       {/* Video Background */}
       <div className="absolute inset-0 w-full h-full">
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/70 to-black/80 z-10" />
-
-        {/* Fallback Background - Always visible */}
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black">
+        {/* Fallback Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black z-0">
           <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center" />
         </div>
 
         {/* Video - Only if no error */}
         {!hasError && (
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-[2000ms] ease-out ${
+            className={`absolute inset-0 w-full h-full object-cover z-1 transition-opacity duration-2000 ease-out ${
               isVideoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-            onLoadedData={() => setIsVideoLoaded(true)}
-            onError={() => setHasError(true)}
           >
             <source
               src="https://starworkchiangmai.com/wp-content/uploads/NewFolder/Starwork%20Service%20Office%20_Floor%203%20(New%20Zone).mp4"
@@ -51,6 +73,9 @@ export default function Hero() {
             />
           </video>
         )}
+
+        {/* Dark Overlay - Above video */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/70 to-black/80 z-2" />
       </div>
 
       {/* Content */}
@@ -112,9 +137,13 @@ export default function Hero() {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 animate-bounce">
-        <FaChevronDown className="text-white/40 text-2xl" />
-      </div>
+      <button
+        onClick={scrollToContent}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-20 animate-bounce hover:scale-110 transition-transform cursor-pointer"
+        aria-label="Scroll to content"
+      >
+        <FaChevronDown className="text-white/40 hover:text-white/60 text-2xl transition-colors" />
+      </button>
 
       {/* Decorative gradient */}
       <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white/5 to-transparent z-10" />

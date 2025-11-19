@@ -1,19 +1,25 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
+import Pricing from './components/Pricing';
+import Amenities from './components/Amenities';
+import Gallery from './components/Gallery';
+import Location from './components/Location';
+import Contact from './components/Contact';
+import Footer from './components/Footer';
+import FloatingContactButton from './components/FloatingContactButton';
 
 export default function Home() {
   return (
     <div className="min-h-screen">
       <Navbar />
       <Hero />
-
-      {/* Placeholder for future sections */}
-      <section id="services" className="min-h-screen bg-white flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">บริการของเรา</h2>
-          <p className="text-gray-600">เนื้อหาจะถูกเพิ่มในภายหลัง</p>
-        </div>
-      </section>
+      <Pricing />
+      <Amenities />
+      <Gallery />
+      <Location />
+      <Contact />
+      <Footer />
+      <FloatingContactButton />
     </div>
   );
 }
