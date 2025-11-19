@@ -1,5 +1,6 @@
 import Navbar from '../components/Navbar';
 import ServicesHero from '../components/services/ServicesHero';
+import ServiceOverview from '../components/services/ServiceOverview';
 import ServiceDetail from '../components/services/ServiceDetail';
 import ServiceFAQ from '../components/services/ServiceFAQ';
 import Testimonials from '../components/services/Testimonials';
@@ -143,6 +144,9 @@ export default function ServicesPage() {
     <div className="min-h-screen">
       <Navbar />
       <ServicesHero />
+
+      {/* Service Overview Cards */}
+      <ServiceOverview />
 
       {/* Service Details */}
       <div className="bg-white">
