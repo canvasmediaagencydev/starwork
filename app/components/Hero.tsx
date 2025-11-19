@@ -80,31 +80,31 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-5">
             <a
               href="#plans"
-              className="group inline-flex items-center justify-center gap-4 bg-white/95 backdrop-blur-sm text-gray-900 px-10 py-5 rounded-full text-lg font-medium hover:bg-white hover:gap-6 hover:shadow-2xl hover:shadow-white/20 transition-all duration-500 ease-out"
+              className="group inline-flex items-center justify-center gap-4 bg-white/70 backdrop-blur-md text-gray-900 px-10 py-5 rounded-full text-lg font-medium hover:bg-white hover:gap-6 hover:shadow-2xl hover:shadow-green-500/20 border border-white/40 transition-all duration-500 ease-out"
             >
               <span>เริ่มต้นใช้งานวันนี้</span>
-              <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1" />
+              <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1 text-green-600" />
             </a>
             <a
               href="#contact"
-              className="group inline-flex items-center justify-center gap-3 bg-white/5 backdrop-blur-sm text-white px-10 py-5 rounded-full text-lg font-light border border-white/20 hover:bg-white/10 hover:border-white/40 transition-all duration-500 ease-out"
+              className="group inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white px-10 py-5 rounded-full text-lg font-light border border-white/30 hover:bg-white/15 hover:border-white/50 transition-all duration-500 ease-out"
             >
               <span>ติดต่อเรา</span>
             </a>
           </div>
 
           {/* Small info */}
-          <div className="mt-15 flex flex-wrap gap-8 text-white/60 text-md font-light">
+          <div className="mt-15 flex flex-wrap gap-8 text-white/70 text-md font-light">
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
               <span>ห้องประชุมพร้อมใช้งาน</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
               <span>เข้าถึงได้ 24/7</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-white/60"></div>
+              <div className="w-2 h-2 rounded-full bg-green-500"></div>
               <span>WiFi ความเร็วสูง</span>
             </div>
           </div>
