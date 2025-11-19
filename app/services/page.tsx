@@ -1,3 +1,4 @@
+import { Metadata } from 'next';
 import Navbar from '../components/Navbar';
 import ServicesHero from '../components/services/ServicesHero';
 import ServiceOverview from '../components/services/ServiceOverview';
@@ -8,6 +9,15 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
 import ScrollProgressBar from '../components/ScrollProgressBar';
+
+export const metadata: Metadata = {
+  title: 'บริการของเรา',
+  description: 'บริการครบครัน 6 ประเภท: Serviced Office, Virtual Office, Co-Working Space, Meeting Room, Event Space และ Café Amazon ใจกลางเชียงใหม่ พร้อมสิ่งอำนวยความสะดวกครบครัน',
+  openGraph: {
+    title: 'บริการของเรา | StarWork Chiang Mai',
+    description: 'บริการครบครัน 6 ประเภท: Serviced Office, Virtual Office, Co-Working Space, Meeting Room, Event Space และ Café Amazon',
+  },
+};
 
 export default function ServicesPage() {
   const services = [

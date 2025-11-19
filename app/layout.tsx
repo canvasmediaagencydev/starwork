@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
+import StructuredData from "./components/StructuredData";
 
 const notoSansThai = Noto_Sans_Thai({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -10,8 +11,67 @@ const notoSansThai = Noto_Sans_Thai({
 });
 
 export const metadata: Metadata = {
-  title: "StarWork Chiang Mai | Service Offices & Coworking Space",
-  description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่ ใกล้นิมมาน MAYA และ Think Park",
+  title: {
+    default: "StarWork Chiang Mai | Service Offices & Coworking Space",
+    template: "%s | StarWork Chiang Mai",
+  },
+  description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่ ใกล้นิมมาน MAYA และ Think Park พร้อมบริการครบครัน Virtual Office, Serviced Office, Meeting Room และ Event Space",
+  keywords: [
+    "StarWork Chiang Mai",
+    "coworking space เชียงใหม่",
+    "serviced office เชียงใหม่",
+    "virtual office เชียงใหม่",
+    "ห้องประชุม เชียงใหม่",
+    "meeting room เชียงใหม่",
+    "พื้นที่ทำงานร่วม เชียงใหม่",
+    "สำนักงานให้เช่า เชียงใหม่",
+    "ออฟฟิศเสมือน",
+    "ที่อยู่จดทะเบียน เชียงใหม่",
+  ],
+  authors: [{ name: "StarWork Chiang Mai" }],
+  creator: "StarWork Chiang Mai",
+  publisher: "StarWork Chiang Mai",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  openGraph: {
+    type: "website",
+    locale: "th_TH",
+    url: "https://starworkchiangmai.com",
+    siteName: "StarWork Chiang Mai",
+    title: "StarWork Chiang Mai | Service Offices & Coworking Space",
+    description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่ ใกล้นิมมาน MAYA และ Think Park",
+    images: [
+      {
+        url: "/Screenshot from 2025-11-19 21-53-12.png",
+        width: 1200,
+        height: 630,
+        alt: "StarWork Chiang Mai",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "StarWork Chiang Mai | Service Offices & Coworking Space",
+    description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่",
+    images: ["/Screenshot from 2025-11-19 21-53-12.png"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+  },
 };
 
 export default function RootLayout({
@@ -21,6 +81,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="th">
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${notoSansThai.variable} antialiased`}
       >
