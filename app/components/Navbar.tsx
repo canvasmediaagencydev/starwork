@@ -3,10 +3,13 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +20,56 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Handle scrolling to hash after navigation
+  useEffect(() => {
+    // Check for hash in URL after navigation
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        const id = hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          // Scroll to top first to show we're on home page
+          window.scrollTo({ top: 0, behavior: 'instant' });
+          // Then smooth scroll to section
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 300);
+        }
+      }
+    };
+
+    // Run on pathname change
+    handleHashScroll();
+  }, [pathname]);
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setIsMobileMenuOpen(false);
+
+    // Check if it's a hash link
+    if (href.includes('#')) {
+      e.preventDefault();
+      const [path, hash] = href.split('#');
+
+      // If we're on the home page already
+      if (pathname === '/' && (path === '/' || path === '')) {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      } else {
+        // Navigate to home page first, then scroll
+        router.push(`/#${hash}`);
+      }
+    }
+  };
+
   const navLinks = [
-    { name: 'บริการ', href: '#services' },
-    { name: 'ห้องประชุม', href: '#meeting-rooms' },
-    { name: 'Coworking', href: '#coworking' },
-    { name: 'แกลเลอรี่', href: '#gallery' },
-    { name: 'ติดต่อเรา', href: '#contact' },
+    { name: 'หน้าแรก', href: '/' },
+    { name: 'บริการ', href: '/services' },
+    { name: 'แพ็คเกจ', href: '/#plans' },
+    { name: 'แกลเลอรี่', href: '/#gallery' },
+    { name: 'ติดต่อเรา', href: '/#contact' },
   ];
 
   return (
@@ -54,6 +101,7 @@ export default function Navbar() {
               <Link
                 key={link.name}
                 href={link.href}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className={`text-sm font-medium transition-all duration-300 relative group ${
                   isScrolled
                     ? 'text-gray-700 hover:text-gray-900'
@@ -136,8 +184,8 @@ export default function Navbar() {
             <Link
               key={link.name}
               href={link.href}
+              onClick={(e) => handleNavClick(e, link.href)}
               className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors"
-              onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.name}
             </Link>
