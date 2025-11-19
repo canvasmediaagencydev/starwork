@@ -7,6 +7,7 @@ import Testimonials from '../components/services/Testimonials';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
+import ScrollProgressBar from '../components/ScrollProgressBar';
 
 export default function ServicesPage() {
   const services = [
@@ -142,6 +143,7 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen">
+      <ScrollProgressBar />
       <Navbar />
       <ServicesHero />
 

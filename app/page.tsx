@@ -7,10 +7,12 @@ import Location from './components/Location';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import FloatingContactButton from './components/FloatingContactButton';
+import ScrollProgressBar from './components/ScrollProgressBar';
 
 export default function Home() {
   return (
     <div className="min-h-screen">
+      <ScrollProgressBar />
       <Navbar />
       <Hero />
       <Pricing />
