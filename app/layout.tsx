@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
+import FaviconLinks from "./components/FaviconLinks";
 
 const notoSansThai = Noto_Sans_Thai({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -72,6 +73,17 @@ export const metadata: Metadata = {
   verification: {
     google: "your-google-verification-code",
   },
+  icons: {
+    icon: [
+      { url: '/favicon.png', sizes: '70x78', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-touch-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
+  manifest: '/site.webmanifest',
 };
 
 export default function RootLayout({
@@ -82,6 +94,7 @@ export default function RootLayout({
   return (
     <html lang="th">
       <head>
+        <FaviconLinks />
         <StructuredData />
       </head>
       <body
