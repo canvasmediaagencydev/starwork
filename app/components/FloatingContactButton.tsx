@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { FaPhone, FaEnvelope, FaTimes } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaTimes, FaLine } from 'react-icons/fa';
 import { HiChatAlt2 } from 'react-icons/hi';
 
 export default function FloatingContactButton() {
@@ -25,7 +25,7 @@ export default function FloatingContactButton() {
             {/* Contact Options */}
             <div className="p-4 space-y-2">
               <a
-                href="tel:+66XXXXXXXXX"
+                href="tel:0634414239"
                 className="group flex items-center gap-4 p-4 bg-gray-50 hover:bg-green-50 rounded-xl transition-all duration-300 hover:shadow-md border border-transparent hover:border-green-200"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
@@ -33,20 +33,35 @@ export default function FloatingContactButton() {
                 </div>
                 <div className="flex-1">
                   <div className="text-xs text-gray-500 font-medium">โทรหาเรา</div>
-                  <div className="text-gray-900 font-bold">+66 XX XXX XXXX</div>
+                  <div className="text-gray-900 font-bold">063-441-4239</div>
                 </div>
               </a>
 
               <a
-                href="mailto:info@starwork.co.th"
+                href="mailto:sale@starworkchiangmai.com"
                 className="group flex items-center gap-4 p-4 bg-gray-50 hover:bg-green-50 rounded-xl transition-all duration-300 hover:shadow-md border border-transparent hover:border-green-200"
               >
                 <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
                   <FaEnvelope className="text-white text-lg" />
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <div className="text-xs text-gray-500 font-medium">ส่งอีเมล</div>
-                  <div className="text-gray-900 font-bold text-sm">info@starwork.co.th</div>
+                  <div className="text-gray-900 font-bold text-xs break-all">sale@starworkchiangmai.com</div>
+                </div>
+              </a>
+
+              <a
+                href="https://line.me/ti/p/@starwork"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 p-4 bg-gray-50 hover:bg-green-50 rounded-xl transition-all duration-300 hover:shadow-md border border-transparent hover:border-green-200"
+              >
+                <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform flex-shrink-0">
+                  <FaLine className="text-white text-lg" />
+                </div>
+                <div className="flex-1">
+                  <div className="text-xs text-gray-500 font-medium">แอดไลน์</div>
+                  <div className="text-gray-900 font-bold text-sm">@starwork</div>
                 </div>
               </a>
             </div>

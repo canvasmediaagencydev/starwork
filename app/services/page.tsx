@@ -27,8 +27,8 @@ export default function ServicesPage() {
       titleTh: 'ออฟฟิศพร้อมบริการ',
       description: 'ห้องออฟฟิศส่วนตัวพร้อมเฟอร์นิเจอร์ครบครัน เหมาะสำหรับธุรกิจที่ต้องการความเป็นส่วนตัวและความเป็นมืออาชีพ',
       images: [
-        'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_4.webp',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_12.webp',
       ],
       features: [
         'เฟอร์นิเจอร์ครบครัน พร้อมใช้งานทันที',
@@ -48,8 +48,8 @@ export default function ServicesPage() {
       titleTh: 'ออฟฟิศเสมือน',
       description: 'ที่อยู่ธุรกิจในทำเลดีโดยไม่ต้องเช่าพื้นที่จริง เหมาะสำหรับธุรกิจที่ต้องการที่อยู่จดทะเบียน',
       images: [
-        'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=1200&q=80',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/04/Pic_V2.webp',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_6.webp',
       ],
       features: [
         'ที่อยู่จดทะเบียนบริษัทในทำเลดี',
@@ -67,8 +67,8 @@ export default function ServicesPage() {
       titleTh: 'พื้นที่ทำงานร่วม',
       description: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer, Startup และผู้ที่ต้องการทำงานในบรรยากาศที่สร้างสรรค์',
       images: [
-        'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1200&q=80',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_1.webp',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_7.webp',
       ],
       features: [
         'โต๊ะทำงานสบาย ergonomic',
@@ -91,8 +91,8 @@ export default function ServicesPage() {
       titleTh: 'ห้องประชุม',
       description: 'ห้องประชุมที่ทันสมัยพร้อมอุปกรณ์ครบครัน สำหรับการประชุม อบรม และนำเสนอผลงาน',
       images: [
-        'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1577412647305-991150c7d163?auto=format&fit=crop&w=1200&q=80',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_2.webp',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_22.webp',
       ],
       features: [
         'โปรเจคเตอร์ HD',
@@ -116,8 +116,8 @@ export default function ServicesPage() {
       titleTh: 'พื้นที่จัดอีเวนท์',
       description: 'พื้นที่จัดงานอีเวนท์ขนาดกลาง เหมาะสำหรับ Seminar, Workshop, Product Launch และงานเลี้ยง',
       images: [
-        'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&w=1200&q=80',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_5.webp',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_21.webp',
       ],
       features: [
         'ความจุ 30-100 คน',
@@ -136,8 +136,8 @@ export default function ServicesPage() {
       titleTh: 'คาเฟ่ อเมซอน',
       description: 'คาเฟ่ภายในอาคาร บริการกาแฟคุณภาพ เครื่องดื่ม และอาหารว่าง ในบรรยากาศสบายๆ',
       images: [
-        'https://images.unsplash.com/photo-1554118811-1e0d58224f24?auto=format&fit=crop&w=1200&q=80',
-        'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=1200&q=80',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_3.webp',
+        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_73.webp',
       ],
       features: [
         'กาแฟสดคุณภาพ',

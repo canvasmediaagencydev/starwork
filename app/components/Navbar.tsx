@@ -119,14 +119,14 @@ export default function Navbar() {
           {/* CTA Button */}
           <div className="hidden lg:flex items-center space-x-4">
             <Link
-              href="tel:+66XXXXXXXXX"
+              href="tel:0634414239"
               className={`text-sm font-medium transition-colors duration-300 ${
                 isScrolled || isMobileMenuOpen
                   ? 'text-gray-700 hover:text-gray-900'
                   : 'text-white/90 hover:text-white'
               }`}
             >
-              โทร: 0X-XXXX-XXXX
+              โทร: 063-441-4239
             </Link>
             <Link
               href="#booking"
@@ -192,11 +192,11 @@ export default function Navbar() {
           ))}
           <div className="pt-4 space-y-2">
             <Link
-              href="tel:+66XXXXXXXXX"
+              href="tel:0634414239"
               className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              โทร: 0X-XXXX-XXXX
+              โทร: 063-441-4239
             </Link>
             <Link
               href="#booking"

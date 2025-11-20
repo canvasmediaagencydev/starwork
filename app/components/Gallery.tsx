@@ -10,28 +10,40 @@ export default function Gallery() {
 
   const images = [
     {
-      src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Modern Office Corridor',
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_12.webp',
+      alt: 'StarWork Office Space',
     },
     {
-      src: 'https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Office with City View',
-    },
-    {
-      src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80',
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_6.webp',
       alt: 'Modern Office Interior',
     },
     {
-      src: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=1200&q=80',
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_7.webp',
+      alt: 'Co-Working Space',
+    },
+    {
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_22.webp',
       alt: 'Meeting Room',
     },
     {
-      src: 'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Workspace Essentials',
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_21.webp',
+      alt: 'Event Space',
     },
     {
-      src: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=1200&q=80',
-      alt: 'Coworking Space',
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_73.webp',
+      alt: 'Café Amazon',
+    },
+    {
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_78-1536x1025.webp',
+      alt: 'Office Workspace',
+    },
+    {
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_67.webp',
+      alt: 'StarWork Facilities',
+    },
+    {
+      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_76-1024x683.webp',
+      alt: 'StarWork Office Environment',
     },
   ];
 

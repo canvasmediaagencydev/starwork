@@ -1,6 +1,6 @@
 'use client';
 
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaClock } from 'react-icons/fa';
+import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaClock, FaLine } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 export default function Contact() {
@@ -55,8 +55,8 @@ export default function Contact() {
                   <FaMapMarkerAlt className="text-green-600 text-lg" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">Location</div>
-                  <div className="text-gray-900 font-medium">Nimman Area, Chiang Mai</div>
+                  <div className="text-sm text-gray-500">ที่อยู่</div>
+                  <div className="text-gray-900 font-medium">87/9 ถนนทุ่งโฮเต็ล ตำบลวัดเกต<br />อำเภอเมือง จังหวัดเชียงใหม่ 50000</div>
                 </div>
               </div>
             </div>
@@ -100,7 +100,7 @@ export default function Contact() {
                 {/* Contact Methods */}
                 <div className="space-y-3">
                   <a
-                    href="tel:+66XXXXXXXXX"
+                    href="tel:0634414239"
                     className="group flex items-center gap-4 p-5 bg-white/80 backdrop-blur-md rounded-2xl hover:bg-white transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-gray-100/50"
                   >
                     <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
@@ -108,13 +108,13 @@ export default function Contact() {
                     </div>
                     <div className="flex-1 text-left">
                       <div className="text-xs text-gray-500 mb-1 font-medium">โทรหาเรา</div>
-                      <div className="text-gray-900 font-bold">+66 XX XXX XXXX</div>
+                      <div className="text-gray-900 font-bold">063-441-4239</div>
                     </div>
                     <FaArrowRight className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
                   </a>
 
                   <a
-                    href="mailto:info@starwork.co.th"
+                    href="mailto:sale@starworkchiangmai.com"
                     className="group flex items-center gap-4 p-5 bg-white/80 backdrop-blur-md rounded-2xl hover:bg-white transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-gray-100/50"
                   >
                     <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
@@ -122,7 +122,23 @@ export default function Contact() {
                     </div>
                     <div className="flex-1 text-left">
                       <div className="text-xs text-gray-500 mb-1 font-medium">ส่งอีเมล</div>
-                      <div className="text-gray-900 font-bold">info@starwork.co.th</div>
+                      <div className="text-gray-900 font-bold">sale@starworkchiangmai.com</div>
+                    </div>
+                    <FaArrowRight className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
+                  </a>
+
+                  <a
+                    href="https://line.me/ti/p/@starwork"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center gap-4 p-5 bg-white/80 backdrop-blur-md rounded-2xl hover:bg-white transition-all duration-300 hover:scale-[1.02] hover:shadow-xl border border-gray-100/50"
+                  >
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                      <FaLine className="text-white text-lg" />
+                    </div>
+                    <div className="flex-1 text-left">
+                      <div className="text-xs text-gray-500 mb-1 font-medium">แอดไลน์</div>
+                      <div className="text-gray-900 font-bold">@starwork</div>
                     </div>
                     <FaArrowRight className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
                   </a>

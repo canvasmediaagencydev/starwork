@@ -1,9 +1,9 @@
 'use client';
 
-import { FaCheck, FaArrowRight } from 'react-icons/fa';
+import { FaBuilding, FaGlobe, FaUsers, FaDoorOpen, FaCalendarAlt, FaCoffee, FaArrowRight } from 'react-icons/fa';
 import { HiLocationMarker, HiShieldCheck, HiWifi, HiOfficeBuilding } from 'react-icons/hi';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import Link from 'next/link';
 
 export default function Pricing() {
   const features = [
@@ -13,45 +13,90 @@ export default function Pricing() {
     { icon: HiWifi, text: 'อินเทอร์เน็ตความเร็วสูง' },
   ];
 
-  const plans = [
+  const services = [
     {
-      name: 'Private Office',
-      nameThai: 'ออฟฟิสส่วนตัว',
-      capacity: '2-4 คน',
-      price: '12,000',
-      image: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=800&q=80',
+      id: 'serviced-office',
+      icon: FaBuilding,
+      title: 'ออฟฟิศพร้อมบริการ',
+      titleEn: 'Serviced Office',
+      shortDesc: 'ห้องออฟฟิศส่วนตัวพร้อมเฟอร์นิเจอร์ครบครัน เหมาะสำหรับธุรกิจที่ต้องการความเป็นส่วนตัว',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_4.webp',
       features: [
-        'ห้องพร้อมเฟอร์นิเจอร์ครบครัน',
-        'บริการจัดการจดหมายและพัสดุ',
-        'เครดิตห้องประชุมรวมอยู่ในราคา',
+        'เฟอร์นิเจอร์ครบครัน พร้อมใช้งานทันที',
+        'ที่อยู่จดทะเบียนบริษัท',
+        'Wi-Fi ความเร็วสูง',
       ],
-      featured: false,
+      pricing: 'เริ่มต้น 8,000 บาท/เดือน',
     },
     {
-      name: 'Team Office',
-      nameThai: 'ออฟฟิสทีม',
-      capacity: '5-10 คน',
-      price: '20,000',
-      image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=80',
+      id: 'virtual-office',
+      icon: FaGlobe,
+      title: 'ออฟฟิศเสมือน',
+      titleEn: 'Virtual Office',
+      shortDesc: 'ที่อยู่ธุรกิจในทำเลดีโดยไม่ต้องเช่าพื้นที่จริง',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/Pic_V2.webp',
       features: [
-        'พื้นที่กว้างขวางสำหรับทีม',
-        'เข้าถึงโซนพิมพ์และคาเฟ่เลานจ์',
-        'เข้าถึงได้ 24/7 สำหรับสมาชิกทุกคน',
+        'ที่อยู่จดทะเบียนบริษัทในทำเลดี',
+        'รับจดหมายและพัสดุ',
+        'บริการตอบโทรศัพท์',
       ],
-      featured: true,
+      pricing: 'เริ่มต้น 2,500 บาท/เดือน',
     },
     {
-      name: 'Custom Office',
-      nameThai: 'ออฟฟิสแบบกำหนดเอง',
-      capacity: 'ปรับขนาดได้',
-      price: '30,000',
-      image: 'https://images.unsplash.com/photo-1556761175-4b46a572b786?auto=format&fit=crop&w=800&q=80',
+      id: 'coworking',
+      icon: FaUsers,
+      title: 'พื้นที่ทำงานร่วม',
+      titleEn: 'Co-Working Space',
+      shortDesc: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer และ Startup',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_1.webp',
       features: [
-        'ออกแบบตามความต้องการและแบรนด์',
-        'มีผู้ช่วยและคอนเซียร์จเฉพาะ',
-        'ขยายที่นั่งได้ตามทีมเติบโต',
+        'โต๊ะทำงานสบาย ergonomic',
+        'Wi-Fi ความเร็วสูง ไม่จำกัด',
+        'เครื่องดื่มฟรี (กาแฟ, น้ำ)',
       ],
-      featured: false,
+      pricing: 'เริ่มต้น 200 บาท/วัน',
+    },
+    {
+      id: 'meeting-room',
+      icon: FaDoorOpen,
+      title: 'ห้องประชุม',
+      titleEn: 'Meeting Room',
+      shortDesc: 'ห้องประชุมที่ทันสมัยพร้อมอุปกรณ์ครบครัน',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_2.webp',
+      features: [
+        'โปรเจคเตอร์ HD',
+        'ระบบเสียงและ Conference Call',
+        'Wi-Fi ความเร็วสูง',
+      ],
+      pricing: 'เริ่มต้น 300 บาท/ชม.',
+    },
+    {
+      id: 'event-space',
+      icon: FaCalendarAlt,
+      title: 'พื้นที่จัดอีเวนท์',
+      titleEn: 'Event Space',
+      shortDesc: 'พื้นที่จัดงานอีเวนท์ขนาดกลาง สำหรับ Seminar และ Workshop',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_5.webp',
+      features: [
+        'ความจุ 30-100 คน',
+        'เวทีและระบบเสียงไฟแสง',
+        'โปรเจคเตอร์และจอใหญ่',
+      ],
+      pricing: 'ติดต่อสอบถามราคา',
+    },
+    {
+      id: 'cafe-amazon',
+      icon: FaCoffee,
+      title: 'คาเฟ่ อเมซอน',
+      titleEn: 'Café Amazon',
+      shortDesc: 'คาเฟ่ภายในอาคาร บริการกาแฟคุณภาพและเครื่องดื่ม',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_3.webp',
+      features: [
+        'กาแฟสดคุณภาพ',
+        'เครื่องดื่มและเบเกอรี่หลากหลาย',
+        'Wi-Fi ฟรี',
+      ],
+      pricing: 'เปิดบริการทุกวัน',
     },
   ];
 
@@ -90,129 +135,106 @@ export default function Pricing() {
         {/* Features Bar */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {features.map((feature, index) => (
-            <motion.div
+            <div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
               className="flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-3 rounded-xl border border-gray-200/50"
             >
               <feature.icon className="text-green-600 text-xl flex-shrink-0" />
               <span className="text-sm text-gray-700 font-light">{feature.text}</span>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Header */}
         <div className="text-center mb-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
-          >
+          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
             แพ็คเกจและราคา
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-lg text-gray-600 font-light max-w-3xl mx-auto"
-          >
+          </h2>
+          <p className="text-lg text-gray-600 font-light max-w-3xl mx-auto">
             ทุกแพ็คเกจรวมค่าสาธารณูปโภค ทำความสะอาด จัดการจดหมาย เครดิตห้องประชุม และการสนับสนุนในสถานที่
-          </motion.p>
+          </p>
         </div>
 
-        {/* Pricing Cards */}
-        <div className="grid lg:grid-cols-3 gap-8">
-          {plans.map((plan, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
-              className={`group relative bg-white rounded-3xl overflow-hidden transition-all duration-500 ${plan.featured
-                  ? 'shadow-2xl shadow-green-500/10 ring-2 ring-green-500/20 lg:-translate-y-4'
-                  : 'shadow-xl hover:shadow-2xl'
-                }`}
+        {/* Service Cards */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, index) => (
+            <div
+              key={service.id}
+              className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
             >
-              {/* Featured Badge */}
-              {plan.featured && (
-                <div className="absolute top-6 right-6 z-10">
-                  <div className="bg-green-600 text-white px-4 py-1.5 rounded-full text-xs font-medium">
-                    แนะนำ
-                  </div>
-                </div>
-              )}
-
               {/* Image */}
               <div className="relative h-56 overflow-hidden">
                 <Image
-                  src={plan.image}
-                  alt={plan.name}
+                  src={service.image}
+                  alt={service.title}
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+
+                {/* Icon on Image */}
+                <div className="absolute bottom-4 left-4 w-14 h-14 bg-white rounded-xl flex items-center justify-center shadow-lg">
+                  <service.icon className="text-2xl text-green-600" />
+                </div>
               </div>
 
               {/* Content */}
-              <div className="p-8">
+              <div className="p-6">
                 {/* Title */}
-                <div className="mb-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-1">
-                    {plan.nameThai}
+                <div className="mb-3">
+                  <h3 className="text-xl font-bold text-gray-900 mb-1">
+                    {service.title}
                   </h3>
-                  <p className="text-sm text-gray-500 font-light">{plan.capacity}</p>
+                  <p className="text-sm text-gray-500 font-light">{service.titleEn}</p>
                 </div>
 
-                {/* Price */}
-                <div className="mb-8">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-sm text-gray-600 font-light">เริ่มต้น</span>
-                    <span className="text-4xl font-bold text-green-600">฿{plan.price}</span>
-                    <span className="text-gray-500 font-light">/ เดือน</span>
-                  </div>
-                </div>
+                {/* Description */}
+                <p className="text-gray-600 font-light text-sm mb-4 min-h-[2.5rem]">
+                  {service.shortDesc}
+                </p>
 
                 {/* Features */}
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <FaCheck className="text-green-600 mt-1 flex-shrink-0" />
-                      <span className="text-gray-600 font-light">{feature}</span>
+                <ul className="space-y-2 mb-6">
+                  {service.features.map((feature, idx) => (
+                    <li key={idx} className="flex items-start gap-2">
+                      <div className="w-1.5 h-1.5 bg-green-600 rounded-full mt-1.5 flex-shrink-0" />
+                      <span className="text-sm text-gray-600 font-light">{feature}</span>
                     </li>
                   ))}
                 </ul>
 
+                {/* Pricing */}
+                <div className="pt-4 border-t border-gray-100 mb-4">
+                  <p className="text-base font-bold text-green-600">
+                    {service.pricing}
+                  </p>
+                </div>
+
                 {/* CTA Button */}
-                <a
-                  href="#contact"
-                  className={`group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 ${plan.featured
-                      ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30'
-                      : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                    }`}
+                <Link
+                  href="/services"
+                  className="group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-medium hover:bg-green-600 hover:text-white transition-all duration-300"
                 >
-                  <span>ตรวจสอบห้องว่าง</span>
+                  <span>ดูรายละเอียด</span>
                   <FaArrowRight className="text-sm group-hover/btn:translate-x-1 transition-transform" />
-                </a>
+                </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
-        {/* Bottom Note */}
+        {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-gray-600 font-light">
-            ต้องการข้อมูลเพิ่มเติม?{' '}
-            <a href="#contact" className="text-green-600 font-medium hover:text-green-700 underline">
-              ติดต่อเรา
-            </a>{' '}
-            เพื่อรับคำปรึกษาฟรี
+          <p className="text-gray-600 font-light mb-6">
+            ต้องการข้อมูลเพิ่มเติม?
           </p>
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30 transition-all duration-300 group"
+          >
+            <span>ติดต่อเรา เพื่อรับคำปรึกษาฟรี</span>
+            <FaArrowRight className="text-sm group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       </div>
     </section>
