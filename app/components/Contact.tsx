@@ -1,6 +1,7 @@
 'use client';
 
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaClock } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 export default function Contact() {
   return (
@@ -14,7 +15,12 @@ export default function Contact() {
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left Side - Content */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
             <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/10 backdrop-blur-sm rounded-full mb-6">
               <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse" />
               <span className="text-green-700 text-sm font-medium">Get Started Today</span>
@@ -63,10 +69,15 @@ export default function Contact() {
               <span>ดูแพ็คเกจของเรา</span>
               <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
             </a>
-          </div>
+          </motion.div>
 
           {/* Right Side - Contact Card */}
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
             <div className="relative bg-white/70 backdrop-blur-xl rounded-3xl shadow-2xl shadow-gray-900/10 p-8 border border-white/50 overflow-hidden">
               {/* Decorative Elements */}
               <div className="absolute top-0 right-0 w-40 h-40 bg-green-100/40 rounded-full blur-3xl" />
@@ -125,7 +136,7 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

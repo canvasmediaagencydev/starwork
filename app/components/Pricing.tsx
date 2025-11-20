@@ -2,6 +2,8 @@
 
 import { FaCheck, FaArrowRight } from 'react-icons/fa';
 import { HiLocationMarker, HiShieldCheck, HiWifi, HiOfficeBuilding } from 'react-icons/hi';
+import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 export default function Pricing() {
   const features = [
@@ -88,36 +90,54 @@ export default function Pricing() {
         {/* Features Bar */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
               className="flex items-center gap-3 bg-white/60 backdrop-blur-sm px-4 py-3 rounded-xl border border-gray-200/50"
             >
               <feature.icon className="text-green-600 text-xl flex-shrink-0" />
               <span className="text-sm text-gray-700 font-light">{feature.text}</span>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
+          >
             แพ็คเกจและราคา
-          </h2>
-          <p className="text-lg text-gray-600 font-light max-w-3xl mx-auto">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg text-gray-600 font-light max-w-3xl mx-auto"
+          >
             ทุกแพ็คเกจรวมค่าสาธารณูปโภค ทำความสะอาด จัดการจดหมาย เครดิตห้องประชุม และการสนับสนุนในสถานที่
-          </p>
+          </motion.p>
         </div>
 
         {/* Pricing Cards */}
         <div className="grid lg:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
-            <div
+            <motion.div
               key={index}
-              className={`group relative bg-white rounded-3xl overflow-hidden transition-all duration-500 ${
-                plan.featured
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.15 }}
+              className={`group relative bg-white rounded-3xl overflow-hidden transition-all duration-500 ${plan.featured
                   ? 'shadow-2xl shadow-green-500/10 ring-2 ring-green-500/20 lg:-translate-y-4'
                   : 'shadow-xl hover:shadow-2xl'
-              }`}
+                }`}
             >
               {/* Featured Badge */}
               {plan.featured && (
@@ -130,10 +150,11 @@ export default function Pricing() {
 
               {/* Image */}
               <div className="relative h-56 overflow-hidden">
-                <img
+                <Image
                   src={plan.image}
                   alt={plan.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
               </div>
@@ -170,17 +191,16 @@ export default function Pricing() {
                 {/* CTA Button */}
                 <a
                   href="#contact"
-                  className={`group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 ${
-                    plan.featured
+                  className={`group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-4 rounded-xl font-medium transition-all duration-300 ${plan.featured
                       ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30'
                       : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
-                  }`}
+                    }`}
                 >
                   <span>ตรวจสอบห้องว่าง</span>
                   <FaArrowRight className="text-sm group-hover/btn:translate-x-1 transition-transform" />
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 

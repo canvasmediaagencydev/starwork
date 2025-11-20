@@ -3,6 +3,7 @@
 import { HiOfficeBuilding, HiShieldCheck, HiWifi } from 'react-icons/hi';
 import { MdCoffeeMaker } from 'react-icons/md';
 import { FaUserTie, FaPrint, FaParking, FaEnvelope } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 
 export default function Amenities() {
   const amenities = [
@@ -67,19 +68,34 @@ export default function Amenities() {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-10 md:mb-16">
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-3 md:mb-4"
+          >
             สิ่งอำนวยความสะดวก
-          </h2>
-          <p className="text-base sm:text-lg text-gray-600 font-light max-w-3xl mx-auto px-4">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-base sm:text-lg text-gray-600 font-light max-w-3xl mx-auto px-4"
+          >
             ทุกสิ่งที่ทีมของคุณต้องการตั้งแต่วันแรก — ไม่ต้องปรับปรุง ไม่มีค่าใช้จ่ายแอบแฝง
-          </p>
+          </motion.p>
         </div>
 
         {/* Amenities Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
           {amenities.map((amenity, index) => (
-            <div
+            <motion.div
               key={index}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: index * 0.1 }}
               className="group relative bg-white rounded-xl md:rounded-2xl p-6 md:p-8 border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300"
             >
               {/* Icon */}
@@ -101,12 +117,18 @@ export default function Amenities() {
 
               {/* Hover Effect Line */}
               <div className="absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-green-500 to-green-600 group-hover:w-full transition-all duration-500 rounded-bl-xl md:rounded-bl-2xl" />
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Bottom CTA */}
-        <div className="mt-12 md:mt-16 text-center">
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.5 }}
+          className="mt-12 md:mt-16 text-center"
+        >
           <p className="text-gray-600 font-light mb-4 md:mb-6 text-sm md:text-base">
             และอื่นๆ อีกมากมายที่รอให้คุณค้นพบ
           </p>
@@ -127,7 +149,7 @@ export default function Amenities() {
               <path d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </a>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
