@@ -212,7 +212,7 @@ export default function Pricing() {
 
                 {/* CTA Button */}
                 <Link
-                  href="/services"
+                  href={`/services#${service.id}`}
                   className="group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-medium hover:bg-green-600 hover:text-white transition-all duration-300"
                 >
                   <span>ดูรายละเอียด</span>
@@ -225,9 +225,6 @@ export default function Pricing() {
 
         {/* Bottom CTA */}
         <div className="text-center mt-16">
-          <p className="text-gray-600 font-light mb-6">
-            ต้องการข้อมูลเพิ่มเติม?
-          </p>
           <Link
             href="/services"
             className="inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30 transition-all duration-300 group"

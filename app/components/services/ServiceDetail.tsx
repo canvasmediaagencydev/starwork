@@ -34,11 +34,9 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
     setCurrentImageIndex((prev) => (prev - 1 + service.images.length) % service.images.length);
   };
 
-  const isFirst = index === 0;
-
   return (
     <section
-      id={isFirst ? 'services-list' : service.id}
+      id={service.id}
       className={`relative py-16 md:py-24 overflow-hidden ${
         index % 2 === 0 ? 'bg-white' : 'bg-gray-50'
       }`}
@@ -208,7 +206,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="tel:+66XXXXXXXXX"
+                href="tel:0634414239"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 rounded-xl font-semibold border-2 border-gray-200 hover:border-green-600 hover:text-green-600 transition-all duration-300"
               >
                 <span>สอบถามเพิ่มเติม</span>
