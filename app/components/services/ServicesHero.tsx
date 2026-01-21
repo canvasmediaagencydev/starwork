@@ -37,7 +37,7 @@ export default function ServicesHero() {
           {/* Stats Cards */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto mb-8">
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
-              <div className="text-2xl sm:text-3xl font-bold text-white mb-1">6</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1">5</div>
               <div className="text-xs sm:text-sm text-green-100">บริการหลัก</div>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
@@ -52,7 +52,7 @@ export default function ServicesHero() {
 
           {/* Description */}
           <p className="text-sm sm:text-base text-green-50/80 font-light max-w-2xl mx-auto mb-8">
-            จาก Private Office, Virtual Office ไปจนถึง Co-Working Space
+            จาก Private Office, Virtual Office, Co-Working Space ไปจนถึง Meeting Room
             เราพร้อมรองรับทุกรูปแบบการทำงานของคุณ
           </p>
 

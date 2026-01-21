@@ -58,7 +58,7 @@ export default function Gallery() {
             viewport={{ once: true }}
             className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4"
           >
-            Visual Office — Gallery
+            Gallery
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 20 }}

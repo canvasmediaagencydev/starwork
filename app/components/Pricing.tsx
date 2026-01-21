@@ -1,19 +1,39 @@
 'use client';
 
-import { FaBuilding, FaGlobe, FaUsers, FaDoorOpen, FaCalendarAlt, FaCoffee, FaArrowRight } from 'react-icons/fa';
-import { HiLocationMarker, HiShieldCheck, HiWifi, HiOfficeBuilding } from 'react-icons/hi';
+import { FaBuilding, FaGlobe, FaUsers, FaArrowRight, FaPhone, FaLine, FaEnvelope } from 'react-icons/fa';
+import { HiLocationMarker, HiShieldCheck, HiWifi, HiClock } from 'react-icons/hi';
 import Image from 'next/image';
 import Link from 'next/link';
 
 export default function Pricing() {
   const features = [
-    { icon: HiLocationMarker, text: '10 นาทีจากสนามบิน CNX' },
-    { icon: HiOfficeBuilding, text: 'ใกล้ Nimman / MAYA / Think Park' },
+    { icon: HiLocationMarker, text: 'ใกล้ Central Festival' },
     { icon: HiShieldCheck, text: 'เข้าถึงได้ 24/7' },
+    { icon: HiClock, text: 'เปิดทุกวัน 09:00-18:00' },
     { icon: HiWifi, text: 'อินเทอร์เน็ตความเร็วสูง' },
   ];
 
+  const contactButtons = [
+    { icon: FaPhone, label: 'โทร', href: 'tel:0634414239' },
+    { icon: FaLine, label: 'Line', href: 'https://line.me/ti/p/@starwork' },
+    { icon: FaEnvelope, label: 'อีเมล', href: 'mailto:sale@starworkchiangmai.com' },
+  ];
+
   const services = [
+    {
+      id: 'coworking',
+      icon: FaUsers,
+      title: 'พื้นที่ทำงานร่วม',
+      titleEn: 'Co-Working Space',
+      shortDesc: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer และ Startup',
+      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_1.webp',
+      features: [
+        'โต๊ะทำงานสบาย ergonomic',
+        'Wi-Fi ความเร็วสูง ไม่จำกัด',
+        'เครื่องดื่มฟรี (กาแฟ, น้ำ)',
+      ],
+      pricing: '300 บาท/วัน',
+    },
     {
       id: 'serviced-office',
       icon: FaBuilding,
@@ -26,7 +46,7 @@ export default function Pricing() {
         'ที่อยู่จดทะเบียนบริษัท',
         'Wi-Fi ความเร็วสูง',
       ],
-      pricing: 'เริ่มต้น 8,000 บาท/เดือน',
+      pricing: 'เริ่มต้น 6,900 บาท/เดือน',
     },
     {
       id: 'virtual-office',
@@ -40,63 +60,7 @@ export default function Pricing() {
         'รับจดหมายและพัสดุ',
         'บริการตอบโทรศัพท์',
       ],
-      pricing: 'เริ่มต้น 2,500 บาท/เดือน',
-    },
-    {
-      id: 'coworking',
-      icon: FaUsers,
-      title: 'พื้นที่ทำงานร่วม',
-      titleEn: 'Co-Working Space',
-      shortDesc: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer และ Startup',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_1.webp',
-      features: [
-        'โต๊ะทำงานสบาย ergonomic',
-        'Wi-Fi ความเร็วสูง ไม่จำกัด',
-        'เครื่องดื่มฟรี (กาแฟ, น้ำ)',
-      ],
-      pricing: 'เริ่มต้น 200 บาท/วัน',
-    },
-    {
-      id: 'meeting-room',
-      icon: FaDoorOpen,
-      title: 'ห้องประชุม',
-      titleEn: 'Meeting Room',
-      shortDesc: 'ห้องประชุมที่ทันสมัยพร้อมอุปกรณ์ครบครัน',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_2.webp',
-      features: [
-        'โปรเจคเตอร์ HD',
-        'ระบบเสียงและ Conference Call',
-        'Wi-Fi ความเร็วสูง',
-      ],
-      pricing: 'เริ่มต้น 300 บาท/ชม.',
-    },
-    {
-      id: 'event-space',
-      icon: FaCalendarAlt,
-      title: 'พื้นที่จัดอีเวนท์',
-      titleEn: 'Event Space',
-      shortDesc: 'พื้นที่จัดงานอีเวนท์ขนาดกลาง สำหรับ Seminar และ Workshop',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_5.webp',
-      features: [
-        'ความจุ 30-100 คน',
-        'เวทีและระบบเสียงไฟแสง',
-        'โปรเจคเตอร์และจอใหญ่',
-      ],
-      pricing: 'ติดต่อสอบถามราคา',
-    },
-    {
-      id: 'cafe-amazon',
-      icon: FaCoffee,
-      title: 'คาเฟ่ อเมซอน',
-      titleEn: 'Café Amazon',
-      shortDesc: 'คาเฟ่ภายในอาคาร บริการกาแฟคุณภาพและเครื่องดื่ม',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_3.webp',
-      features: [
-        'กาแฟสดคุณภาพ',
-        'เครื่องดื่มและเบเกอรี่หลากหลาย',
-        'Wi-Fi ฟรี',
-      ],
-      pricing: 'เปิดบริการทุกวัน',
+      pricing: '',
     },
   ];
 
@@ -133,7 +97,7 @@ export default function Pricing() {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
         {/* Features Bar */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
           {features.map((feature, index) => (
             <div
               key={index}
@@ -142,6 +106,22 @@ export default function Pricing() {
               <feature.icon className="text-green-600 text-xl flex-shrink-0" />
               <span className="text-sm text-gray-700 font-light">{feature.text}</span>
             </div>
+          ))}
+        </div>
+
+        {/* Contact Buttons */}
+        <div className="flex flex-wrap justify-center gap-4 mb-20">
+          {contactButtons.map((button, index) => (
+            <a
+              key={index}
+              href={button.href}
+              target={button.href.startsWith('http') ? '_blank' : undefined}
+              rel={button.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+              className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-medium hover:bg-green-700 hover:shadow-lg transition-all duration-300"
+            >
+              <button.icon className="text-lg" />
+              <span>{button.label}</span>
+            </a>
           ))}
         </div>
 
@@ -204,11 +184,13 @@ export default function Pricing() {
                 </ul>
 
                 {/* Pricing */}
-                <div className="pt-4 border-t border-gray-100 mb-4">
-                  <p className="text-base font-bold text-green-600">
-                    {service.pricing}
-                  </p>
-                </div>
+                {service.pricing && (
+                  <div className="pt-4 border-t border-gray-100 mb-4">
+                    <p className="text-base font-bold text-green-600">
+                      {service.pricing}
+                    </p>
+                  </div>
+                )}
 
                 {/* CTA Button */}
                 <Link

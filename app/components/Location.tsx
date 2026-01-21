@@ -6,20 +6,12 @@ import { FaMapMarkerAlt, FaPlane, FaWalking, FaParking } from 'react-icons/fa';
 export default function Location() {
   const accessPoints = [
     {
+      icon: FaMapMarkerAlt,
+      text: 'ใกล้ Central Festival Chiang Mai',
+    },
+    {
       icon: FaPlane,
       text: '10 นาทีจากสนามบินเชียงใหม่ (CNX)',
-    },
-    {
-      icon: FaWalking,
-      text: '5 นาทีเดินถึง MAYA Lifestyle Shopping Center',
-    },
-    {
-      icon: FaMapMarkerAlt,
-      text: 'ระยะเดินถึงร้านอาหารและคาเฟ่ถนนนิมมาน',
-    },
-    {
-      icon: FaMapMarkerAlt,
-      text: 'ใกล้ Think Park และ One Nimman',
     },
     {
       icon: FaParking,
@@ -39,10 +31,10 @@ export default function Location() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            ทำเลทองใจกลางเชียงใหม่
+            ใกล้ Central Festival
           </h2>
           <p className="text-lg text-gray-600 font-light max-w-3xl mx-auto">
-            ตั้งอยู่ใกล้นิมมาน MAYA Lifestyle Shopping Center, One Nimman และ Think Park
+            ตั้งอยู่ใกล้ Central Festival Chiang Mai ทำเลทองใจกลางเมือง
           </p>
         </div>
 
@@ -115,7 +107,7 @@ export default function Location() {
           <div className="relative">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3777.1889156238!2d98.96518631489876!3d18.802282987246877!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da3a9a462e7c81%3A0x79177ab8e574e72e!2sNimman%20Road%2C%20Chiang%20Mai!5e0!3m2!1sen!2sth!4v1234567890"
+                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7553.793611641068!2d99.01022199653907!3d18.802751679385423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x30da25341c860e03%3A0x479daf5a0a43e38!2sCentral%20Festival%20Chiang%20Mai%2C%20Lampang%20-%20Chiang%20Mai%20Superhighway%2C%20Fa%20Ham%2C%20Mueang%20Chiang%20Mai%20District%2C%20Chiang%20Mai!3m2!1d18.8061895!2d99.0179173!4m5!1s0x30da254c6ffcc5cb%3A0x375d86903a9983c7!2zU3RhcldvcmsgQ2hpYW5nbWFpLCA4Ny85IFR1bmdob3RlbCBSZCwg4LiV4Liz4Lia4Lil4Lin4Lix4LiU4LmA4LiB4LiV4Li4IE11ZWFuZyBDaGlhbmcgTWFpIERpc3RyaWN0LCBDaGlhbmcgTWFpIDUwMDAw!3m2!1d18.796375899999997!2d99.0164451!5e0!3m2!1sen!2sth!4v1768972710961!5m2!1sen!2sth"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

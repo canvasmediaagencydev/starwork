@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { FaFacebookF, FaInstagram, FaLinkedinIn, FaArrowUp } from 'react-icons/fa';
+import { FaArrowUp } from 'react-icons/fa';
 
 export default function Footer() {
   const quickLinks = [
@@ -16,12 +16,6 @@ export default function Footer() {
     { name: 'Contact Us', href: '#contact' },
     { name: 'Terms of Service', href: '#terms' },
     { name: 'Privacy Policy', href: '#privacy' },
-  ];
-
-  const socialLinks = [
-    { icon: FaFacebookF, href: '#', label: 'Facebook' },
-    { icon: FaInstagram, href: '#', label: 'Instagram' },
-    { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
   ];
 
   const scrollToTop = () => {
@@ -53,22 +47,6 @@ export default function Footer() {
               Premium service offices in the heart of Chiang Mai, designed for growing businesses.
             </p>
 
-            {/* Social Links */}
-            <div>
-              <div className="text-sm text-gray-500 mb-3">Follow Us</div>
-              <div className="flex gap-3">
-                {socialLinks.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    aria-label={social.label}
-                    className="w-11 h-11 bg-white rounded-xl flex items-center justify-center hover:bg-green-600 hover:text-white hover:scale-110 transition-all duration-300 border border-gray-200 shadow-sm"
-                  >
-                    <social.icon className="text-base" />
-                  </a>
-                ))}
-              </div>
-            </div>
           </div>
 
           {/* Quick Links */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { FaBuilding, FaGlobe, FaUsers, FaDoorOpen, FaCalendarAlt, FaCoffee } from 'react-icons/fa';
+import { FaBuilding, FaGlobe, FaUsers, FaDoorOpen, FaCoffee } from 'react-icons/fa';
 
 interface Service {
   id: string;
@@ -39,13 +39,6 @@ export default function ServiceOverview() {
       title: 'ห้องประชุม',
       titleEn: 'Meeting Room',
       shortDesc: 'ห้องประชุมพร้อมอุปกรณ์ครบครัน',
-    },
-    {
-      id: 'event-space',
-      icon: FaCalendarAlt,
-      title: 'พื้นที่จัดอีเวนท์',
-      titleEn: 'Event Space',
-      shortDesc: 'พื้นที่จัดงาน Seminar และ Workshop',
     },
     {
       id: 'cafe-amazon',

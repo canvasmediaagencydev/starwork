@@ -1,22 +1,34 @@
 'use client';
 
-import { HiOfficeBuilding, HiShieldCheck, HiWifi } from 'react-icons/hi';
-import { MdCoffeeMaker } from 'react-icons/md';
-import { FaUserTie, FaPrint, FaParking, FaEnvelope } from 'react-icons/fa';
+import { HiShieldCheck, HiWifi } from 'react-icons/hi';
+import { MdCoffeeMaker, MdFitnessCenter } from 'react-icons/md';
+import { FaParking, FaEnvelope, FaLeaf, FaCoffee } from 'react-icons/fa';
 
 export default function Amenities() {
   const amenities = [
-    {
-      icon: HiOfficeBuilding,
-      title: 'ห้องประชุม',
-      titleEn: 'Meeting Rooms',
-      description: 'ห้องประชุมพร้อมอุปกรณ์ครบครัน',
-    },
     {
       icon: HiShieldCheck,
       title: 'เข้าถึงได้ 24/7',
       titleEn: '24/7 Access',
       description: 'ระบบ key card ปลอดภัย',
+    },
+    {
+      icon: MdFitnessCenter,
+      title: 'ฟิตเนส',
+      titleEn: 'Fitness',
+      description: 'ห้องออกกำลังกายพร้อมอุปกรณ์',
+    },
+    {
+      icon: FaCoffee,
+      title: 'กาแฟส่งถึงห้อง',
+      titleEn: 'Amazon Coffee Delivery',
+      description: 'บริการกาแฟ Amazon ส่งถึงห้อง',
+    },
+    {
+      icon: FaLeaf,
+      title: 'พื้นที่สีเขียว',
+      titleEn: 'Green Space',
+      description: 'สวนและพื้นที่ธรรมชาติ',
     },
     {
       icon: HiWifi,
@@ -29,18 +41,6 @@ export default function Amenities() {
       title: 'คาเฟ่ & เลานจ์',
       titleEn: 'Café & Lounge',
       description: 'พื้นที่พักผ่อนและเครื่องดื่ม',
-    },
-    {
-      icon: FaUserTie,
-      title: 'เลขานุการ',
-      titleEn: 'Receptionist',
-      description: 'บริการต้อนรับและช่วยเหลือ',
-    },
-    {
-      icon: FaPrint,
-      title: 'เครื่องพิมพ์ & สแกน',
-      titleEn: 'Print & Scan',
-      description: 'อุปกรณ์สำนักงานครบครัน',
     },
     {
       icon: FaParking,

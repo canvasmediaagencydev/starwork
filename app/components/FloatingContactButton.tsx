@@ -69,7 +69,7 @@ export default function FloatingContactButton() {
             {/* Footer */}
             <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
               <p className="text-xs text-gray-500 text-center">
-                เปิดบริการ จ.-ศ. | 8:00-18:00
+                เปิดทุกวัน 09:00-18:00
               </p>
             </div>
           </div>

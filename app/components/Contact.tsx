@@ -46,7 +46,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-sm text-gray-500">เปิดบริการ</div>
-                  <div className="text-gray-900 font-medium">จันทร์ - ศุกร์ | 8:00 - 18:00</div>
+                  <div className="text-gray-900 font-medium">เปิดทุกวัน 09:00 - 18:00</div>
                 </div>
               </div>
 
