@@ -7,13 +7,42 @@ import { motion } from 'framer-motion';
 
 export default function Hero() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const [playerReady, setPlayerReady] = useState(false);
   const [hasError, setHasError] = useState(false);
   const heroVideoId = 'spBoyqXiPDg';
   const heroVideoUrl = `https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1`;
   const iframeRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
-    if (!isVideoLoaded) return;
+    const handleMessage = (event: MessageEvent) => {
+      const iframeWindow = iframeRef.current?.contentWindow;
+      if (!iframeWindow || event.source !== iframeWindow) return;
+      if (typeof event.data !== 'string') return;
+
+      try {
+        const data = JSON.parse(event.data);
+        if (data.event === 'onReady') {
+          setPlayerReady(true);
+        }
+        if (data.event === 'infoDelivery' && data.info?.playerState === 1) {
+          setIsVideoLoaded(true);
+        }
+        if (data.event === 'onError') {
+          setHasError(true);
+        }
+      } catch (error) {
+        console.error('Failed to parse YouTube message', error);
+      }
+    };
+
+    window.addEventListener('message', handleMessage);
+    return () => {
+      window.removeEventListener('message', handleMessage);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!playerReady) return;
 
     const iframe = iframeRef.current;
     if (!iframe?.contentWindow) return;
@@ -27,7 +56,7 @@ export default function Hero() {
 
     postCommand('mute');
     postCommand('playVideo');
-  }, [isVideoLoaded]);
+  }, [playerReady]);
 
   const scrollToContent = () => {
     window.scrollTo({
