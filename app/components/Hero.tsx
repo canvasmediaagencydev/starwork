@@ -6,12 +6,23 @@ import { HiLocationMarker } from 'react-icons/hi';
 import { motion } from 'framer-motion';
 
 export default function Hero() {
+  const [isDesktop, setIsDesktop] = useState(false);
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [playerReady, setPlayerReady] = useState(false);
   const [hasError, setHasError] = useState(false);
   const heroVideoId = 'spBoyqXiPDg';
   const heroVideoUrl = `https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1`;
   const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const checkViewport = () => {
+      setIsDesktop(window.innerWidth >= 768);
+    };
+
+    checkViewport();
+    window.addEventListener('resize', checkViewport);
+    return () => window.removeEventListener('resize', checkViewport);
+  }, []);
 
   useEffect(() => {
     const handleMessage = (event: MessageEvent) => {
@@ -75,7 +86,7 @@ export default function Hero() {
         </div>
 
         {/* Video - Only if no error */}
-        {!hasError && (
+        {!hasError && isDesktop && (
           <iframe
             ref={iframeRef}
             src={heroVideoUrl}
