@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
 import { HiLocationMarker } from 'react-icons/hi';
 import { motion } from 'framer-motion';
@@ -8,36 +8,8 @@ import { motion } from 'framer-motion';
 export default function Hero() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-
-    const handleLoadedData = () => {
-      setIsVideoLoaded(true);
-      video.play().catch((error) => {
-        console.log('Video play failed:', error);
-      });
-    };
-
-    const handleError = () => {
-      setHasError(true);
-    };
-
-    video.addEventListener('loadeddata', handleLoadedData);
-    video.addEventListener('error', handleError);
-
-    // Try to play immediately if already loaded
-    if (video.readyState >= 2) {
-      handleLoadedData();
-    }
-
-    return () => {
-      video.removeEventListener('loadeddata', handleLoadedData);
-      video.removeEventListener('error', handleError);
-    };
-  }, []);
+  const heroVideoId = 'spBoyqXiPDg';
+  const heroVideoUrl = `https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&modestbranding=1&playsinline=1&rel=0&showinfo=0`;
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -57,22 +29,19 @@ export default function Hero() {
 
         {/* Video - Only if no error */}
         {!hasError && (
-          <video
-            ref={videoRef}
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className={`absolute inset-0 w-full h-full object-cover z-1 transition-opacity duration-2000 ease-out ${
+          <iframe
+            src={heroVideoUrl}
+            title="Starwork Hero Background"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowFullScreen={false}
+            frameBorder="0"
+            aria-hidden="true"
+            className={`absolute inset-0 w-full h-full object-cover z-1 transition-opacity duration-2000 ease-out pointer-events-none ${
               isVideoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
-          >
-            <source
-              src="https://starworkchiangmai.com/wp-content/uploads/NewFolder/Starwork%20Service%20Office%20_Floor%203%20(New%20Zone).mp4"
-              type="video/mp4"
-            />
-          </video>
+            onLoad={() => setIsVideoLoaded(true)}
+            onError={() => setHasError(true)}
+          />
         )}
 
         {/* Dark Overlay - Above video */}
