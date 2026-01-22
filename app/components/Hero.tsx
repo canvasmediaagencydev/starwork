@@ -36,7 +36,7 @@ export default function Hero() {
             allowFullScreen={false}
             frameBorder="0"
             aria-hidden="true"
-            className={`absolute inset-0 w-full h-full object-cover z-1 transition-opacity duration-2000 ease-out pointer-events-none ${
+            className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[125%] h-[125%] z-1 transition-opacity duration-2000 ease-out pointer-events-none ${
               isVideoLoaded ? 'opacity-100' : 'opacity-0'
             }`}
             onLoad={() => setIsVideoLoaded(true)}
