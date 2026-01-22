@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { FaArrowRight, FaChevronDown } from 'react-icons/fa';
 import { HiLocationMarker } from 'react-icons/hi';
 import { motion } from 'framer-motion';
@@ -9,7 +9,25 @@ export default function Hero() {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
   const heroVideoId = 'spBoyqXiPDg';
-  const heroVideoUrl = `https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&modestbranding=1&playsinline=1&rel=0&showinfo=0`;
+  const heroVideoUrl = `https://www.youtube.com/embed/${heroVideoId}?autoplay=1&mute=1&controls=0&loop=1&playlist=${heroVideoId}&modestbranding=1&playsinline=1&rel=0&showinfo=0&enablejsapi=1`;
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    if (!isVideoLoaded) return;
+
+    const iframe = iframeRef.current;
+    if (!iframe?.contentWindow) return;
+
+    const postCommand = (command: string) => {
+      iframe.contentWindow?.postMessage(
+        JSON.stringify({ event: 'command', func: command, args: [] }),
+        '*'
+      );
+    };
+
+    postCommand('mute');
+    postCommand('playVideo');
+  }, [isVideoLoaded]);
 
   const scrollToContent = () => {
     window.scrollTo({
@@ -30,9 +48,10 @@ export default function Hero() {
         {/* Video - Only if no error */}
         {!hasError && (
           <iframe
+            ref={iframeRef}
             src={heroVideoUrl}
             title="Starwork Hero Background"
-            allow="autoplay; fullscreen; picture-in-picture"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen={false}
             frameBorder="0"
             aria-hidden="true"
