@@ -52,7 +52,7 @@ export default function Hero() {
       <div className="absolute inset-0 w-full h-full">
         {/* Fallback Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-gray-800 to-black z-0">
-          <div className="absolute inset-0 opacity-20 bg-[url('https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1920&q=80')] bg-cover bg-center" />
+          <div className="absolute inset-0 opacity-20 bg-[url('/images/unsplash/hero-office.jpg')] bg-cover bg-center" />
         </div>
 
         {/* Video - Only if no error */}

@@ -86,7 +86,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center space-x-3 group relative z-50">
             <div className="relative h-12 w-40">
               <Image
-                src="https://starworkchiangmai.com/wp-content/uploads/2020/05/starwork-logo-4.png"
+                src="/images/starwork-logo-4.png"
                 alt="StarWork Chiang Mai"
                 fill
                 className="object-contain"

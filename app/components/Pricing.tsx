@@ -26,7 +26,7 @@ export default function Pricing() {
       title: 'พื้นที่ทำงานร่วม',
       titleEn: 'Co-Working Space',
       shortDesc: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer และ Startup',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_1.webp',
+      image: '/images/img_1.webp',
       features: [
         'โต๊ะทำงานสบาย ergonomic',
         'Wi-Fi ความเร็วสูง ไม่จำกัด',
@@ -40,7 +40,7 @@ export default function Pricing() {
       title: 'ออฟฟิศพร้อมบริการ',
       titleEn: 'Serviced Office',
       shortDesc: 'ห้องออฟฟิศส่วนตัวพร้อมเฟอร์นิเจอร์ครบครัน เหมาะสำหรับธุรกิจที่ต้องการความเป็นส่วนตัว',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_4.webp',
+      image: '/images/img_4.webp',
       features: [
         'เฟอร์นิเจอร์ครบครัน พร้อมใช้งานทันที',
         'ที่อยู่จดทะเบียนบริษัท',
@@ -54,7 +54,7 @@ export default function Pricing() {
       title: 'ออฟฟิศเสมือน',
       titleEn: 'Virtual Office',
       shortDesc: 'ที่อยู่ธุรกิจในทำเลดีโดยไม่ต้องเช่าพื้นที่จริง',
-      image: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/Pic_V2.webp',
+      image: '/images/Pic_V2.webp',
       features: [
         'ที่อยู่จดทะเบียนบริษัทในทำเลดี',
         'รับจดหมายและพัสดุ',

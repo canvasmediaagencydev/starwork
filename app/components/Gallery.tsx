@@ -10,39 +10,39 @@ export default function Gallery() {
 
   const images = [
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_12.webp',
+      src: '/images/img_12.webp',
       alt: 'StarWork Office Space',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_6.webp',
+      src: '/images/img_6.webp',
       alt: 'Modern Office Interior',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_7.webp',
+      src: '/images/img_7.webp',
       alt: 'Co-Working Space',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_22.webp',
+      src: '/images/img_22.webp',
       alt: 'Meeting Room',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_21.webp',
+      src: '/images/img_21.webp',
       alt: 'Event Space',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_73.webp',
+      src: '/images/img_73.webp',
       alt: 'Café Amazon',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_78-1536x1025.webp',
+      src: '/images/img_78-1536x1025.webp',
       alt: 'Office Workspace',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_67.webp',
+      src: '/images/img_67.webp',
       alt: 'StarWork Facilities',
     },
     {
-      src: 'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_76-1024x683.webp',
+      src: '/images/img_76-1024x683.webp',
       alt: 'StarWork Office Environment',
     },
   ];

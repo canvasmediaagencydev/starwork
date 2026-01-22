@@ -27,8 +27,8 @@ export default function ServicesPage() {
       titleTh: 'ออฟฟิศพร้อมบริการ',
       description: 'ห้องออฟฟิศส่วนตัวพร้อมเฟอร์นิเจอร์ครบครัน เหมาะสำหรับธุรกิจที่ต้องการความเป็นส่วนตัวและความเป็นมืออาชีพ',
       images: [
-        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_4.webp',
-        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_12.webp',
+        '/images/img_4.webp',
+        '/images/img_12.webp',
       ],
       features: [
         'เฟอร์นิเจอร์ครบครัน พร้อมใช้งานทันที',
@@ -48,8 +48,8 @@ export default function ServicesPage() {
       titleTh: 'ออฟฟิศเสมือน',
       description: 'ที่อยู่ธุรกิจในทำเลดีโดยไม่ต้องเช่าพื้นที่จริง เหมาะสำหรับธุรกิจที่ต้องการที่อยู่จดทะเบียน',
       images: [
-        'https://starworkchiangmai.com/wp-content/uploads/2025/04/Pic_V2.webp',
-        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_6.webp',
+        '/images/Pic_V2.webp',
+        '/images/img_6.webp',
       ],
       features: [
         'ที่อยู่จดทะเบียนบริษัทในทำเลดี',
@@ -67,8 +67,8 @@ export default function ServicesPage() {
       titleTh: 'พื้นที่ทำงานร่วม',
       description: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer, Startup และผู้ที่ต้องการทำงานในบรรยากาศที่สร้างสรรค์',
       images: [
-        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_1.webp',
-        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_7.webp',
+        '/images/img_1.webp',
+        '/images/img_7.webp',
       ],
       features: [
         'โต๊ะทำงานสบาย ergonomic',
@@ -91,8 +91,8 @@ export default function ServicesPage() {
       titleTh: 'ห้องประชุม',
       description: 'ห้องประชุมสำหรับการประชุม อบรม และนำเสนอผลงาน',
       images: [
-        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_2.webp',
-        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_22.webp',
+        '/images/img_2.webp',
+        '/images/img_22.webp',
       ],
       features: [
         'Whiteboard',
@@ -114,8 +114,8 @@ export default function ServicesPage() {
       titleTh: 'คาเฟ่ อเมซอน',
       description: 'คาเฟ่ภายในอาคาร บริการกาแฟคุณภาพ เครื่องดื่ม และอาหารว่าง ในบรรยากาศสบายๆ',
       images: [
-        'https://starworkchiangmai.com/wp-content/uploads/2025/05/img_3.webp',
-        'https://starworkchiangmai.com/wp-content/uploads/2025/04/img_73.webp',
+        '/images/img_3.webp',
+        '/images/img_73.webp',
       ],
       features: [
         'กาแฟสดคุณภาพ',
