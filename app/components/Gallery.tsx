@@ -26,29 +26,18 @@ export default function Gallery() {
       alt: 'Meeting Room',
     },
     {
-      src: '/images/img_21.webp',
-      alt: 'Event Space',
-    },
-    {
-      src: '/images/img_73.webp',
+      src: '/images/image copy.png',
       alt: 'Café Amazon',
     },
     {
-      src: '/images/img_78-1536x1025.webp',
-      alt: 'Office Workspace',
+      src: '/images/image.png',
+      alt: 'Café Amazon',
     },
-    {
-      src: '/images/img_67.webp',
-      alt: 'StarWork Facilities',
-    },
-    {
-      src: '/images/img_76-1024x683.webp',
-      alt: 'StarWork Office Environment',
-    },
+
   ];
 
   return (
-    <section id="gallery" className="relative py-24 bg-gradient-to-b from-gray-50 to-white">
+    <section id="gallery" className="relative py-24 bg-linear-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
@@ -91,12 +80,7 @@ export default function Gallery() {
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
 
-              {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <p className="text-white font-medium">{image.alt}</p>
-                </div>
-              </div>
+         
 
               {/* Plus Icon */}
               <div className="absolute top-4 right-4 w-10 h-10 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">

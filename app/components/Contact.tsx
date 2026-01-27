@@ -147,7 +147,8 @@ export default function Contact() {
                 {/* Bottom Note */}
                 <div className="mt-6 p-4 bg-green-50/50 backdrop-blur-sm rounded-xl border border-green-100/50 text-center">
                   <p className="text-sm text-gray-700">
-                    หรือ <a href="#plans" className="text-green-600 font-semibold hover:underline transition-all">จองทัวร์ชมสำนักงาน</a> ได้ทันที
+                    หรือ <a href="https://line.me/ti/p/@starwork" target="_blank"
+                      rel="noopener noreferrer" className="text-green-600 font-semibold hover:underline transition-all">จองทัวร์ชมสำนักงาน</a> ได้ทันที
                   </p>
                 </div>
               </div>
