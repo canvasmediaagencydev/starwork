@@ -70,12 +70,12 @@ export default function ServiceOverview() {
         </div>
 
         {/* Service Cards Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {services.map((service) => (
             <button
               key={service.id}
               onClick={() => scrollToService(service.id)}
-              className="group relative bg-gradient-to-br from-gray-50 to-white p-6 rounded-2xl border-2 border-gray-100 hover:border-green-600 hover:shadow-xl transition-all duration-300 text-center"
+              className="group relative bg-linear-to-br from-gray-50 to-white p-6 rounded-2xl border-2 border-gray-100 hover:border-green-600 hover:shadow-xl transition-all duration-300 text-center"
             >
               {/* Icon */}
               <div className="w-16 h-16 bg-green-100 rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:bg-green-600 group-hover:scale-110 transition-all duration-300">
