@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
+import LanguageSwitcher from './LanguageSwitcher';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -116,8 +117,9 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Button */}
+          {/* CTA Button & Language Switcher */}
           <div className="hidden lg:flex items-center space-x-4">
+            <LanguageSwitcher isScrolled={isScrolled || isMobileMenuOpen} />
             <Link
               href="tel:0634414239"
               className={`text-sm font-medium transition-colors duration-300 ${
@@ -126,7 +128,7 @@ export default function Navbar() {
                   : 'text-white/90 hover:text-white'
               }`}
             >
-              โทร: 063-441-4239
+              <span className="notranslate">063-441-4239</span>
             </Link>
             <Link
               href="#booking"
@@ -191,12 +193,15 @@ export default function Navbar() {
             </Link>
           ))}
           <div className="pt-4 space-y-2">
+            <div className="px-4 py-2">
+              <LanguageSwitcher isScrolled={true} />
+            </div>
             <Link
               href="tel:0634414239"
               className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              โทร: 063-441-4239
+              โทร: <span className="notranslate">063-441-4239</span>
             </Link>
             <Link
               href="#booking"

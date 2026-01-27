@@ -53,3 +53,28 @@ body {
 .animate-fade-in-up {
   animation: fade-in-up 1.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Hide Google Translate banner and widget */
+.goog-te-banner-frame,
+.skiptranslate {
+  display: none !important;
+}
+
+body {
+  top: 0 !important;
+}
+
+#google_translate_element {
+  display: none !important;
+}
+
+/* Fix Google Translate font issues */
+.goog-te-gadget {
+  font-family: inherit !important;
+}
+
+/* Prevent layout shift from Google Translate */
+html.translated-ltr,
+html.translated-rtl {
+  overflow-x: hidden;
+}

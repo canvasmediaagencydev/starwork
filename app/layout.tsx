@@ -3,6 +3,7 @@ import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import FaviconLinks from "./components/FaviconLinks";
+import GoogleTranslateProvider from "./components/GoogleTranslateProvider";
 
 const notoSansThai = Noto_Sans_Thai({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -10,6 +11,8 @@ const notoSansThai = Noto_Sans_Thai({
   variable: "--font-noto-sans-thai",
   display: 'swap',
 });
+
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://starworkchiangmai.com";
 
 export const metadata: Metadata = {
   title: {
@@ -40,7 +43,8 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "th_TH",
-    url: "https://starworkchiangmai.com",
+    alternateLocale: ["en_US"],
+    url: siteUrl,
     siteName: "StarWork Chiang Mai",
     title: "StarWork Chiang Mai | Service Offices & Coworking Space",
     description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่ ใกล้นิมมาน MAYA และ Think Park",
@@ -84,6 +88,14 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
+  alternates: {
+    canonical: siteUrl,
+    languages: {
+      "th-TH": siteUrl,
+      "en-US": `${siteUrl}/en`,
+      "x-default": siteUrl,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -100,6 +112,8 @@ export default function RootLayout({
       <body
         className={`${notoSansThai.variable} antialiased`}
       >
+        {/* Google Translate Provider */}
+        <GoogleTranslateProvider />
         {children}
       </body>
     </html>
