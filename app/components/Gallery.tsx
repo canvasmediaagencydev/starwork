@@ -4,8 +4,10 @@ import { useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
 import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Gallery() {
+  const { t } = useLanguage();
   const [selectedImage, setSelectedImage] = useState<number | null>(null);
 
   const images = [
@@ -56,7 +58,7 @@ export default function Gallery() {
             transition={{ delay: 0.2 }}
             className="text-lg text-gray-600 font-light max-w-3xl mx-auto"
           >
-            การออกแบบและบรรยากาศที่สร้างแรงบันดาลใจในการทำงาน
+            {t('การออกแบบและบรรยากาศที่สร้างแรงบันดาลใจในการทำงาน', 'Design and atmosphere that inspires your work')}
           </motion.p>
         </div>
 

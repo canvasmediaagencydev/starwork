@@ -2,35 +2,42 @@
 
 import { useState } from 'react';
 import { FaChevronDown } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function ServiceFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { language, t } = useLanguage();
 
   const faqs = [
     {
       question: 'วิธีการจองบริการอย่างไร?',
-      answer:
-        'คุณสามารถจองบริการได้ 3 วิธี: 1) โทรติดต่อที่ 063-441-4239 2) ส่งอีเมลมาที่ sale@starworkchiangmai.com 3) แอดไลน์ @starwork หรือกรอกแบบฟอร์มจองเข้าชมในเว็บไซต์ของเรา ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง',
+      questionEn: 'How do I book a service?',
+      answer: 'คุณสามารถจองบริการได้ 3 วิธี: 1) โทรติดต่อที่ 063-441-4239 2) ส่งอีเมลมาที่ sale@starworkchiangmai.com 3) แอดไลน์ @starwork หรือกรอกแบบฟอร์มจองเข้าชมในเว็บไซต์ของเรา ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง',
+      answerEn: 'You can book a service in 3 ways: 1) Call 063-441-4239 2) Email sale@starworkchiangmai.com 3) Add Line @starwork or fill out the booking form on our website. Our team will contact you within 24 hours.',
     },
     {
       question: 'สามารถใช้ที่อยู่จดทะเบียนบริษัทได้หรือไม่?',
-      answer:
-        'ได้ครับ ทั้ง Serviced Office และ Virtual Office สามารถใช้เป็นที่อยู่จดทะเบียนบริษัทได้ เราจะออกหนังสือรับรองให้ พร้อมบริการรับจดหมายและพัสดุ',
+      questionEn: 'Can I use the address for company registration?',
+      answer: 'ได้ครับ ทั้ง Serviced Office และ Virtual Office สามารถใช้เป็นที่อยู่จดทะเบียนบริษัทได้ เราจะออกหนังสือรับรองให้ พร้อมบริการรับจดหมายและพัสดุ',
+      answerEn: 'Yes, both Serviced Office and Virtual Office can be used as your company registration address. We will provide a certification letter, along with mail and package handling services.',
     },
     {
       question: 'สามารถยกเลิกหรือเปลี่ยนแปลงการจองได้หรือไม่?',
-      answer:
-        'สำหรับการจองห้องประชุม สามารถยกเลิกหรือเปลี่ยนแปลงได้ล่วงหน้า 24 ชั่วโมง',
+      questionEn: 'Can I cancel or modify my booking?',
+      answer: 'สำหรับการจองห้องประชุม สามารถยกเลิกหรือเปลี่ยนแปลงได้ล่วงหน้า 24 ชั่วโมง',
+      answerEn: 'For meeting room bookings, you can cancel or modify up to 24 hours in advance.',
     },
     {
       question: 'มีที่จอดรถหรือไม่?',
-      answer:
-        'มีที่จอดรถให้ลูกค้าฟรี สำหรับลูกค้าและสมาชิกทุกประเภท ไม่คิดค่าบริการ',
+      questionEn: 'Is parking available?',
+      answer: 'มีที่จอดรถให้ลูกค้าฟรี สำหรับลูกค้าและสมาชิกทุกประเภท ไม่คิดค่าบริการ',
+      answerEn: 'Free parking is available for all customers and members at no additional charge.',
     },
     {
       question: 'สามารถเข้าชมสำนักงานก่อนตัดสินใจเช่าได้หรือไม่?',
-      answer:
-        'ได้แน่นอนครับ เรายินดีให้คุณเข้าชมสำนักงานและพื้นที่ต่างๆ ก่อนตัดสินใจ และสามารถทดลองใช้ฟรีได้ 1 วัน โดยสามารถนัดหมายล่วงหน้าได้ที่ 063-441-4239 หรือแอดไลน์ @starwork',
+      questionEn: 'Can I tour the office before deciding to rent?',
+      answer: 'ได้แน่นอนครับ เรายินดีให้คุณเข้าชมสำนักงานและพื้นที่ต่างๆ ก่อนตัดสินใจ และสามารถทดลองใช้ฟรีได้ 1 วัน โดยสามารถนัดหมายล่วงหน้าได้ที่ 063-441-4239 หรือแอดไลน์ @starwork',
+      answerEn: 'Absolutely! We welcome you to tour our office and facilities before making a decision. You can also try it free for 1 day. Schedule an appointment at 063-441-4239 or add Line @starwork.',
     },
   ];
 
@@ -53,10 +60,10 @@ export default function ServiceFAQ() {
             <span className="text-green-700 text-sm font-medium">FAQ</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            คำถามที่พบบ่อย
+            {t('คำถามที่พบบ่อย', 'Frequently Asked Questions')}
           </h2>
           <p className="text-lg text-gray-600 font-light">
-            คำตอบสำหรับคำถามที่ลูกค้ามักสอบถาม
+            {t('คำตอบสำหรับคำถามที่ลูกค้ามักสอบถาม', 'Answers to commonly asked questions')}
           </p>
         </div>
 
@@ -72,7 +79,7 @@ export default function ServiceFAQ() {
                 className="w-full px-6 py-5 flex items-center justify-between text-left hover:bg-gray-50 transition-colors"
               >
                 <span className="text-lg font-semibold text-gray-900 pr-4">
-                  {faq.question}
+                  {language === 'EN' ? faq.questionEn : faq.question}
                 </span>
                 <FaChevronDown
                   className={`text-green-600 flex-shrink-0 transition-transform duration-300 ${
@@ -87,7 +94,7 @@ export default function ServiceFAQ() {
                 }`}
               >
                 <div className="px-6 pb-5 pt-2">
-                  <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                  <p className="text-gray-600 leading-relaxed">{language === 'EN' ? faq.answerEn : faq.answer}</p>
                 </div>
               </div>
             </div>
@@ -97,16 +104,16 @@ export default function ServiceFAQ() {
         {/* Bottom CTA */}
         <div className="mt-12 text-center p-8 bg-gradient-to-r from-green-50 to-emerald-50 rounded-2xl border border-green-100">
           <h3 className="text-xl font-bold text-gray-900 mb-2">
-            ยังมีคำถามอื่นๆ อีกไหม?
+            {t('ยังมีคำถามอื่นๆ อีกไหม?', 'Still have questions?')}
           </h3>
           <p className="text-gray-600 mb-6">
-            ติดต่อทีมงานของเราได้ทันที เรายินดีให้คำปรึกษา
+            {t('ติดต่อทีมงานของเราได้ทันที เรายินดีให้คำปรึกษา', 'Contact our team now, we are happy to help')}
           </p>
           <a
             href="#contact"
             className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-colors"
           >
-            <span>ติดต่อเรา</span>
+            <span>{t('ติดต่อเรา', 'Contact Us')}</span>
           </a>
         </div>
       </div>

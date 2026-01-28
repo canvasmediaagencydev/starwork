@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import { FaPhone, FaEnvelope, FaTimes, FaLine } from 'react-icons/fa';
 import { HiChatAlt2 } from 'react-icons/hi';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function FloatingContactButton() {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -17,9 +19,9 @@ export default function FloatingContactButton() {
             <div className="bg-gradient-to-r from-green-600 to-emerald-600 px-6 py-4">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
-                <h3 className="text-white font-semibold">ติดต่อเราได้ทันที</h3>
+                <h3 className="text-white font-semibold">{t('ติดต่อเราได้ทันที', 'Contact Us Now')}</h3>
               </div>
-              <p className="text-green-50 text-sm mt-1">เราพร้อมให้บริการคุณ</p>
+              <p className="text-green-50 text-sm mt-1">{t('เราพร้อมให้บริการคุณ', 'We are ready to serve you')}</p>
             </div>
 
             {/* Contact Options */}
@@ -32,7 +34,7 @@ export default function FloatingContactButton() {
                   <FaPhone className="text-white text-lg" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-gray-500 font-medium">โทรหาเรา</div>
+                  <div className="text-xs text-gray-500 font-medium">{t('โทรหาเรา', 'Call Us')}</div>
                   <div className="text-gray-900 font-bold">063-441-4239</div>
                 </div>
               </a>
@@ -45,7 +47,7 @@ export default function FloatingContactButton() {
                   <FaEnvelope className="text-white text-lg" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs text-gray-500 font-medium">ส่งอีเมล</div>
+                  <div className="text-xs text-gray-500 font-medium">{t('ส่งอีเมล', 'Email Us')}</div>
                   <div className="text-gray-900 font-bold text-xs break-all">sale@starworkchiangmai.com</div>
                 </div>
               </a>
@@ -60,7 +62,7 @@ export default function FloatingContactButton() {
                   <FaLine className="text-white text-lg" />
                 </div>
                 <div className="flex-1">
-                  <div className="text-xs text-gray-500 font-medium">แอดไลน์</div>
+                  <div className="text-xs text-gray-500 font-medium">{t('แอดไลน์', 'Add Line')}</div>
                   <div className="text-gray-900 font-bold text-sm">@starwork</div>
                 </div>
               </a>
@@ -69,7 +71,7 @@ export default function FloatingContactButton() {
             {/* Footer */}
             <div className="px-6 py-3 bg-gray-50 border-t border-gray-100">
               <p className="text-xs text-gray-500 text-center">
-                เปิดทุกวัน 09:00-18:00
+                {t('เปิดทุกวัน 09:00-18:00', 'Open daily 09:00-18:00')}
               </p>
             </div>
           </div>

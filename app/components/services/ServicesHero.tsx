@@ -1,8 +1,10 @@
 'use client';
 
 import { FaArrowDown } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
 
 export default function ServicesHero() {
+  const { t } = useLanguage();
   const scrollToServices = () => {
     const servicesSection = document.getElementById('services-list');
     if (servicesSection) {
@@ -28,32 +30,31 @@ export default function ServicesHero() {
 
           {/* Heading */}
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-3 leading-tight">
-            บริการของเรา
+            {t('บริการของเรา', 'Our Services')}
           </h1>
           <p className="text-base sm:text-lg text-green-50 font-light mb-8">
-            ครบครัน ตอบโจทย์ทุกความต้องการ
+            {t('ครบครัน ตอบโจทย์ทุกความต้องการ', 'Complete solutions for all your needs')}
           </p>
 
           {/* Stats Cards */}
           <div className="grid grid-cols-3 gap-3 sm:gap-4 max-w-2xl mx-auto mb-8">
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
               <div className="text-2xl sm:text-3xl font-bold text-white mb-1">5</div>
-              <div className="text-xs sm:text-sm text-green-100">บริการหลัก</div>
+              <div className="text-xs sm:text-sm text-green-100">{t('บริการหลัก', 'Main Services')}</div>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
               <div className="text-2xl sm:text-3xl font-bold text-white mb-1">24/7</div>
-              <div className="text-xs sm:text-sm text-green-100">เข้าถึงได้ตลอด</div>
+              <div className="text-xs sm:text-sm text-green-100">{t('เข้าถึงได้ตลอด', 'Access')}</div>
             </div>
             <div className="bg-white/10 backdrop-blur-md rounded-xl p-4 border border-white/20">
               <div className="text-2xl sm:text-3xl font-bold text-white mb-1">100+</div>
-              <div className="text-xs sm:text-sm text-green-100">ลูกค้าพอใจ</div>
+              <div className="text-xs sm:text-sm text-green-100">{t('ลูกค้าพอใจ', 'Happy Clients')}</div>
             </div>
           </div>
 
           {/* Description */}
           <p className="text-sm sm:text-base text-green-50/80 font-light max-w-2xl mx-auto mb-8">
-            จาก Private Office, Virtual Office, Co-Working Space ไปจนถึง Meeting Room
-            เราพร้อมรองรับทุกรูปแบบการทำงานของคุณ
+            {t('จาก Private Office, Virtual Office, Co-Working Space ไปจนถึง Meeting Room เราพร้อมรองรับทุกรูปแบบการทำงานของคุณ', 'From Private Office, Virtual Office, Co-Working Space to Meeting Room, we are ready to support all your work styles')}
           </p>
 
           {/* Scroll Button */}
@@ -62,7 +63,7 @@ export default function ServicesHero() {
             className="inline-flex items-center gap-2 px-6 py-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all group border border-white/30"
             aria-label="Scroll to services"
           >
-            <span className="text-sm font-medium">ดูรายละเอียดบริการ</span>
+            <span className="text-sm font-medium">{t('ดูรายละเอียดบริการ', 'View Service Details')}</span>
             <FaArrowDown className="text-xs group-hover:translate-y-1 transition-transform" />
           </button>
         </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { FaCheck, FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface Service {
   id: string;
@@ -25,6 +26,7 @@ interface ServiceDetailProps {
 
 export default function ServiceDetail({ service, index }: ServiceDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const { t } = useLanguage();
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % service.images.length);
@@ -114,7 +116,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
 
             {/* Features */}
             <div className="mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">คุณสมบัติเด่น:</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('คุณสมบัติเด่น:', 'Key Features:')}</h3>
               <div className="grid sm:grid-cols-2 gap-3">
                 {service.features.map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-3">
@@ -130,7 +132,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             {/* Sizes */}
             {service.sizes && (
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">ขนาดห้องที่มี:</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('ขนาดห้องที่มี:', 'Available Room Sizes:')}</h3>
                 <div className="flex flex-wrap gap-3">
                   {service.sizes.map((size, idx) => (
                     <div
@@ -147,7 +149,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             {/* Packages */}
             {service.packages && (
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">แพ็คเกจ:</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('แพ็คเกจ:', 'Packages:')}</h3>
                 <div className="space-y-3">
                   {service.packages.map((pkg, idx) => (
                     <div
@@ -165,14 +167,14 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             {/* Rooms */}
             {service.rooms && (
               <div className="mb-8">
-                <h3 className="text-lg font-semibold text-gray-900 mb-4">ห้องและราคา:</h3>
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('ห้องและราคา:', 'Rooms & Pricing:')}</h3>
                 <div className="space-y-3">
                   {service.rooms.map((room, idx) => (
                     <div
                       key={idx}
                       className="flex items-center justify-between p-4 bg-green-50 rounded-xl border border-green-100"
                     >
-                      <span className="text-gray-900 font-medium">ความจุ {room.capacity}</span>
+                      <span className="text-gray-900 font-medium">{t('ความจุ', 'Capacity')} {room.capacity}</span>
                       <span className="text-green-600 font-bold">{room.price}</span>
                     </div>
                   ))}
@@ -202,14 +204,14 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                 href="#contact"
                 className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all duration-300 hover:shadow-xl"
               >
-                <span>จองเข้าชม</span>
+                <span>{t('จองเข้าชม', 'Book a Tour')}</span>
                 <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a
                 href="tel:0634414239"
                 className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-gray-900 rounded-xl font-semibold border-2 border-gray-200 hover:border-green-600 hover:text-green-600 transition-all duration-300"
               >
-                <span>สอบถามเพิ่มเติม</span>
+                <span>{t('สอบถามเพิ่มเติม', 'Inquire More')}</span>
               </a>
             </div>
           </div>
