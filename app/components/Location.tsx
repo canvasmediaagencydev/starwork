@@ -2,20 +2,26 @@
 
 import { HiCheck } from 'react-icons/hi';
 import { FaMapMarkerAlt, FaPlane, FaWalking, FaParking } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Location() {
+  const { language, t } = useLanguage();
+
   const accessPoints = [
     {
       icon: FaMapMarkerAlt,
       text: 'ใกล้ Central Festival Chiang Mai',
+      textEn: 'Near Central Festival Chiang Mai',
     },
     {
       icon: FaPlane,
       text: '10 นาทีจากสนามบินเชียงใหม่ (CNX)',
+      textEn: '10 minutes from Chiang Mai Airport (CNX)',
     },
     {
       icon: FaParking,
       text: 'ที่จอดรถเพียงพอ',
+      textEn: 'Ample parking available',
     },
   ];
 
@@ -31,10 +37,10 @@ export default function Location() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            ใกล้ Central Festival
+            {t('ใกล้ Central Festival', 'Near Central Festival')}
           </h2>
           <p className="text-lg text-gray-600 font-light max-w-3xl mx-auto">
-            ตั้งอยู่ใกล้ Central Festival Chiang Mai ทำเลทองใจกลางเมือง
+            {t('ตั้งอยู่ใกล้ Central Festival Chiang Mai ทำเลทองใจกลางเมือง', 'Located near Central Festival Chiang Mai, prime location in the heart of the city')}
           </p>
         </div>
 
@@ -44,10 +50,10 @@ export default function Location() {
           <div>
             <div className="mb-8">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                เข้าถึงได้สะดวก
+                {t('เข้าถึงได้สะดวก', 'Easy Access')}
               </h3>
               <p className="text-gray-600 font-light">
-                ทำเลที่ตั้งยอดเยี่ยมในย่านธุรกิจและไลฟ์สไตล์ของเชียงใหม่
+                {t('ทำเลที่ตั้งยอดเยี่ยมในย่านธุรกิจและไลฟ์สไตล์ของเชียงใหม่', 'Excellent location in Chiang Mai\'s business and lifestyle district')}
               </p>
             </div>
 
@@ -64,7 +70,7 @@ export default function Location() {
 
                   {/* Text */}
                   <div className="flex-1 pt-1">
-                    <p className="text-gray-700 font-light">{point.text}</p>
+                    <p className="text-gray-700 font-light">{language === 'EN' ? point.textEn : point.text}</p>
                   </div>
 
                   {/* Checkmark */}
@@ -78,16 +84,16 @@ export default function Location() {
             {/* CTA */}
             <div className="mt-8 p-6 bg-gradient-to-r from-green-50 to-emerald-50 rounded-xl border border-green-100">
               <h4 className="text-lg font-bold text-gray-900 mb-2">
-                อยากมาเยี่ยมชม?
+                {t('อยากมาเยี่ยมชม?', 'Would you like to visit?')}
               </h4>
               <p className="text-gray-600 font-light mb-4">
-                นัดหมายเพื่อมาดูสำนักงานและสถานที่จริง
+                {t('นัดหมายเพื่อมาดูสำนักงานและสถานที่จริง', 'Schedule an appointment to see our office and premises in person')}
               </p>
               <a
                 href="#contact"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors"
               >
-                <span>จองทัวร์ชมสำนักงาน</span>
+                <span>{t('จองทัวร์ชมสำนักงาน', 'Book a Tour')}</span>
                 <svg
                   className="w-5 h-5"
                   fill="none"
@@ -105,21 +111,41 @@ export default function Location() {
 
           {/* Right Side - Map */}
           <div className="relative">
-            <div className="aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+            {/* Mobile: Clickable card to open Google Maps */}
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=StarWork+Chiangmai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block md:hidden rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-green-50 to-emerald-100 h-[300px]"
+            >
+              <div className="w-full h-full flex flex-col items-center justify-center p-6">
+                <div className="w-16 h-16 bg-green-600 rounded-full flex items-center justify-center mb-4 shadow-lg">
+                  <FaMapMarkerAlt className="text-white text-2xl" />
+                </div>
+                <p className="text-gray-900 font-bold text-lg mb-1">StarWork Chiang Mai</p>
+                <p className="text-gray-600 text-sm text-center mb-4">87/9 Tunghotel Rd, Wat Ket, Mueang Chiang Mai</p>
+                <div className="px-4 py-2 bg-green-600 text-white rounded-lg text-sm font-medium">
+                  {t('แตะเพื่อเปิดแผนที่', 'Tap to open map')}
+                </div>
+              </div>
+            </a>
+
+            {/* Desktop: Interactive iframe */}
+            <div className="hidden md:block rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7553.793611641068!2d99.01022199653907!3d18.802751679385423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x30da25341c860e03%3A0x479daf5a0a43e38!2sCentral%20Festival%20Chiang%20Mai%2C%20Lampang%20-%20Chiang%20Mai%20Superhighway%2C%20Fa%20Ham%2C%20Mueang%20Chiang%20Mai%20District%2C%20Chiang%20Mai!3m2!1d18.8061895!2d99.0179173!4m5!1s0x30da254c6ffcc5cb%3A0x375d86903a9983c7!2zU3RhcldvcmsgQ2hpYW5nbWFpLCA4Ny85IFR1bmdob3RlbCBSZCwg4LiV4Liz4Lia4Lil4Lin4Lix4LiU4LmA4LiB4LiV4Li4IE11ZWFuZyBDaGlhbmcgTWFpIERpc3RyaWN0LCBDaGlhbmcgTWFpIDUwMDAw!3m2!1d18.796375899999997!2d99.0164451!5e0!3m2!1sen!2sth!4v1768972710961!5m2!1sen!2sth"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.8967055705!2d99.01425!3d18.796376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da254c6ffcc5cb%3A0x375d86903a9983c7!2sStarWork%20Chiangmai!5e0!3m2!1sen!2sth!4v1700000000000!5m2!1sen!2sth"
                 width="100%"
-                height="100%"
+                height="400"
                 style={{ border: 0 }}
                 allowFullScreen
-                loading="lazy"
+                loading="eager"
                 referrerPolicy="no-referrer-when-downgrade"
-                className="grayscale-[20%] contrast-[1.1]"
+                title="StarWork Chiang Mai Location"
               />
             </div>
 
-            {/* Map Overlay Badge */}
-            <div className="absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg">
+            {/* Map Overlay Badge - Desktop only */}
+            <div className="hidden md:block absolute top-6 left-6 bg-white/95 backdrop-blur-sm px-4 py-3 rounded-xl shadow-lg z-10">
               <div className="flex items-center gap-2">
                 <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
                 <span className="text-sm font-medium text-gray-900">

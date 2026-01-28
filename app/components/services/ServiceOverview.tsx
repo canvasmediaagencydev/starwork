@@ -1,6 +1,7 @@
 'use client';
 
 import { FaBuilding, FaGlobe, FaUsers, FaDoorOpen, FaCoffee } from 'react-icons/fa';
+import { useLanguage } from '../../context/LanguageContext';
 
 interface Service {
   id: string;
@@ -8,9 +9,11 @@ interface Service {
   title: string;
   titleEn: string;
   shortDesc: string;
+  shortDescEn: string;
 }
 
 export default function ServiceOverview() {
+  const { language, t } = useLanguage();
   const services: Service[] = [
     {
       id: 'serviced-office',
@@ -18,6 +21,7 @@ export default function ServiceOverview() {
       title: 'ออฟฟิศพร้อมบริการ',
       titleEn: 'Serviced Office',
       shortDesc: 'ห้องออฟฟิศส่วนตัวพร้อมเฟอร์นิเจอร์ครบครัน',
+      shortDescEn: 'Private office with full furniture',
     },
     {
       id: 'virtual-office',
@@ -25,6 +29,7 @@ export default function ServiceOverview() {
       title: 'ออฟฟิศเสมือน',
       titleEn: 'Virtual Office',
       shortDesc: 'ที่อยู่จดทะเบียนบริษัทในทำเลดี',
+      shortDescEn: 'Business registration address in prime location',
     },
     {
       id: 'coworking',
@@ -32,6 +37,7 @@ export default function ServiceOverview() {
       title: 'พื้นที่ทำงานร่วม',
       titleEn: 'Co-Working Space',
       shortDesc: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น',
+      shortDescEn: 'Flexible open workspace',
     },
     {
       id: 'meeting-room',
@@ -39,6 +45,7 @@ export default function ServiceOverview() {
       title: 'ห้องประชุม',
       titleEn: 'Meeting Room',
       shortDesc: 'ห้องประชุมพร้อมอุปกรณ์ครบครัน',
+      shortDescEn: 'Fully equipped meeting room',
     },
     {
       id: 'cafe-amazon',
@@ -46,6 +53,7 @@ export default function ServiceOverview() {
       title: 'คาเฟ่ อเมซอน',
       titleEn: 'Café Amazon',
       shortDesc: 'กาแฟสดและเครื่องดื่มคุณภาพ',
+      shortDescEn: 'Fresh coffee and quality beverages',
     },
   ];
 
@@ -62,10 +70,10 @@ export default function ServiceOverview() {
         {/* Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
-            เลือกบริการที่เหมาะกับคุณ
+            {t('เลือกบริการที่เหมาะกับคุณ', 'Choose the Right Service for You')}
           </h2>
           <p className="text-gray-600 font-light">
-            คลิกเพื่อดูรายละเอียดของแต่ละบริการ
+            {t('คลิกเพื่อดูรายละเอียดของแต่ละบริการ', 'Click to see details of each service')}
           </p>
         </div>
 
@@ -84,13 +92,15 @@ export default function ServiceOverview() {
 
               {/* Title */}
               <h3 className="text-sm font-bold text-gray-900 mb-1">
-                {service.title}
+                {language === 'EN' ? service.titleEn : service.title}
               </h3>
-              <p className="text-xs text-gray-500 mb-3">{service.titleEn}</p>
+              <p className="text-xs text-gray-500 mb-3">
+                {language === 'EN' ? service.title : service.titleEn}
+              </p>
 
               {/* Short Description */}
               <p className="text-xs text-gray-600 leading-relaxed">
-                {service.shortDesc}
+                {language === 'EN' ? service.shortDescEn : service.shortDesc}
               </p>
             </button>
           ))}

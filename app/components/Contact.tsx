@@ -2,8 +2,10 @@
 
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaClock, FaLine } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Contact() {
+  const { t } = useLanguage();
   return (
     <section id="contact" className="relative py-24 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-green-50/30">
       {/* Decorative Background */}
@@ -27,15 +29,15 @@ export default function Contact() {
             </div>
 
             <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              พร้อมเริ่มต้น
+              {t('พร้อมเริ่มต้น', 'Ready to start')}
               <br />
-              <span className="text-green-600">ที่นี่</span>แล้วหรือยัง?
+              <span className="text-green-600">{t('ที่นี่', 'here')}</span>{t('แล้วหรือยัง?', ' yet?')}
             </h2>
 
             <p className="text-xl text-gray-600 font-light mb-10 leading-relaxed">
-              จองเข้าชมสำนักงานวันนี้ และค้นพบพื้นที่ทำงาน
+              {t('จองเข้าชมสำนักงานวันนี้ และค้นพบพื้นที่ทำงาน', 'Book a tour today and discover workspace')}
               <br />
-              ที่เหมาะกับธุรกิจของคุณ
+              {t('ที่เหมาะกับธุรกิจของคุณ', 'that suits your business')}
             </p>
 
             {/* Quick Info */}
@@ -45,8 +47,8 @@ export default function Contact() {
                   <FaClock className="text-green-600 text-lg" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">เปิดบริการ</div>
-                  <div className="text-gray-900 font-medium">เปิดทุกวัน 09:00 - 18:00</div>
+                  <div className="text-sm text-gray-500">{t('เปิดบริการ', 'Opening Hours')}</div>
+                  <div className="text-gray-900 font-medium">{t('เปิดทุกวัน 09:00 - 18:00', 'Open daily 09:00 - 18:00')}</div>
                 </div>
               </div>
 
@@ -55,8 +57,8 @@ export default function Contact() {
                   <FaMapMarkerAlt className="text-green-600 text-lg" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">ที่อยู่</div>
-                  <div className="text-gray-900 font-medium">87/9 ถนนทุ่งโฮเต็ล ตำบลวัดเกต<br />อำเภอเมือง จังหวัดเชียงใหม่ 50000</div>
+                  <div className="text-sm text-gray-500">{t('ที่อยู่', 'Address')}</div>
+                  <div className="text-gray-900 font-medium">{t('87/9 ถนนทุ่งโฮเต็ล ตำบลวัดเกต', '87/9 Tunghotel Rd, Wat Ket')}<br />{t('อำเภอเมือง จังหวัดเชียงใหม่ 50000', 'Mueang Chiang Mai, Chiang Mai 50000')}</div>
                 </div>
               </div>
             </div>
@@ -66,7 +68,7 @@ export default function Contact() {
               href="#plans"
               className="group inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all duration-300 hover:shadow-2xl hover:shadow-green-600/20"
             >
-              <span>ดูแพ็คเกจของเรา</span>
+              <span>{t('ดูแพ็คเกจของเรา', 'View Our Packages')}</span>
               <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
             </a>
           </motion.div>
@@ -87,13 +89,13 @@ export default function Contact() {
                 <div className="text-center mb-8">
                   <div className="inline-flex items-center gap-2 px-4 py-2 bg-green-600/10 backdrop-blur-sm rounded-full mb-4 border border-green-600/20">
                     <div className="w-2 h-2 bg-green-600 rounded-full animate-pulse" />
-                    <span className="text-green-700 text-xs font-medium">พร้อมให้บริการ</span>
+                    <span className="text-green-700 text-xs font-medium">{t('พร้อมให้บริการ', 'Ready to serve')}</span>
                   </div>
                   <h3 className="text-3xl font-bold text-gray-900 mb-2">
-                    ติดต่อเราวันนี้
+                    {t('ติดต่อเราวันนี้', 'Contact Us Today')}
                   </h3>
                   <p className="text-gray-600 font-light">
-                    เราพร้อมช่วยเหลือคุณทุกขั้นตอน
+                    {t('เราพร้อมช่วยเหลือคุณทุกขั้นตอน', 'We\'re here to help you every step of the way')}
                   </p>
                 </div>
 
@@ -107,7 +109,7 @@ export default function Contact() {
                       <FaPhone className="text-white text-lg" />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="text-xs text-gray-500 mb-1 font-medium">โทรหาเรา</div>
+                      <div className="text-xs text-gray-500 mb-1 font-medium">{t('โทรหาเรา', 'Call Us')}</div>
                       <div className="text-gray-900 font-bold">063-441-4239</div>
                     </div>
                     <FaArrowRight className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
@@ -121,7 +123,7 @@ export default function Contact() {
                       <FaEnvelope className="text-white text-lg" />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="text-xs text-gray-500 mb-1 font-medium">ส่งอีเมล</div>
+                      <div className="text-xs text-gray-500 mb-1 font-medium">{t('ส่งอีเมล', 'Email Us')}</div>
                       <div className="text-gray-900 font-bold">sale@starworkchiangmai.com</div>
                     </div>
                     <FaArrowRight className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
@@ -137,7 +139,7 @@ export default function Contact() {
                       <FaLine className="text-white text-lg" />
                     </div>
                     <div className="flex-1 text-left">
-                      <div className="text-xs text-gray-500 mb-1 font-medium">แอดไลน์</div>
+                      <div className="text-xs text-gray-500 mb-1 font-medium">{t('แอดไลน์', 'Add Line')}</div>
                       <div className="text-gray-900 font-bold">@starwork</div>
                     </div>
                     <FaArrowRight className="text-gray-400 group-hover:text-green-600 group-hover:translate-x-1 transition-all" />
@@ -147,8 +149,8 @@ export default function Contact() {
                 {/* Bottom Note */}
                 <div className="mt-6 p-4 bg-green-50/50 backdrop-blur-sm rounded-xl border border-green-100/50 text-center">
                   <p className="text-sm text-gray-700">
-                    หรือ <a href="https://line.me/ti/p/@starwork" target="_blank"
-                      rel="noopener noreferrer" className="text-green-600 font-semibold hover:underline transition-all">จองทัวร์ชมสำนักงาน</a> ได้ทันที
+                    {t('หรือ', 'Or')} <a href="https://line.me/ti/p/@starwork" target="_blank"
+                      rel="noopener noreferrer" className="text-green-600 font-semibold hover:underline transition-all">{t('จองทัวร์ชมสำนักงาน', 'book an office tour')}</a> {t('ได้ทันที', 'now')}
                   </p>
                 </div>
               </div>

@@ -3,7 +3,7 @@ import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
 import StructuredData from "./components/StructuredData";
 import FaviconLinks from "./components/FaviconLinks";
-import GoogleTranslateProvider from "./components/GoogleTranslateProvider";
+import { LanguageProvider } from "./context/LanguageContext";
 
 const notoSansThai = Noto_Sans_Thai({
   weight: ['300', '400', '500', '600', '700', '800'],
@@ -112,9 +112,9 @@ export default function RootLayout({
       <body
         className={`${notoSansThai.variable} antialiased`}
       >
-        {/* Google Translate Provider */}
-        <GoogleTranslateProvider />
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

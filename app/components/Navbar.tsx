@@ -5,10 +5,12 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import LanguageSwitcher from './LanguageSwitcher';
+import { useLanguage } from '../context/LanguageContext';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { language } = useLanguage();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -66,11 +68,11 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: 'หน้าแรก', href: '/' },
-    { name: 'บริการ', href: '/services' },
-    { name: 'แพ็คเกจ', href: '/#plans' },
-    { name: 'แกลเลอรี่', href: '/#gallery' },
-    { name: 'ติดต่อเรา', href: '/#contact' },
+    { th: 'หน้าแรก', en: 'Home', href: '/' },
+    { th: 'บริการ', en: 'Services', href: '/services' },
+    { th: 'แพ็คเกจ', en: 'Pricing', href: '/#plans' },
+    { th: 'แกลเลอรี่', en: 'Gallery', href: '/#gallery' },
+    { th: 'ติดต่อเรา', en: 'Contact', href: '/#contact' },
   ];
 
   return (
@@ -100,16 +102,16 @@ export default function Navbar() {
           <div className="hidden lg:flex items-center space-x-8">
             {navLinks.map((link) => (
               <Link
-                key={link.name}
+                key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.href)}
-                className={`text-sm font-medium transition-all duration-300 relative group ${
+                className={`text-sm font-medium transition-all duration-300 relative group notranslate ${
                   isScrolled || isMobileMenuOpen
                     ? 'text-gray-700 hover:text-gray-900'
                     : 'text-white hover:text-white'
                 }`}
               >
-                {link.name}
+                {language === 'EN' ? link.en : link.th}
                 <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
                   isScrolled || isMobileMenuOpen ? 'bg-gray-900' : 'bg-white'
                 }`} />
@@ -132,13 +134,13 @@ export default function Navbar() {
             </Link>
             <Link
               href="#booking"
-              className={`px-6 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 ${
+              className={`px-6 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 notranslate ${
                 isScrolled || isMobileMenuOpen
                   ? 'bg-gray-900 text-white hover:bg-gray-800'
                   : 'bg-white text-gray-900 hover:bg-gray-100'
               }`}
             >
-              จองเข้าชม
+              {language === 'EN' ? 'Book a Tour' : 'จองเข้าชม'}
             </Link>
           </div>
 
@@ -184,12 +186,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-6 py-6 space-y-1">
           {navLinks.map((link) => (
             <Link
-              key={link.name}
+              key={link.href}
               href={link.href}
               onClick={(e) => handleNavClick(e, link.href)}
-              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors"
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors notranslate"
             >
-              {link.name}
+              {language === 'EN' ? link.en : link.th}
             </Link>
           ))}
           <div className="pt-4 space-y-2">
@@ -198,17 +200,17 @@ export default function Navbar() {
             </div>
             <Link
               href="tel:0634414239"
-              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors"
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 rounded-md font-medium transition-colors notranslate"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              โทร: <span className="notranslate">063-441-4239</span>
+              {language === 'EN' ? 'Call: ' : 'โทร: '}<span>063-441-4239</span>
             </Link>
             <Link
               href="#booking"
-              className="block px-4 py-3 bg-gray-900 text-white text-center rounded-md font-semibold hover:bg-gray-800 transition-colors"
+              className="block px-4 py-3 bg-gray-900 text-white text-center rounded-md font-semibold hover:bg-gray-800 transition-colors notranslate"
               onClick={() => setIsMobileMenuOpen(false)}
             >
-              จองเข้าชม
+              {language === 'EN' ? 'Book a Tour' : 'จองเข้าชม'}
             </Link>
           </div>
         </div>

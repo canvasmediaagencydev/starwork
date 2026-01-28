@@ -1,106 +1,15 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from "react";
-
-type Language = "TH" | "EN";
+import { useState, useEffect } from 'react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface LanguageSwitcherProps {
   isScrolled?: boolean;
 }
 
 export default function LanguageSwitcher({ isScrolled = false }: LanguageSwitcherProps) {
-  const [language, setLanguage] = useState<Language>("TH");
+  const { language, setLanguage } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
-
-  // Detect current language from cookie
-  const detectLanguage = (): Language => {
-    if (typeof window === "undefined") return "TH";
-
-    const cookies = document.cookie.split(";");
-    for (const cookie of cookies) {
-      const [key, val] = cookie.trim().split("=");
-      if (key === "googtrans") {
-        if (val?.includes("/en") || decodeURIComponent(val || "").includes("/en")) {
-          return "EN";
-        }
-      }
-    }
-
-    // Fallback: check HTML class
-    const htmlClass = document.documentElement.className || "";
-    if (htmlClass.includes("translated-ltr")) return "EN";
-
-    return "TH";
-  };
-
-  useEffect(() => {
-    setLanguage(detectLanguage());
-
-    // Monitor for changes
-    const interval = setInterval(() => {
-      const detected = detectLanguage();
-      setLanguage((prev) => (prev !== detected ? detected : prev));
-    }, 1000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  // Delete cookie
-  const deleteCookie = (name: string) => {
-    const domains = [
-      "",
-      window.location.hostname,
-      "." + window.location.hostname,
-    ];
-    const paths = ["/", ""];
-
-    domains.forEach((domain) => {
-      paths.forEach((path) => {
-        let cookieStr = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC`;
-        if (path) cookieStr += `; path=${path}`;
-        if (domain) cookieStr += `; domain=${domain}`;
-        document.cookie = cookieStr;
-      });
-    });
-  };
-
-  // Set cookie
-  const setCookie = (name: string, value: string, days: number = 1) => {
-    const expires = new Date(Date.now() + days * 864e5).toUTCString();
-    const hostname = window.location.hostname;
-
-    // Set for current domain
-    document.cookie = `${name}=${value}; expires=${expires}; path=/`;
-
-    // Set for root domain (production)
-    if (hostname !== "localhost") {
-      const rootDomain = hostname.split(".").slice(-2).join(".");
-      document.cookie = `${name}=${value}; expires=${expires}; path=/; domain=.${rootDomain}`;
-    }
-  };
-
-  // Switch to Thai
-  const switchToThai = () => {
-    deleteCookie("googtrans");
-    setLanguage("TH");
-    setIsOpen(false);
-
-    // Reload to reset Google Translate
-    setTimeout(() => {
-      window.location.href = window.location.pathname + "?lang=th&t=" + Date.now();
-    }, 100);
-  };
-
-  // Switch to English
-  const switchToEnglish = () => {
-    setCookie("googtrans", "/th/en", 1);
-    setLanguage("EN");
-    setIsOpen(false);
-
-    setTimeout(() => {
-      window.location.href = window.location.pathname + "?lang=en&t=" + Date.now();
-    }, 100);
-  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -115,6 +24,16 @@ export default function LanguageSwitcher({ isScrolled = false }: LanguageSwitche
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+  const switchToThai = () => {
+    setLanguage('TH');
+    setIsOpen(false);
+  };
+
+  const switchToEnglish = () => {
+    setLanguage('EN');
+    setIsOpen(false);
+  };
+
   return (
     <div className="relative language-switcher">
       {/* Toggle Button */}
@@ -126,11 +45,11 @@ export default function LanguageSwitcher({ isScrolled = false }: LanguageSwitche
             : 'hover:bg-white/10 text-white'
         }`}
       >
-        <span suppressHydrationWarning className="text-sm">
-          {language === "TH" ? "TH" : "EN"}
+        <span className="text-sm font-medium">
+          {language === 'TH' ? 'TH' : 'EN'}
         </span>
         <svg
-          className={`w-3.5 h-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3.5 h-3.5 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -145,18 +64,18 @@ export default function LanguageSwitcher({ isScrolled = false }: LanguageSwitche
           <button
             onClick={switchToThai}
             className={`w-full flex items-center gap-2 px-3 py-2.5 text-left hover:bg-gray-50 rounded-t-lg text-sm ${
-              language === "TH" ? "bg-orange-50 text-orange-600 font-medium" : "text-gray-700"
+              language === 'TH' ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700'
             }`}
           >
-            <span suppressHydrationWarning>TH ไทย</span>
+            <span>TH ไทย</span>
           </button>
           <button
             onClick={switchToEnglish}
             className={`w-full flex items-center gap-2 px-3 py-2.5 text-left hover:bg-gray-50 rounded-b-lg text-sm ${
-              language === "EN" ? "bg-orange-50 text-orange-600 font-medium" : "text-gray-700"
+              language === 'EN' ? 'bg-green-50 text-green-600 font-medium' : 'text-gray-700'
             }`}
           >
-            <span suppressHydrationWarning>EN English</span>
+            <span>EN English</span>
           </button>
         </div>
       )}
