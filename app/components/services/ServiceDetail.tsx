@@ -9,13 +9,18 @@ interface Service {
   title: string;
   titleTh: string;
   description: string;
+  descriptionEn?: string;
   images: string[];
   features: string[];
+  featuresEn?: string[];
   sizes?: string[];
+  sizesEn?: string[];
   pricing?: string;
-  packages?: Array<{ name: string; price: string }>;
-  rooms?: Array<{ capacity: string; price: string }>;
+  pricingEn?: string;
+  packages?: Array<{ name: string; price: string; priceEn?: string }>;
+  rooms?: Array<{ capacity: string; capacityEn?: string; price: string; priceEn?: string }>;
   hours?: string;
+  hoursEn?: string;
   reverse?: boolean;
 }
 
@@ -26,7 +31,7 @@ interface ServiceDetailProps {
 
 export default function ServiceDetail({ service, index }: ServiceDetailProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const { t } = useLanguage();
+  const { language, t } = useLanguage();
 
   const nextImage = () => {
     setCurrentImageIndex((prev) => (prev + 1) % service.images.length);
@@ -106,19 +111,19 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
 
             {/* Title */}
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              {service.titleTh}
+              {language === 'EN' ? service.title : service.titleTh}
             </h2>
 
             {/* Description */}
             <p className="text-lg text-gray-600 font-light mb-8 leading-relaxed">
-              {service.description}
+              {language === 'EN' && service.descriptionEn ? service.descriptionEn : service.description}
             </p>
 
             {/* Features */}
             <div className="mb-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('คุณสมบัติเด่น:', 'Key Features:')}</h3>
               <div className="grid sm:grid-cols-2 gap-3">
-                {service.features.map((feature, idx) => (
+                {(language === 'EN' && service.featuresEn ? service.featuresEn : service.features).map((feature, idx) => (
                   <div key={idx} className="flex items-start gap-3">
                     <div className="flex-shrink-0 w-5 h-5 bg-green-100 rounded-full flex items-center justify-center mt-0.5">
                       <FaCheck className="text-green-600 text-xs" />
@@ -134,7 +139,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
               <div className="mb-8">
                 <h3 className="text-lg font-semibold text-gray-900 mb-4">{t('ขนาดห้องที่มี:', 'Available Room Sizes:')}</h3>
                 <div className="flex flex-wrap gap-3">
-                  {service.sizes.map((size, idx) => (
+                  {(language === 'EN' && service.sizesEn ? service.sizesEn : service.sizes).map((size, idx) => (
                     <div
                       key={idx}
                       className="px-4 py-2 bg-gray-100 rounded-lg border border-gray-200"
@@ -157,7 +162,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       className="flex items-center justify-between p-4 bg-green-50 rounded-xl border border-green-100"
                     >
                       <span className="text-gray-900 font-medium">{pkg.name}</span>
-                      <span className="text-green-600 font-bold">{pkg.price}</span>
+                      <span className="text-green-600 font-bold">{language === 'EN' && pkg.priceEn ? pkg.priceEn : pkg.price}</span>
                     </div>
                   ))}
                 </div>
@@ -174,8 +179,8 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
                       key={idx}
                       className="flex items-center justify-between p-4 bg-green-50 rounded-xl border border-green-100"
                     >
-                      <span className="text-gray-900 font-medium">{t('ความจุ', 'Capacity')} {room.capacity}</span>
-                      <span className="text-green-600 font-bold">{room.price}</span>
+                      <span className="text-gray-900 font-medium">{t('ความจุ', 'Capacity')} {language === 'EN' && room.capacityEn ? room.capacityEn : room.capacity}</span>
+                      <span className="text-green-600 font-bold">{language === 'EN' && room.priceEn ? room.priceEn : room.price}</span>
                     </div>
                   ))}
                 </div>
@@ -185,7 +190,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             {/* Hours */}
             {service.hours && (
               <div className="mb-8 p-4 bg-green-50 rounded-xl border border-green-100">
-                <p className="text-gray-700 font-medium">{service.hours}</p>
+                <p className="text-gray-700 font-medium">{language === 'EN' && service.hoursEn ? service.hoursEn : service.hours}</p>
               </div>
             )}
 
@@ -193,7 +198,7 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
             {service.pricing && (
               <div className="mb-8">
                 <div className="inline-block px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 rounded-xl">
-                  <span className="text-white font-bold text-lg">{service.pricing}</span>
+                  <span className="text-white font-bold text-lg">{language === 'EN' && service.pricingEn ? service.pricingEn : service.pricing}</span>
                 </div>
               </div>
             )}

@@ -1,61 +1,82 @@
 'use client';
 
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
+import { useLanguage } from '@/app/context/LanguageContext';
 
 export default function Testimonials() {
+  const { t } = useLanguage();
+
   const testimonials = [
     {
-      name: 'คุณสมชาย วงศ์ไทย',
+      name: t('คุณสมชาย วงศ์ไทย', 'Somchai Wongthay'),
       position: 'CEO',
       company: 'Tech Startup Co.',
       image: '/images/unsplash/testimonial-1.jpg',
       rating: 5,
-      text: 'StarWork เป็นพื้นที่ทำงานที่ดีที่สุดที่เคยใช้ บรรยากาศดี ทำเลสะดวก บริการประทับใจมาก ทำให้ทีมของเราทำงานได้อย่างมีประสิทธิภาพ',
+      text: t(
+        'StarWork เป็นพื้นที่ทำงานที่ดีที่สุดที่เคยใช้ บรรยากาศดี ทำเลสะดวก บริการประทับใจมาก ทำให้ทีมของเราทำงานได้อย่างมีประสิทธิภาพ',
+        'StarWork is the best workspace I have ever used. Great atmosphere, convenient location, and impressive service. It helps our team work efficiently.'
+      ),
       service: 'Serviced Office',
     },
     {
-      name: 'คุณนภา ศรีสุข',
+      name: t('คุณนภา ศรีสุข', 'Napa Srisuk'),
       position: 'Freelance Designer',
       company: 'Independent',
       image: '/images/unsplash/testimonial-2.jpg',
       rating: 5,
-      text: 'ใช้บริการ Co-Working Space มา 6 เดือนแล้ว ชอบมาก ได้พบกับคนทำงานหลายคน แลกเปลี่ยนไอเดียกันได้ WiFi เร็ว ราคาเหมาะสม',
+      text: t(
+        'ใช้บริการ Co-Working Space มา 6 เดือนแล้ว ชอบมาก ได้พบกับคนทำงานหลายคน แลกเปลี่ยนไอเดียกันได้ WiFi เร็ว ราคาเหมาะสม',
+        'I have been using the Co-Working Space for 6 months now and love it. I get to meet many professionals, exchange ideas, fast WiFi, and reasonable prices.'
+      ),
       service: 'Co-Working Space',
     },
     {
-      name: 'คุณธนา พันธุ์ดี',
+      name: t('คุณธนา พันธุ์ดี', 'Thana Pandee'),
       position: 'Managing Director',
       company: 'Import-Export Ltd.',
       image: '/images/unsplash/testimonial-3.jpg',
       rating: 5,
-      text: 'ใช้บริการ Virtual Office เพื่อจดทะเบียนบริษัท ทีมงานช่วยเหลือดีมาก ดูแลเรื่องเอกสารและจดหมายอย่างดี คุ้มค่ามาก',
+      text: t(
+        'ใช้บริการ Virtual Office เพื่อจดทะเบียนบริษัท ทีมงานช่วยเหลือดีมาก ดูแลเรื่องเอกสารและจดหมายอย่างดี คุ้มค่ามาก',
+        'Using Virtual Office for company registration. The team is very helpful, handles documents and mail excellently. Great value for money.'
+      ),
       service: 'Virtual Office',
     },
     {
-      name: 'คุณพิมพ์ใจ รักสวย',
+      name: t('คุณพิมพ์ใจ รักสวย', 'Pimjai Raksuay'),
       position: 'HR Manager',
       company: 'Marketing Agency',
       image: '/images/unsplash/testimonial-4.jpg',
       rating: 5,
-      text: 'ห้องประชุมสะอาด อุปกรณ์ครบครัน ทันสมัย จองง่าย ราคาไม่แพง ใช้บริการมาหลายครั้งแล้ว ประทับใจทุกครั้ง',
+      text: t(
+        'ห้องประชุมสะอาด อุปกรณ์ครบครัน ทันสมัย จองง่าย ราคาไม่แพง ใช้บริการมาหลายครั้งแล้ว ประทับใจทุกครั้ง',
+        'Clean meeting rooms, fully equipped with modern facilities. Easy to book, affordable prices. I have used the service many times and am impressed every time.'
+      ),
       service: 'Meeting Room',
     },
     {
-      name: 'คุณวิทยา เจริญสุข',
+      name: t('คุณวิทยา เจริญสุข', 'Witaya Charoensuk'),
       position: 'Event Organizer',
       company: 'Event Plus',
       image: '/images/unsplash/testimonial-5.jpg',
       rating: 5,
-      text: 'จัด Workshop ที่ Event Space ของ StarWork หลายครั้งแล้ว พื้นที่กว้างขวาง จัดได้หลากหลายรูปแบบ ทีมงานช่วยเหลือดีเยี่ยม',
+      text: t(
+        'จัด Workshop ที่ Event Space ของ StarWork หลายครั้งแล้ว พื้นที่กว้างขวาง จัดได้หลากหลายรูปแบบ ทีมงานช่วยเหลือดีเยี่ยม',
+        'I have organized workshops at StarWork Event Space several times. Spacious area, flexible layouts, and the team provides excellent support.'
+      ),
       service: 'Event Space',
     },
     {
-      name: 'คุณอรุณี มีสุข',
+      name: t('คุณอรุณี มีสุข', 'Arunee Meesuk'),
       position: 'Startup Founder',
       company: 'FoodTech',
       image: '/images/unsplash/testimonial-6.jpg',
       rating: 5,
-      text: 'เป็น Startup เพิ่งเริ่มต้น StarWork ช่วยให้เรามีออฟฟิศที่ดูมืออาชีพโดยไม่ต้องลงทุนมาก สะดวกครบจบในที่เดียว แนะนำเลยค่ะ',
+      text: t(
+        'เป็น Startup เพิ่งเริ่มต้น StarWork ช่วยให้เรามีออฟฟิศที่ดูมืออาชีพโดยไม่ต้องลงทุนมาก สะดวกครบจบในที่เดียว แนะนำเลยค่ะ',
+        'As a startup just getting started, StarWork helps us have a professional-looking office without a large investment. Everything in one place. Highly recommended!'
+      ),
       service: 'Serviced Office',
     },
   ];
@@ -72,13 +93,13 @@ export default function Testimonials() {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-block px-4 py-2 bg-green-100 rounded-full mb-6">
-            <span className="text-green-700 text-sm font-medium">Testimonials</span>
+            <span className="text-green-700 text-sm font-medium">{t('รีวิวจากลูกค้า', 'Testimonials')}</span>
           </div>
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            ลูกค้าของเราพูดถึงเรา
+            {t('ลูกค้าของเราพูดถึงเรา', 'What Our Clients Say')}
           </h2>
           <p className="text-lg text-gray-600 font-light max-w-3xl mx-auto">
-            ฟังความคิดเห็นจากผู้ที่ใช้บริการจริง
+            {t('ฟังความคิดเห็นจากผู้ที่ใช้บริการจริง', 'Hear from those who have experienced our services')}
           </p>
         </div>
 
@@ -135,19 +156,19 @@ export default function Testimonials() {
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div className="text-center">
             <div className="text-4xl font-bold text-green-600 mb-2">100+</div>
-            <div className="text-gray-600">ลูกค้าพอใจ</div>
+            <div className="text-gray-600">{t('ลูกค้าพอใจ', 'Satisfied Clients')}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-green-600 mb-2">4.9/5</div>
-            <div className="text-gray-600">คะแนนรีวิว</div>
+            <div className="text-gray-600">{t('คะแนนรีวิว', 'Review Rating')}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-green-600 mb-2">95%</div>
-            <div className="text-gray-600">ต่อสัญญา</div>
+            <div className="text-gray-600">{t('ต่อสัญญา', 'Renewal Rate')}</div>
           </div>
           <div className="text-center">
             <div className="text-4xl font-bold text-green-600 mb-2">3+</div>
-            <div className="text-gray-600">ปีประสบการณ์</div>
+            <div className="text-gray-600">{t('ปีประสบการณ์', 'Years Experience')}</div>
           </div>
         </div>
       </div>
