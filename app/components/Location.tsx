@@ -133,7 +133,7 @@ export default function Location() {
             {/* Desktop: Interactive iframe */}
             <div className="hidden md:block rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                src="https://maps.google.com/maps?q=18.7963759,99.0164451&t=&z=16&ie=UTF8&iwloc=&output=embed"
+                src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d7553.793611641068!2d99.01022199653907!3d18.802751679385423!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e6!4m5!1s0x30da25341c860e03%3A0x479daf5a0a43e38!2sCentral%20Festival%20Chiang%20Mai%2C%20Lampang%20-%20Chiang%20Mai%20Superhighway%2C%20Fa%20Ham%2C%20Mueang%20Chiang%20Mai%20District%2C%20Chiang%20Mai!3m2!1d18.8061895!2d99.0179173!4m5!1s0x30da254c6ffcc5cb%3A0x375d86903a9983c7!2zU3RhcldvcmsgQ2hpYW5nbWFpLCA4Ny85IFR1bmdob3RlbCBSZCwg4LiV4Liz4Lia4Lil4Lin4Lix4LiU4LmA4LiB4LiV4Li4IE11ZWFuZyBDaGlhbmcgTWFpIERpc3RyaWN0LCBDaGlhbmcgTWFpIDUwMDAw!3m2!1d18.796375899999997!2d99.0164451!5e0!3m2!1sen!2sth!4v1768972710961!5m2!1sen!2sth"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
