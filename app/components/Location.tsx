@@ -113,7 +113,7 @@ export default function Location() {
           <div className="relative">
             {/* Mobile: Clickable card to open Google Maps */}
             <a
-              href="https://www.google.com/maps/search/?api=1&query=StarWork+Chiangmai"
+              href="https://maps.app.goo.gl/KTyJigsxDtwbLJ889"
               target="_blank"
               rel="noopener noreferrer"
               className="block md:hidden rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-green-50 to-emerald-100 h-[300px]"
@@ -133,13 +133,12 @@ export default function Location() {
             {/* Desktop: Interactive iframe */}
             <div className="hidden md:block rounded-2xl overflow-hidden shadow-2xl">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3776.8967055705!2d99.01425!3d18.796376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30da254c6ffcc5cb%3A0x375d86903a9983c7!2sStarWork%20Chiangmai!5e0!3m2!1sen!2sth!4v1700000000000!5m2!1sen!2sth"
+                src="https://maps.google.com/maps?q=18.7963759,99.0164451&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="400"
                 style={{ border: 0 }}
                 allowFullScreen
-                loading="eager"
-                referrerPolicy="no-referrer-when-downgrade"
+                loading="lazy"
                 title="StarWork Chiang Mai Location"
               />
             </div>
