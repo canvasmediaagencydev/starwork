@@ -70,6 +70,7 @@ export default function Navbar() {
   const navLinks = [
     { th: 'หน้าแรก', en: 'Home', href: '/' },
     { th: 'บริการ', en: 'Services', href: '/services' },
+    { th: 'คาเฟ่อเมซอน', en: 'Café Amazon', href: '/cafe' },
     { th: 'แพ็คเกจ', en: 'Pricing', href: '/#plans' },
     { th: 'แกลเลอรี่', en: 'Gallery', href: '/#gallery' },
     { th: 'ติดต่อเรา', en: 'Contact', href: '/#contact' },
