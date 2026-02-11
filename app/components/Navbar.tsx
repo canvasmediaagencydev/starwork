@@ -133,7 +133,8 @@ export default function Navbar() {
               <span className="notranslate">063-441-4239</span>
             </Link>
             <Link
-              href="#booking"
+              href="https://line.me/ti/p/@starwork"
+              target="_blank"
               className={`px-6 py-2.5 text-sm font-semibold rounded-md transition-all duration-300 notranslate ${
                 isScrolled || isMobileMenuOpen
                   ? 'bg-gray-900 text-white hover:bg-gray-800'
@@ -206,7 +207,8 @@ export default function Navbar() {
               {language === 'EN' ? 'Call: ' : 'โทร: '}<span>063-441-4239</span>
             </Link>
             <Link
-              href="#booking"
+              href="https://line.me/ti/p/@starwork"
+              target="_blank"
               className="block px-4 py-3 bg-gray-900 text-white text-center rounded-md font-semibold hover:bg-gray-800 transition-colors notranslate"
               onClick={() => setIsMobileMenuOpen(false)}
             >
