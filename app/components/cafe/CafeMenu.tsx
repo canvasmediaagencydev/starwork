@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { motion, AnimatePresence } from 'framer-motion';
+
 import { useLanguage } from '../../context/LanguageContext';
 
 type Temp = 'hot' | 'cold' | 'blend';
@@ -234,20 +234,14 @@ export default function CafeMenu() {
       <div className="max-w-7xl mx-auto px-4 lg:px-8">
 
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center mb-10"
-        >
+        <div className="text-center mb-10">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             {t('ผลิตภัณฑ์', 'Products')}
           </h2>
           <p className="text-gray-500 max-w-lg mx-auto">
             {t('เลือกเมนูกาแฟ เบเกอรี และสินค้าคุณภาพพรีเมี่ยมจากคาเฟ่ อเมซอน', 'Premium coffee, bakery and products from Café Amazon')}
           </p>
-        </motion.div>
+        </div>
 
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar */}
@@ -274,72 +268,60 @@ export default function CafeMenu() {
 
           {/* Main Content */}
           <div className="flex-1 min-w-0">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeCategory}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -12 }}
-                transition={{ duration: 0.25 }}
-              >
-                {current.subcategories.map((sub, si) => (
-                  <div key={si} className="mb-10">
-                    {/* Sub-category title */}
-                    <div className="flex items-center gap-3 mb-6">
-                      <h3 className="text-lg font-bold text-gray-800">
-                        {t(sub.titleTH, sub.titleEN)}
-                      </h3>
-                      <div className="flex-1 h-px bg-gray-200" />
-                    </div>
-
-                    {/* Product Grid */}
-                    <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
-                      {sub.products.map((product, pi) => (
-                        <motion.div
-                          key={pi}
-                          initial={{ opacity: 0, scale: 0.96 }}
-                          whileInView={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.3, delay: pi * 0.04 }}
-                          viewport={{ once: true }}
-                          className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
-                        >
-                          {/* Image */}
-                          <div className="relative aspect-square bg-gray-50 overflow-hidden">
-                            <Image
-                              src={product.image}
-                              alt={product.nameTH}
-                              fill
-                              sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                              className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
-                              unoptimized
-                            />
-                          </div>
-
-                          {/* Info */}
-                          <div className="p-3">
-                            <p className="text-sm font-semibold text-gray-800 leading-snug mb-2">
-                              {t(product.nameTH, product.nameEN)}
-                            </p>
-                            {product.temps && product.temps.length > 0 && (
-                              <div className="flex flex-wrap gap-1">
-                                {product.temps.map((temp) => (
-                                  <span
-                                    key={temp}
-                                    className={`text-xs px-2 py-0.5 rounded-full font-medium ${tempConfig[temp].class}`}
-                                  >
-                                    {t(tempConfig[temp].labelTH, tempConfig[temp].labelEN)}
-                                  </span>
-                                ))}
-                              </div>
-                            )}
-                          </div>
-                        </motion.div>
-                      ))}
-                    </div>
+            <div key={activeCategory}>
+              {current.subcategories.map((sub, si) => (
+                <div key={si} className="mb-10">
+                  {/* Sub-category title */}
+                  <div className="flex items-center gap-3 mb-6">
+                    <h3 className="text-lg font-bold text-gray-800">
+                      {t(sub.titleTH, sub.titleEN)}
+                    </h3>
+                    <div className="flex-1 h-px bg-gray-200" />
                   </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+
+                  {/* Product Grid */}
+                  <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {sub.products.map((product, pi) => (
+                      <div
+                        key={pi}
+                        className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100 hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 group"
+                      >
+                        {/* Image */}
+                        <div className="relative aspect-square bg-gray-50 overflow-hidden">
+                          <Image
+                            src={product.image}
+                            alt={product.nameTH}
+                            fill
+                            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                            className="object-contain p-3 group-hover:scale-105 transition-transform duration-300"
+                            unoptimized
+                          />
+                        </div>
+
+                        {/* Info */}
+                        <div className="p-3">
+                          <p className="text-sm font-semibold text-gray-800 leading-snug mb-2">
+                            {t(product.nameTH, product.nameEN)}
+                          </p>
+                          {product.temps && product.temps.length > 0 && (
+                            <div className="flex flex-wrap gap-1">
+                              {product.temps.map((temp) => (
+                                <span
+                                  key={temp}
+                                  className={`text-xs px-2 py-0.5 rounded-full font-medium ${tempConfig[temp].class}`}
+                                >
+                                  {t(tempConfig[temp].labelTH, tempConfig[temp].labelEN)}
+                                </span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
 
             <p className="text-center text-gray-400 text-xs mt-4">
               {t('* เมนูอาจมีการเปลี่ยนแปลงตามฤดูกาล', '* Menu items may vary by season.')}
