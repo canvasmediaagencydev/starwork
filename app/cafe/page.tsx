@@ -4,6 +4,7 @@ import CafeHero from '../components/cafe/CafeHero';
 import CafeAbout from '../components/cafe/CafeAbout';
 import CafeFeatures from '../components/cafe/CafeFeatures';
 import CafeGallery from '../components/cafe/CafeGallery';
+import CafeMenu from '../components/cafe/CafeMenu';
 import CafeOrder from '../components/cafe/CafeOrder';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
@@ -26,6 +27,7 @@ export default function CafePage() {
       <Navbar />
       <CafeHero />
       <CafeAbout />
+      <CafeMenu />
       <CafeFeatures />
       <CafeGallery />
       <CafeOrder />
