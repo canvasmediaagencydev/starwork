@@ -26,10 +26,10 @@ export default function CafePage() {
       <ScrollProgressBar />
       <Navbar />
       <CafeHero />
-      <CafeAbout />
+      {/* <CafeAbout /> */}
       <CafeMenu />
       <CafeFeatures />
-      <CafeGallery />
+      {/* <CafeGallery /> */}
       <CafeOrder />
       <Contact />
       <Footer />
