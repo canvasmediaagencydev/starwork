@@ -18,7 +18,8 @@ export type Post = {
 const postsDirectory = path.join(process.cwd(), 'content', 'blog');
 
 function readPostFile(slug: string): { data: Record<string, unknown>; content: string } | null {
-  const fullPath = path.join(postsDirectory, `${slug}.md`);
+  const fullPath = path.resolve(postsDirectory, `${slug}.md`);
+  if (!fullPath.startsWith(postsDirectory + path.sep)) return null;
   if (!fs.existsSync(fullPath)) return null;
   const raw = fs.readFileSync(fullPath, 'utf8');
   return matter(raw);
