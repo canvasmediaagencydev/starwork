@@ -24,7 +24,7 @@ export default function BlogPostContent({ html, post }: { html: string; post: Po
   return (
     <section className="bg-white py-14 md:py-20">
       <div className="mx-auto grid max-w-7xl gap-10 px-6 lg:grid-cols-[260px_minmax(0,760px)] lg:px-8">
-        <aside className="lg:sticky lg:top-28 lg:h-fit">
+        <aside className="lg:sticky lg:top-28 lg:h-fit hidden md:block">
           <div className="rounded-xl border border-gray-200 bg-[#f7faf6] p-6">
             <p className="text-xs font-semibold uppercase tracking-[0.18em] text-green-700">
               Article
