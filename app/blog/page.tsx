@@ -18,12 +18,14 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
+  const posts = getAllPosts();
+
   return (
     <div className="min-h-screen">
       <ScrollProgressBar />
       <Navbar />
-      <BlogHero />
-      <BlogGrid posts={getAllPosts()} />
+      <BlogHero featuredPost={posts[0]} />
+      <BlogGrid posts={posts} />
       <Footer />
       <FloatingContactButton />
     </div>

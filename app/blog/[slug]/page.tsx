@@ -7,7 +7,6 @@ import FloatingContactButton from '../../components/FloatingContactButton';
 import ScrollProgressBar from '../../components/ScrollProgressBar';
 import BlogPostHero from '../../components/blog/BlogPostHero';
 import BlogPostContent from '../../components/blog/BlogPostContent';
-import BackToBlogLink from '../../components/blog/BackToBlogLink';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 
 type Params = { slug: string };
@@ -45,8 +44,7 @@ export default async function BlogPostPage(
       <ScrollProgressBar />
       <Navbar />
       <BlogPostHero post={post} />
-      <BlogPostContent html={post.contentHtml} />
-      <BackToBlogLink />
+      <BlogPostContent html={post.contentHtml} post={post} />
       <Footer />
       <FloatingContactButton />
     </div>
