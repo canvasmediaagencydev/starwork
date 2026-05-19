@@ -20,14 +20,14 @@ export default function BlogCard({ post }: { post: Post }) {
       href={`/blog/${post.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-xl border border-gray-200 bg-white transition-all duration-300 hover:-translate-y-1 hover:border-green-200 hover:shadow-xl"
     >
-      <div className="relative aspect-[4/3] overflow-hidden bg-gray-100">
+      <div className="relative aspect-[16/9] overflow-hidden bg-[#eef3ea]">
         {post.coverImage ? (
           <Image
             src={post.coverImage}
             alt={post.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            className="object-contain transition-transform duration-500 group-hover:scale-105"
           />
         ) : null}
       </div>

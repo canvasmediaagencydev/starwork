@@ -4,7 +4,6 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
 import ScrollProgressBar from '../components/ScrollProgressBar';
-import BlogHero from '../components/blog/BlogHero';
 import BlogGrid from '../components/blog/BlogGrid';
 import { getAllPosts } from '@/lib/blog';
 
@@ -24,7 +23,6 @@ export default function BlogPage() {
     <div className="min-h-screen">
       <ScrollProgressBar />
       <Navbar />
-      <BlogHero featuredPost={posts[0]} />
       <BlogGrid posts={posts} />
       <Footer />
       <FloatingContactButton />

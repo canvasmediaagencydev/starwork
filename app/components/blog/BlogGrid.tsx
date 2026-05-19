@@ -9,7 +9,7 @@ const PAGE_SIZE = 6;
 
 export default function BlogGrid({ posts }: { posts: Post[] }) {
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const listPosts = posts.slice(1);
+  const listPosts = posts;
 
   if (posts.length === 0) {
     return (
@@ -29,22 +29,9 @@ export default function BlogGrid({ posts }: { posts: Post[] }) {
   }
 
   return (
-    <section className="bg-white py-16 md:py-20">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mb-9 flex flex-col gap-3 border-b border-gray-200 pb-6 md:flex-row md:items-end md:justify-between">
-          <div>
-            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-green-700">
-              More Stories
-            </p>
-            <h2 className="mt-2 text-3xl font-bold text-gray-950">
-              บทความทั้งหมด
-            </h2>
-          </div>
-          <p className="max-w-xl text-sm leading-6 text-gray-500">
-            รวมอัปเดตจากพื้นที่ Star Work ทั้งเรื่องบริการ บรรยากาศการทำงาน และคำแนะนำสำหรับธุรกิจในเชียงใหม่
-          </p>
-        </div>
-
+    <section className="relative overflow-hidden bg-white pt-32 pb-16 md:pt-40 md:pb-20">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-80 bg-gradient-to-b from-green-800 via-green-700/25 to-white" />
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {visible.map((post) => (
           <BlogCard key={post.slug} post={post} />

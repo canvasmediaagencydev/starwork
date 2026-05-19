@@ -44,7 +44,7 @@ export default function BlogPostHero({ post }: { post: Post }) {
             </div>
           </div>
 
-          <div className="relative min-h-[300px] overflow-hidden rounded-2xl bg-gray-900 shadow-2xl md:min-h-[460px]">
+          <div className="relative aspect-[16/9] overflow-hidden rounded-2xl bg-[#eef3ea] shadow-2xl">
             {post.coverImage ? (
               <Image
                 src={post.coverImage}
@@ -52,10 +52,9 @@ export default function BlogPostHero({ post }: { post: Post }) {
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 56vw"
-                className="object-cover"
+                className="object-contain"
               />
             ) : null}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
           </div>
         </div>
       </div>
