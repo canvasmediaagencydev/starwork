@@ -71,6 +71,7 @@ export default function Navbar() {
     { th: 'หน้าแรก', en: 'Home', href: '/' },
     { th: 'บริการ', en: 'Services', href: '/services' },
     { th: 'คาเฟ่อเมซอน', en: 'Café Amazon', href: '/cafe' },
+    { th: 'บล็อก', en: 'Blog', href: '/blog' },
     { th: 'แพ็คเกจ', en: 'Pricing', href: '/#plans' },
     { th: 'แกลเลอรี่', en: 'Gallery', href: '/#gallery' },
     { th: 'ติดต่อเรา', en: 'Contact', href: '/#contact' },
