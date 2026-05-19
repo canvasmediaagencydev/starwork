@@ -9,6 +9,7 @@ export default function Footer() {
     { name: 'Amenities', href: '#amenities' },
     { name: 'Gallery', href: '#gallery' },
     { name: 'Location', href: '#location' },
+    { name: 'Blog', href: '/blog' },
   ];
 
   const support = [
