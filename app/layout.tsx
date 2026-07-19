@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import "./globals.css";
-import StructuredData from "./components/StructuredData";
 import FaviconLinks from "./components/FaviconLinks";
+import JsonLd from "./components/JsonLd";
+import { getOrganizationSchema, getWebSiteSchema, SITE_URL } from "@/lib/schema";
 import { LanguageProvider } from "./context/LanguageContext";
 
 const notoSansThai = Noto_Sans_Thai({
@@ -12,14 +13,16 @@ const notoSansThai = Noto_Sans_Thai({
   display: 'swap',
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://starworkchiangmai.com";
+// Canonical base URL — standardised on the www host (see lib/schema.ts SITE_URL).
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || SITE_URL;
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "StarWork Chiang Mai | Service Offices & Coworking Space",
     template: "%s | StarWork Chiang Mai",
   },
-  description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่ ใกล้นิมมาน MAYA และ Think Park พร้อมบริการครบครัน Virtual Office, Serviced Office, Meeting Room และ Event Space",
+  description: "ออฟฟิศให้เช่า เชียงใหม่ StarWork — Serviced Office & Coworking ย่านวัดเกต ใกล้ Central Festival, Star Avenue, ขนส่งอาเขต, สนามบิน CNX เริ่มต้น 6,900 บาท/เดือน",
   keywords: [
     "StarWork Chiang Mai",
     "coworking space เชียงใหม่",
@@ -47,7 +50,9 @@ export const metadata: Metadata = {
     url: siteUrl,
     siteName: "StarWork Chiang Mai",
     title: "StarWork Chiang Mai | Service Offices & Coworking Space",
-    description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่ ใกล้นิมมาน MAYA และ Think Park",
+    description: "ออฟฟิศให้เช่า เชียงใหม่ StarWork — Serviced Office, Coworking และ Virtual Office ย่านวัดเกต ใกล้ Central Festival, Star Avenue และขนส่งอาเขต 10 นาทีจากสนามบิน CNX",
+    // TODO(client): og:image ยังเป็นไฟล์ screenshot ("/Screenshot from 2025-11-19 21-53-12.png")
+    // ขอรูป OG ที่ออกแบบจริง (1200x630) เพื่อแทนที่ — ยังไม่เปลี่ยนไฟล์ตามที่ระบุ
     images: [
       {
         url: "/Screenshot from 2025-11-19 21-53-12.png",
@@ -61,6 +66,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "StarWork Chiang Mai | Service Offices & Coworking Space",
     description: "สำนักงานส่วนตัว ห้องประชุม และพื้นที่ทำงานร่วมสมัยใหม่ใจกลางเชียงใหม่",
+    // TODO(client): แทนที่ screenshot ด้วยรูป OG จริง (เหมือน openGraph.images ด้านบน)
     images: ["/Screenshot from 2025-11-19 21-53-12.png"],
   },
   robots: {
@@ -74,9 +80,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-  },
+  // NOTE: Google Search Console verification removed — it was a placeholder
+  // ("your-google-verification-code"). TODO(client): provide the real
+  // verification token to re-add `verification: { google: "..." }`.
   icons: {
     icon: [
       { url: '/favicon.png', sizes: '70x78', type: 'image/png' },
@@ -88,14 +94,11 @@ export const metadata: Metadata = {
     ],
   },
   manifest: '/site.webmanifest',
-  alternates: {
-    canonical: siteUrl,
-    languages: {
-      "th-TH": siteUrl,
-      "en-US": `${siteUrl}/en`,
-      "x-default": siteUrl,
-    },
-  },
+  // Canonical is set PER-PAGE (see each page's metadata) rather than globally,
+  // because a layout-level canonical is inherited by every route and would make
+  // all pages canonicalize to the homepage. The previous `languages` hreflang
+  // also pointed to a non-existent "/en" route, so it was removed.
+  // TODO(client): if a real English ("/en") site is added, restore hreflang.
 };
 
 export default function RootLayout({
@@ -107,7 +110,8 @@ export default function RootLayout({
     <html lang="th">
       <head>
         <FaviconLinks />
-        <StructuredData />
+        {/* Site-wide structured data (present on every page) */}
+        <JsonLd data={[getOrganizationSchema(), getWebSiteSchema()]} />
       </head>
       <body
         className={`${notoSansThai.variable} antialiased`}

@@ -1,9 +1,12 @@
 // app/sitemap.ts
 import { MetadataRoute } from 'next';
 import { getAllPosts } from '@/lib/blog';
+import { SITE_URL } from '@/lib/schema';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://starworkchiangmai.com';
+  // Keep in sync with canonical host (www) — a sitemap on a different host than
+  // the canonical URLs sends conflicting signals to search engines.
+  const baseUrl = SITE_URL;
   const currentDate = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [

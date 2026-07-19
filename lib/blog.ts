@@ -9,6 +9,7 @@ export type Post = {
   slug: string;
   title: string;
   date: string;        // "YYYY-MM-DD"
+  updated?: string;    // optional "YYYY-MM-DD" — frontmatter `updated`
   excerpt: string;
   coverImage: string;
   author: string;
@@ -26,7 +27,7 @@ function readPostFile(slug: string): { data: Record<string, unknown>; content: s
 }
 
 function toPostMeta(slug: string, data: Record<string, unknown>): Omit<Post, 'contentHtml'> {
-  return {
+  const meta: Omit<Post, 'contentHtml'> = {
     slug,
     title: String(data.title ?? ''),
     date: String(data.date ?? ''),
@@ -34,6 +35,10 @@ function toPostMeta(slug: string, data: Record<string, unknown>): Omit<Post, 'co
     coverImage: String(data.coverImage ?? ''),
     author: String(data.author ?? 'Star Work Team'),
   };
+  // Only attach `updated` when the frontmatter actually provides it — never an
+  // empty string (keeps the field out of JSON-LD unless it's real).
+  if (data.updated) meta.updated = String(data.updated);
+  return meta;
 }
 
 export function getAllPosts(): Post[] {

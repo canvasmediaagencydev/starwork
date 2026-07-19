@@ -8,10 +8,13 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
 import ScrollProgressBar from '../components/ScrollProgressBar';
+import JsonLd from '../components/JsonLd';
+import { getBreadcrumbSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
   title: 'Café Amazon | StarWork Chiang Mai',
   description: 'คาเฟ่อเมซอน สตาร์เวิร์ค เชียงใหม่ ร้านกาแฟพรีเมี่ยมพร้อม Wi-Fi ความเร็วสูง ปลั๊กไฟฟ้าทุกโต๊ะ บรรยากาศสบาย เหมาะสำหรับทำงานและพักผ่อน',
+  alternates: { canonical: '/cafe' },
   openGraph: {
     title: 'Café Amazon | StarWork Chiang Mai',
     description: 'คาเฟ่อเมซอน สตาร์เวิร์ค - กาแฟพรีเมี่ยม Wi-Fi ความเร็วสูง บรรยากาศสบาย',
@@ -19,8 +22,14 @@ export const metadata: Metadata = {
 };
 
 export default function CafePage() {
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'Café Amazon', url: '/cafe' },
+  ]);
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={breadcrumbSchema} />
       <ScrollProgressBar />
       <Navbar />
       <CafeHero />

@@ -5,11 +5,14 @@ import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
 import ScrollProgressBar from '../components/ScrollProgressBar';
 import BlogGrid from '../components/blog/BlogGrid';
+import JsonLd from '../components/JsonLd';
+import { getBreadcrumbSchema } from '@/lib/schema';
 import { getAllPosts } from '@/lib/blog';
 
 export const metadata: Metadata = {
   title: 'Blog | StarWork Chiang Mai',
   description: 'ข่าวสาร อัพเดต และเรื่องราวจาก Star Work เชียงใหม่',
+  alternates: { canonical: '/blog' },
   openGraph: {
     title: 'Blog | StarWork Chiang Mai',
     description: 'ข่าวสาร อัพเดต และเรื่องราวจาก Star Work เชียงใหม่',
@@ -19,8 +22,14 @@ export const metadata: Metadata = {
 export default function BlogPage() {
   const posts = getAllPosts();
 
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'Blog', url: '/blog' },
+  ]);
+
   return (
     <div className="min-h-screen">
+      <JsonLd data={breadcrumbSchema} />
       <ScrollProgressBar />
       <Navbar />
       <BlogGrid posts={posts} />

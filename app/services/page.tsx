@@ -9,10 +9,19 @@ import Contact from '../components/Contact';
 import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
 import ScrollProgressBar from '../components/ScrollProgressBar';
+import JsonLd from '../components/JsonLd';
+import {
+  getLocalBusinessSchema,
+  getCoreServicesSchema,
+  getFAQPageSchema,
+  getBreadcrumbSchema,
+} from '@/lib/schema';
+import { serviceFaqs } from '@/lib/faq-data';
 
 export const metadata: Metadata = {
   title: 'บริการของเรา',
   description: 'บริการครบครัน 5 ประเภท: Serviced Office, Virtual Office, Co-Working Space, Meeting Room และ Café Amazon ใจกลางเชียงใหม่ พร้อมสิ่งอำนวยความสะดวกครบครัน',
+  alternates: { canonical: '/services' },
   openGraph: {
     title: 'บริการของเรา | StarWork Chiang Mai',
     description: 'บริการครบครัน 5 ประเภท: Serviced Office, Virtual Office, Co-Working Space, Meeting Room และ Café Amazon',
@@ -151,8 +160,27 @@ export default function ServicesPage() {
     },
   ];
 
+  // FAQPage schema uses the SAME array that ServiceFAQ renders (lib/faq-data.ts),
+  // mapping to the Thai question/answer (site default language).
+  const faqSchema = getFAQPageSchema(
+    serviceFaqs.map((f) => ({ question: f.question, answer: f.answer }))
+  );
+
+  const breadcrumbSchema = getBreadcrumbSchema([
+    { name: 'หน้าแรก', url: '/' },
+    { name: 'บริการของเรา', url: '/services' },
+  ]);
+
   return (
     <div className="min-h-screen">
+      <JsonLd
+        data={[
+          getLocalBusinessSchema(),
+          ...getCoreServicesSchema(),
+          faqSchema,
+          breadcrumbSchema,
+        ]}
+      />
       <ScrollProgressBar />
       <Navbar />
       <ServicesHero />
