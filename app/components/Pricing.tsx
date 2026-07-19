@@ -31,6 +31,9 @@ export default function Pricing() {
       shortDesc: 'พื้นที่ทำงานแบบเปิดที่ยืดหยุ่น เหมาะสำหรับ Freelancer และ Startup',
       shortDescEn: 'Flexible open workspace, perfect for Freelancers and Startups',
       image: '/images/img_1.webp',
+      featured: false,
+      badge: '',
+      badgeEn: '',
       features: [
         'โต๊ะทำงานสบาย ergonomic',
         'Wi-Fi ความเร็วสูง ไม่จำกัด',
@@ -52,15 +55,20 @@ export default function Pricing() {
       shortDesc: 'ห้องออฟฟิศส่วนตัวพร้อมเฟอร์นิเจอร์ครบครัน เหมาะสำหรับธุรกิจที่ต้องการความเป็นส่วนตัว',
       shortDescEn: 'Private office with full furniture, ideal for businesses seeking privacy',
       image: '/images/img_4.webp',
+      featured: true,
+      badge: 'แนะนำสำหรับทีม',
+      badgeEn: 'Recommended for teams',
       features: [
         'เฟอร์นิเจอร์ครบครัน พร้อมใช้งานทันที',
         'ที่อยู่จดทะเบียนบริษัท',
         'Wi-Fi ความเร็วสูง',
+        'ค่าไฟฟรีนอกเวลา',
       ],
       featuresEn: [
         'Fully furnished, ready to use',
         'Business registration address',
         'High-speed Wi-Fi',
+        'Free electricity after hours',
       ],
       pricing: 'เริ่มต้น 6,900 บาท/เดือน',
       pricingEn: 'Starting at 6,900 THB/month',
@@ -73,6 +81,9 @@ export default function Pricing() {
       shortDesc: 'ที่อยู่ธุรกิจในทำเลดีโดยไม่ต้องเช่าพื้นที่จริง',
       shortDescEn: 'Business address in prime location without renting physical space',
       image: '/images/Pic_V2.webp',
+      featured: false,
+      badge: '',
+      badgeEn: '',
       features: [
         'ที่อยู่จดทะเบียนบริษัทในทำเลดี',
         'รับจดหมายและพัสดุ',
@@ -167,8 +178,17 @@ export default function Pricing() {
           {services.map((service, index) => (
             <div
               key={service.id}
-              className="group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2"
+              className={`group relative bg-white rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 ${
+                service.featured ? 'border-2 border-green-600 lg:scale-105 z-10' : 'border border-transparent'
+              }`}
             >
+              {/* Recommended Badge */}
+              {service.featured && (
+                <div className="absolute top-4 right-4 z-20 px-3 py-1.5 bg-green-600 text-white text-xs font-semibold rounded-full shadow-lg">
+                  {language === 'EN' ? service.badgeEn : service.badge}
+                </div>
+              )}
+
               {/* Image */}
               <div className="relative h-56 overflow-hidden">
                 <Image
@@ -224,7 +244,11 @@ export default function Pricing() {
                 {/* CTA Button */}
                 <Link
                   href={`/services#${service.id}`}
-                  className="group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-3 bg-gray-100 text-gray-900 rounded-xl font-medium hover:bg-green-600 hover:text-white transition-all duration-300"
+                  className={`group/btn w-full inline-flex items-center justify-center gap-3 px-6 py-3 rounded-xl font-medium transition-all duration-300 ${
+                    service.featured
+                      ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-lg hover:shadow-green-600/30'
+                      : 'bg-gray-100 text-gray-900 hover:bg-green-600 hover:text-white'
+                  }`}
                 >
                   <span>{t('ดูรายละเอียด', 'View Details')}</span>
                   <FaArrowRight className="text-sm group-hover/btn:translate-x-1 transition-transform" />

@@ -4,6 +4,8 @@ import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaArrowRight, FaClock, FaLine } fr
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
+const AVAILABLE_ROOMS = 3; // TODO: อัปเดตให้ตรงกับจำนวนจริง
+
 export default function Contact() {
   const { t } = useLanguage();
   return (
@@ -29,15 +31,17 @@ export default function Contact() {
             </div>
 
             <h2 className="text-5xl lg:text-6xl font-bold text-gray-900 mb-6 leading-tight">
-              {t('พร้อมเริ่มต้น', 'Ready to start')}
+              {t('เริ่มต้นธุรกิจของคุณที่ ', 'Start your business at ')}
+              <span className="text-green-600">StarWork</span>
               <br />
-              <span className="text-green-600">{t('ที่นี่', 'here')}</span>{t('แล้วหรือยัง?', ' yet?')}
+              {t('วันนี้', 'today')}
             </h2>
 
             <p className="text-xl text-gray-600 font-light mb-10 leading-relaxed">
-              {t('จองเข้าชมสำนักงานวันนี้ และค้นพบพื้นที่ทำงาน', 'Book a tour today and discover workspace')}
-              <br />
-              {t('ที่เหมาะกับธุรกิจของคุณ', 'that suits your business')}
+              {t(
+                'จองทัวร์ชมสำนักงาน — ไม่มีค่าใช้จ่าย ไม่มีข้อผูกมัด',
+                'Book an office tour — no cost, no commitment'
+              )}
             </p>
 
             {/* Quick Info */}
@@ -63,14 +67,39 @@ export default function Contact() {
               </div>
             </div>
 
-            {/* CTA Button */}
-            <a
-              href="#plans"
-              className="group inline-flex items-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all duration-300 hover:shadow-2xl hover:shadow-green-600/20"
-            >
-              <span>{t('ดูแพ็คเกจของเรา', 'View Our Packages')}</span>
-              <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4">
+              <a
+                href="https://line.me/ti/p/@starwork"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all duration-300 hover:shadow-2xl hover:shadow-green-600/20"
+              >
+                <span>{t('จองทัวร์ชมฟรี', 'Book a Free Tour')}</span>
+                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </a>
+              <a
+                href="tel:0634414239"
+                className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-green-700 border-2 border-green-600 rounded-xl font-semibold hover:bg-green-50 transition-all duration-300"
+              >
+                <FaPhone className="text-sm" />
+                <span>{t('โทร 063-441-4239', 'Call 063-441-4239')}</span>
+              </a>
+            </div>
+
+            {/* Urgency Bar */}
+            <div className="mt-6 inline-flex items-center gap-3 px-5 py-3 bg-green-600 text-white rounded-xl shadow-lg shadow-green-600/20">
+              <span className="relative flex h-2.5 w-2.5 flex-shrink-0">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+                <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white" />
+              </span>
+              <span className="text-sm font-medium">
+                {t(
+                  `ห้องว่างเหลือจำกัด — ปัจจุบันมีเพียง ${AVAILABLE_ROOMS} ห้องพร้อมเข้าใช้`,
+                  `Limited availability — only ${AVAILABLE_ROOMS} rooms ready to move in`
+                )}
+              </span>
+            </div>
           </motion.div>
 
           {/* Right Side - Contact Card */}

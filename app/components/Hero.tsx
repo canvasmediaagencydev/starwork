@@ -117,16 +117,16 @@ export default function Hero() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="max-w-4xl"
         >
-          {/* Small text */}
-          <motion.div 
+          {/* Eyebrow text */}
+          <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3, duration: 0.6 }}
-            className="flex items-center gap-3 mb-10 opacity-90"
+            className="flex items-center gap-3 mb-8"
           >
-            <HiLocationMarker className="text-white/70 text-lg" />
-            <span className="text-white/70 text-md tracking-[0.3em] font-light uppercase">
-              Chiang Mai
+            <HiLocationMarker className="text-green-400 text-lg" />
+            <span className="text-green-400 text-xs sm:text-sm tracking-[0.35em] font-semibold uppercase">
+              Chiang Mai&apos;s Premium Serviced Office
             </span>
           </motion.div>
 
@@ -149,7 +149,10 @@ export default function Hero() {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="text-xl lg:text-2xl text-white/85 mb-12 font-light leading-relaxed max-w-2xl"
           >
-            {t('พื้นที่ทำงานที่ออกแบบมาเพื่อธุรกิจของคุณ', 'Workspace designed for your business')}
+            {t(
+              'พื้นที่ทำงานระดับพรีเมียมที่ออกแบบมาเพื่อทีมที่กำลังเติบโต — พร้อมใช้งานทันที ไม่มีค่าใช้จ่ายแอบแฝง',
+              'Premium workspace designed for growing teams — ready to use instantly, with no hidden costs'
+            )}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -161,37 +164,39 @@ export default function Hero() {
           >
             <a
               href="#plans"
-              className="group inline-flex items-center justify-center gap-4 bg-white/70 backdrop-blur-md text-gray-900 px-10 py-5 rounded-full text-lg font-medium hover:bg-white hover:gap-6 hover:shadow-2xl hover:shadow-green-500/20 border border-white/40 transition-all duration-500 ease-out"
+              className="group inline-flex items-center justify-center gap-4 bg-green-600 text-white px-10 py-5 rounded-full text-lg font-medium hover:bg-green-700 hover:gap-6 hover:shadow-2xl hover:shadow-green-500/30 transition-all duration-500 ease-out"
             >
               <span>{t('เริ่มต้นใช้งานวันนี้', 'Get Started Today')}</span>
-              <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1 text-green-600" />
+              <FaArrowRight className="transition-transform duration-500 group-hover:translate-x-1 text-white" />
             </a>
             <a
               href="#contact"
               className="group inline-flex items-center justify-center gap-3 bg-white/10 backdrop-blur-md text-white px-10 py-5 rounded-full text-lg font-light border border-white/30 hover:bg-white/15 hover:border-white/50 transition-all duration-500 ease-out"
             >
-              <span>{t('ติดต่อเรา', 'Contact Us')}</span>
+              <span>{t('จองทัวร์ชม', 'Book a Tour')}</span>
             </a>
           </motion.div>
 
-          {/* Small info */}
+          {/* Social Proof Stats Bar */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4, duration: 0.8 }}
-            className="mt-15 flex flex-wrap gap-8 text-white/70 text-md font-light"
+            className="mt-14 flex flex-wrap items-center gap-8 sm:gap-12"
           >
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span>{t('ห้องประชุมพร้อมใช้งาน', 'Meeting rooms ready')}</span>
+            <div className="flex flex-col">
+              <span className="text-3xl lg:text-4xl font-bold text-white leading-none">100+</span>
+              <span className="mt-2 text-sm text-white/70 font-light">{t('ธุรกิจที่ไว้วางใจ', 'Businesses trust us')}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span>{t('เข้าถึงได้ 24/7', '24/7 Access')}</span>
+            <div className="hidden sm:block w-px h-12 bg-white/20" />
+            <div className="flex flex-col">
+              <span className="text-3xl lg:text-4xl font-bold text-white leading-none">24/7</span>
+              <span className="mt-2 text-sm text-white/70 font-light">{t('เข้าถึงได้ตลอด', 'Always accessible')}</span>
             </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500"></div>
-              <span>{t('WiFi ความเร็วสูง', 'High-speed WiFi')}</span>
+            <div className="hidden sm:block w-px h-12 bg-white/20" />
+            <div className="flex flex-col">
+              <span className="text-3xl lg:text-4xl font-bold text-white leading-none">11 Year+</span>
+              <span className="mt-2 text-sm text-white/70 font-light">{t('ประสบการณ์', 'Experience')}</span>
             </div>
           </motion.div>
         </motion.div>
