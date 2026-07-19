@@ -1,4 +1,5 @@
 // app/components/blog/BlogPostContent.tsx
+import Link from 'next/link';
 import type { Post } from '@/lib/blog';
 
 function readingMinutes(html: string): number {
@@ -42,10 +43,26 @@ export default function BlogPostContent({ html, post }: { html: string; post: Po
           </div>
         </aside>
 
-        <article
-          className="blog-content min-w-0"
-          dangerouslySetInnerHTML={{ __html: html }}
-        />
+        <div className="min-w-0">
+          <article
+            className="blog-content"
+            dangerouslySetInnerHTML={{ __html: html }}
+          />
+
+          {/* Inbound link to the FAQ hub (avoids orphaning /faq) */}
+          <div className="mt-12 rounded-2xl border border-green-100 bg-green-50/60 p-6">
+            <p className="text-gray-700 leading-relaxed">
+              ยังมีข้อสงสัยเรื่องการเช่าออฟฟิศในเชียงใหม่? อ่านคำตอบได้ที่{' '}
+              <Link href="/faq" className="font-semibold text-green-700 hover:underline">
+                คำถามที่พบบ่อยเรื่อง Serviced Office และ Virtual Office
+              </Link>{' '}
+              หรือดู{' '}
+              <Link href="/services" className="font-semibold text-green-700 hover:underline">
+                แพ็กเกจและราคาทั้งหมด
+              </Link>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );

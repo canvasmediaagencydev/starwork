@@ -13,6 +13,7 @@ export default function Footer() {
   ];
 
   const support = [
+    { name: 'คำถามที่พบบ่อย', href: '/faq' },
     { name: 'Contact Us', href: '/#contact' },
   ];
 

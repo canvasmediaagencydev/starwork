@@ -1,7 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { FaChevronDown } from 'react-icons/fa';
+import Link from 'next/link';
+import { FaChevronDown, FaArrowRight } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 import { serviceFaqs } from '@/lib/faq-data';
 
@@ -71,6 +72,17 @@ export default function ServiceFAQ() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Link to the full FAQ hub */}
+        <div className="mt-8 text-center">
+          <Link
+            href="/faq"
+            className="inline-flex items-center gap-2 text-green-600 font-medium hover:text-green-700 hover:gap-3 transition-all"
+          >
+            <span>{t('ดูคำถามที่พบบ่อยทั้งหมด', 'See all frequently asked questions')}</span>
+            <FaArrowRight className="text-sm" />
+          </Link>
         </div>
 
         {/* Bottom CTA */}
