@@ -19,12 +19,13 @@ import {
 import { serviceFaqs } from '@/lib/faq-data';
 
 export const metadata: Metadata = {
-  title: 'บริการของเรา',
+  title: 'บริการออฟฟิศให้เช่า เชียงใหม่ — Serviced Office, Virtual Office, ห้องประชุม',
   description: 'บริการครบครัน 5 ประเภท: Serviced Office, Virtual Office, Co-Working Space, Meeting Room และ Café Amazon ใจกลางเชียงใหม่ พร้อมสิ่งอำนวยความสะดวกครบครัน',
   alternates: { canonical: '/services' },
   openGraph: {
-    title: 'บริการของเรา | StarWork Chiang Mai',
+    title: 'บริการออฟฟิศให้เช่า เชียงใหม่ — Serviced Office, Virtual Office, ห้องประชุม | StarWork Chiang Mai',
     description: 'บริการครบครัน 5 ประเภท: Serviced Office, Virtual Office, Co-Working Space, Meeting Room และ Café Amazon',
+    url: '/services',
   },
 };
 

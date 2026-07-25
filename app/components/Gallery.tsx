@@ -79,6 +79,7 @@ export default function Gallery() {
                 src={image.src}
                 alt={image.alt}
                 fill
+                sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
 
@@ -133,6 +134,7 @@ export default function Gallery() {
                 src={images[selectedImage].src}
                 alt={images[selectedImage].alt}
                 fill
+                sizes="100vw"
                 className="object-contain rounded-lg"
               />
 

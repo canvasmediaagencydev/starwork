@@ -15,6 +15,7 @@ export default function CafeHero() {
         unoptimized
         alt="Café Amazon StarWork Chiang Mai"
         fill
+        sizes="100vw"
         className="object-cover"
         priority
       />

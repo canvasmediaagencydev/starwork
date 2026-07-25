@@ -1,8 +1,8 @@
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
-// import TrustedBy from './components/TrustedBy';
+import TrustedBy from './components/TrustedBy';
 import Pricing from './components/Pricing';
-// import HomeTestimonials from './components/HomeTestimonials';
+import HomeTestimonials from './components/HomeTestimonials';
 import Amenities from './components/Amenities';
 import Gallery from './components/Gallery';
 import Location from './components/Location';
@@ -25,11 +25,9 @@ export default function Home() {
       <ScrollProgressBar />
       <Navbar />
       <Hero />
-      {/* TODO: เปิดใช้เมื่อได้โลโก้ลูกค้าจริง + testimonial จริงจากลูกค้า
-          ห้าม deploy ด้วยข้อมูลตัวอย่าง */}
-      {/* <TrustedBy /> */}
+      <TrustedBy />
       <Pricing />
-      {/* <HomeTestimonials /> */}
+      <HomeTestimonials />
       <Amenities />
       <Gallery />
       <Location />

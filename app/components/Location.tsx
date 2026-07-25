@@ -1,7 +1,7 @@
 'use client';
 
 import { HiCheck } from 'react-icons/hi';
-import { FaMapMarkerAlt, FaPlane, FaWalking, FaParking } from 'react-icons/fa';
+import { FaMapMarkerAlt, FaPlane, FaParking } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 
 export default function Location() {

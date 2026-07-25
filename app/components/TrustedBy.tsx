@@ -1,13 +1,24 @@
 'use client';
 
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
+const logos = [
+  { src: '/images/clients/dmc-connect.webp', alt: 'DMC Connect' },
+  { src: '/images/clients/aroi-desu.webp', alt: 'Aroi Desu' },
+  { src: '/images/clients/wp51.webp', alt: 'WP51 Company Limited' },
+  { src: '/images/clients/kan-development.webp', alt: 'Kan Kanchanaphan Development' },
+  { src: '/images/clients/spacetrax.webp', alt: 'Spacetrax' },
+  { src: '/images/clients/payso.webp', alt: 'Payso' },
+  { src: '/images/clients/jingthai.webp', alt: 'Jingthai Travel Tour' },
+  { src: '/images/clients/mulberrysoft.webp', alt: 'Mulberrysoft' },
+  { src: '/images/clients/suko-translation.webp', alt: 'Suko Translation' },
+  { src: '/images/clients/matchday.webp', alt: 'Match Day' },
+];
+
 export default function TrustedBy() {
   const { t } = useLanguage();
-
-  // TODO: แทนที่ด้วยโลโก้ลูกค้าจริง
-  const logos = ['Logo 1', 'Logo 2', 'Logo 3', 'Logo 4', 'Logo 5', 'Logo 6'];
 
   return (
     <section className="bg-gray-50 border-y border-gray-100 py-14">
@@ -22,15 +33,26 @@ export default function TrustedBy() {
           {t('ได้รับความไว้วางใจจากธุรกิจชั้นนำ', 'Trusted By Leading Businesses')}
         </motion.p>
 
-        <div className="flex flex-wrap items-center justify-center gap-6 sm:gap-10">
-          {/* TODO: แทนที่ด้วยโลโก้ลูกค้าจริง */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 sm:gap-5">
           {logos.map((logo, index) => (
-            <div
-              key={index}
-              className="flex items-center justify-center w-28 h-14 sm:w-32 sm:h-16 rounded-lg bg-gray-200/70 text-gray-400 text-sm font-medium grayscale hover:grayscale-0 transition-all duration-300"
+            <motion.div
+              key={logo.src}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              className="flex items-center justify-center h-20 rounded-xl bg-white ring-1 ring-gray-200/70 shadow-sm px-5 transition-all duration-300 hover:shadow-md hover:ring-gray-300"
             >
-              {logo}
-            </div>
+              <div className="relative h-10 w-full">
+                <Image
+                  src={logo.src}
+                  alt={logo.alt}
+                  fill
+                  sizes="(max-width: 640px) 40vw, (max-width: 768px) 30vw, 160px"
+                  className="object-contain"
+                />
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

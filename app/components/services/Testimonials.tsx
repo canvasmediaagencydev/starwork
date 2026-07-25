@@ -2,84 +2,18 @@
 
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
 import { useLanguage } from '@/app/context/LanguageContext';
+import { customerReviews } from '@/lib/testimonials';
 
 export default function Testimonials() {
   const { t } = useLanguage();
 
-  const testimonials = [
-    {
-      name: t('คุณสมชาย วงศ์ไทย', 'Somchai Wongthay'),
-      position: 'CEO',
-      company: 'Tech Startup Co.',
-      image: '/images/unsplash/testimonial-1.jpg',
-      rating: 5,
-      text: t(
-        'StarWork เป็นพื้นที่ทำงานที่ดีที่สุดที่เคยใช้ บรรยากาศดี ทำเลสะดวก บริการประทับใจมาก ทำให้ทีมของเราทำงานได้อย่างมีประสิทธิภาพ',
-        'StarWork is the best workspace I have ever used. Great atmosphere, convenient location, and impressive service. It helps our team work efficiently.'
-      ),
-      service: 'Serviced Office',
-    },
-    {
-      name: t('คุณนภา ศรีสุข', 'Napa Srisuk'),
-      position: 'Freelance Designer',
-      company: 'Independent',
-      image: '/images/unsplash/testimonial-2.jpg',
-      rating: 5,
-      text: t(
-        'ใช้บริการ Co-Working Space มา 6 เดือนแล้ว ชอบมาก ได้พบกับคนทำงานหลายคน แลกเปลี่ยนไอเดียกันได้ WiFi เร็ว ราคาเหมาะสม',
-        'I have been using the Co-Working Space for 6 months now and love it. I get to meet many professionals, exchange ideas, fast WiFi, and reasonable prices.'
-      ),
-      service: 'Co-Working Space',
-    },
-    {
-      name: t('คุณธนา พันธุ์ดี', 'Thana Pandee'),
-      position: 'Managing Director',
-      company: 'Import-Export Ltd.',
-      image: '/images/unsplash/testimonial-3.jpg',
-      rating: 5,
-      text: t(
-        'ใช้บริการ Virtual Office เพื่อจดทะเบียนบริษัท ทีมงานช่วยเหลือดีมาก ดูแลเรื่องเอกสารและจดหมายอย่างดี คุ้มค่ามาก',
-        'Using Virtual Office for company registration. The team is very helpful, handles documents and mail excellently. Great value for money.'
-      ),
-      service: 'Virtual Office',
-    },
-    {
-      name: t('คุณพิมพ์ใจ รักสวย', 'Pimjai Raksuay'),
-      position: 'HR Manager',
-      company: 'Marketing Agency',
-      image: '/images/unsplash/testimonial-4.jpg',
-      rating: 5,
-      text: t(
-        'ห้องประชุมสะอาด อุปกรณ์ครบครัน ทันสมัย จองง่าย ราคาไม่แพง ใช้บริการมาหลายครั้งแล้ว ประทับใจทุกครั้ง',
-        'Clean meeting rooms, fully equipped with modern facilities. Easy to book, affordable prices. I have used the service many times and am impressed every time.'
-      ),
-      service: 'Meeting Room',
-    },
-    {
-      name: t('คุณวิทยา เจริญสุข', 'Witaya Charoensuk'),
-      position: 'Event Organizer',
-      company: 'Event Plus',
-      image: '/images/unsplash/testimonial-5.jpg',
-      rating: 5,
-      text: t(
-        'จัด Workshop ที่ Event Space ของ StarWork หลายครั้งแล้ว พื้นที่กว้างขวาง จัดได้หลากหลายรูปแบบ ทีมงานช่วยเหลือดีเยี่ยม',
-        'I have organized workshops at StarWork Event Space several times. Spacious area, flexible layouts, and the team provides excellent support.'
-      ),
-      service: 'Event Space',
-    },
-    {
-      name: t('คุณอรุณี มีสุข', 'Arunee Meesuk'),
-      position: 'Startup Founder',
-      company: 'FoodTech',
-      image: '/images/unsplash/testimonial-6.jpg',
-      rating: 5,
-      text: t(
-        'เป็น Startup เพิ่งเริ่มต้น StarWork ช่วยให้เรามีออฟฟิศที่ดูมืออาชีพโดยไม่ต้องลงทุนมาก สะดวกครบจบในที่เดียว แนะนำเลยค่ะ',
-        'As a startup just getting started, StarWork helps us have a professional-looking office without a large investment. Everything in one place. Highly recommended!'
-      ),
-      service: 'Serviced Office',
-    },
-  ];
+  // รีวิวจริงจากลูกค้า (Google Reviews, 5 ดาว) — แหล่งข้อมูลกลางเดียวกับหน้าแรก
+  const testimonials = customerReviews.map((r) => ({
+    letter: r.letter,
+    name: r.name,
+    source: t('รีวิวจาก Google', 'Google Review'),
+    text: t(r.textTh, r.textEn),
+  }));
 
   return (
     <section className="relative py-24 bg-white overflow-hidden">
@@ -99,77 +33,46 @@ export default function Testimonials() {
             {t('ลูกค้าของเราพูดถึงเรา', 'What Our Clients Say')}
           </h2>
           <p className="text-lg text-gray-600 font-light max-w-3xl mx-auto">
-            {t('ฟังความคิดเห็นจากผู้ที่ใช้บริการจริง', 'Hear from those who have experienced our services')}
+            {t('ลูกค้าจริง ประสบการณ์จริง', 'Real clients, real experiences')}
           </p>
         </div>
 
-        {/* Testimonials Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {testimonials.map((testimonial, index) => (
+        {/* Testimonials Grid — real Google reviews */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+          {testimonials.map((testimonial) => (
             <div
-              key={index}
-              className="group relative bg-white rounded-2xl p-6 border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300"
+              key={testimonial.name}
+              className="group relative bg-white rounded-2xl p-8 border border-gray-100 hover:border-green-200 hover:shadow-xl transition-all duration-300"
             >
               {/* Quote Icon */}
               <div className="absolute top-6 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
                 <FaQuoteLeft className="text-6xl text-green-600" />
               </div>
 
-              {/* Service Badge */}
-              <div className="inline-block px-3 py-1 bg-green-50 rounded-full mb-4">
-                <span className="text-xs text-green-700 font-medium">{testimonial.service}</span>
-              </div>
-
               {/* Rating */}
-              <div className="flex gap-1 mb-4">
-                {[...Array(testimonial.rating)].map((_, i) => (
-                  <FaStar key={i} className="text-yellow-400 text-sm" />
+              <div className="flex gap-1 mb-5">
+                {[...Array(5)].map((_, i) => (
+                  <FaStar key={i} className="text-yellow-400 text-base" />
                 ))}
               </div>
 
               {/* Text */}
-              <p className="text-gray-700 leading-relaxed mb-6 relative z-10">
-                "{testimonial.text}"
+              <p className="text-gray-700 leading-relaxed mb-8 relative z-10">
+                &ldquo;{testimonial.text}&rdquo;
               </p>
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full overflow-hidden flex-shrink-0">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  {testimonial.letter}
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">
-                    {testimonial.position} • {testimonial.company}
-                  </div>
+                  <div className="text-sm text-gray-500">{testimonial.source}</div>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Stats */}
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8">
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-600 mb-2">100+</div>
-            <div className="text-gray-600">{t('ลูกค้าพอใจ', 'Satisfied Clients')}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-600 mb-2">4.9/5</div>
-            <div className="text-gray-600">{t('คะแนนรีวิว', 'Review Rating')}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-600 mb-2">95%</div>
-            <div className="text-gray-600">{t('ต่อสัญญา', 'Renewal Rate')}</div>
-          </div>
-          <div className="text-center">
-            <div className="text-4xl font-bold text-green-600 mb-2">3+</div>
-            <div className="text-gray-600">{t('ปีประสบการณ์', 'Years Experience')}</div>
-          </div>
         </div>
       </div>
     </section>

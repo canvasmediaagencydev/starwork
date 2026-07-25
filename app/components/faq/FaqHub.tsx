@@ -138,13 +138,13 @@ export default function FaqHub() {
             ทีมงานยินดีให้คำปรึกษาและพาชมพื้นที่จริงก่อนตัดสินใจ ไม่มีค่าใช้จ่าย
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <a
+            <Link
               href="/#contact"
               className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-green-600 text-white rounded-xl font-semibold hover:bg-green-700 transition-all duration-300 hover:shadow-xl hover:shadow-green-600/20"
             >
               <span>ปรึกษาทีมงาน / จองทัวร์ชม</span>
               <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </a>
+            </Link>
             <a
               href="tel:0634414239"
               className="group inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-green-700 border-2 border-green-600 rounded-xl font-semibold hover:bg-green-50 transition-all duration-300"

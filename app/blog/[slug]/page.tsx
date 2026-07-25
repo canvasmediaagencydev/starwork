@@ -8,7 +8,7 @@ import ScrollProgressBar from '../../components/ScrollProgressBar';
 import BlogPostHero from '../../components/blog/BlogPostHero';
 import BlogPostContent from '../../components/blog/BlogPostContent';
 import JsonLd from '../../components/JsonLd';
-import { getArticleSchema, getBreadcrumbSchema } from '@/lib/schema';
+import { getArticleSchema, getBreadcrumbSchema, getFAQPageSchema } from '@/lib/schema';
 import { getAllPosts, getPostBySlug } from '@/lib/blog';
 
 type Params = { slug: string };
@@ -24,7 +24,9 @@ export async function generateMetadata(
   const post = await getPostBySlug(slug);
   if (!post) return {};
   return {
-    title: `${post.title} | StarWork Chiang Mai Blog`,
+    // Just the post title — the layout template appends " | StarWork Chiang Mai"
+    // once, so the brand is never duplicated.
+    title: post.title,
     description: post.excerpt,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {
@@ -50,10 +52,14 @@ export default async function BlogPostPage(
     { name: 'Blog', url: '/blog' },
     { name: post.title, url: `/blog/${slug}` },
   ]);
+  // FAQPage schema is generated from the FAQ parsed out of the article markdown,
+  // so the structured data and the rendered Q&A share one source.
+  const schemas = [articleSchema, breadcrumbSchema];
+  if (post.faqs.length > 0) schemas.push(getFAQPageSchema(post.faqs));
 
   return (
     <div className="min-h-screen">
-      <JsonLd data={[articleSchema, breadcrumbSchema]} />
+      <JsonLd data={schemas} />
       <ScrollProgressBar />
       <Navbar />
       <BlogPostHero post={post} />

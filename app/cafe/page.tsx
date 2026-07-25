@@ -9,15 +9,17 @@ import Footer from '../components/Footer';
 import FloatingContactButton from '../components/FloatingContactButton';
 import ScrollProgressBar from '../components/ScrollProgressBar';
 import JsonLd from '../components/JsonLd';
-import { getBreadcrumbSchema } from '@/lib/schema';
+import { getBreadcrumbSchema, getCafeSchema, getLocalBusinessSchema } from '@/lib/schema';
 
 export const metadata: Metadata = {
-  title: 'Café Amazon | StarWork Chiang Mai',
+  // Brand suffix comes from the layout title template — don't repeat it here.
+  title: 'Café Amazon สตาร์เวิร์ค เชียงใหม่',
   description: 'คาเฟ่อเมซอน สตาร์เวิร์ค เชียงใหม่ ร้านกาแฟพรีเมี่ยมพร้อม Wi-Fi ความเร็วสูง ปลั๊กไฟฟ้าทุกโต๊ะ บรรยากาศสบาย เหมาะสำหรับทำงานและพักผ่อน',
   alternates: { canonical: '/cafe' },
   openGraph: {
-    title: 'Café Amazon | StarWork Chiang Mai',
+    title: 'Café Amazon สตาร์เวิร์ค เชียงใหม่ | StarWork Chiang Mai',
     description: 'คาเฟ่อเมซอน สตาร์เวิร์ค - กาแฟพรีเมี่ยม Wi-Fi ความเร็วสูง บรรยากาศสบาย',
+    url: '/cafe',
   },
 };
 
@@ -29,7 +31,8 @@ export default function CafePage() {
 
   return (
     <div className="min-h-screen">
-      <JsonLd data={breadcrumbSchema} />
+      {/* LocalBusiness included so the café's containedInPlace @id resolves in-graph */}
+      <JsonLd data={[getLocalBusinessSchema(), getCafeSchema(), breadcrumbSchema]} />
       <ScrollProgressBar />
       <Navbar />
       <CafeHero />

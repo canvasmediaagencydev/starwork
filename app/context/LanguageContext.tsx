@@ -1,6 +1,12 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useCallback,
+  useSyncExternalStore,
+  ReactNode,
+} from 'react';
 
 type Language = 'TH' | 'EN';
 
@@ -12,29 +18,58 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>('TH');
-  const [mounted, setMounted] = useState(false);
+const STORAGE_KEY = 'language';
 
-  // Load language from localStorage on mount
-  useEffect(() => {
-    setMounted(true);
-    const saved = localStorage.getItem('language') as Language;
-    if (saved === 'EN' || saved === 'TH') {
-      setLanguageState(saved);
-    }
+// External store backed by localStorage. Using useSyncExternalStore lets us read
+// the persisted language without a setState-in-effect (SSR and the first client
+// render both use the server snapshot = 'TH', so there is no hydration mismatch;
+// React then re-renders with the real client value after hydration).
+const listeners = new Set<() => void>();
+
+function subscribe(onStoreChange: () => void): () => void {
+  listeners.add(onStoreChange);
+  // Reflect changes made in other tabs.
+  window.addEventListener('storage', onStoreChange);
+  return () => {
+    listeners.delete(onStoreChange);
+    window.removeEventListener('storage', onStoreChange);
+  };
+}
+
+function getSnapshot(): Language {
+  try {
+    return localStorage.getItem(STORAGE_KEY) === 'EN' ? 'EN' : 'TH';
+  } catch {
+    return 'TH';
+  }
+}
+
+// Server + first client render default to Thai to keep hydration stable.
+function getServerSnapshot(): Language {
+  return 'TH';
+}
+
+function persistLanguage(lang: Language): void {
+  try {
+    localStorage.setItem(STORAGE_KEY, lang);
+  } catch {
+    // Ignore storage failures (private mode, quota) — in-memory state still updates.
+  }
+  // Notify same-tab subscribers (the `storage` event only fires in other tabs).
+  listeners.forEach((listener) => listener());
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const language = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+
+  const setLanguage = useCallback((lang: Language) => {
+    persistLanguage(lang);
   }, []);
 
-  const setLanguage = (lang: Language) => {
-    setLanguageState(lang);
-    localStorage.setItem('language', lang);
-  };
-
-  // Translation helper
-  const t = (th: string, en: string): string => {
-    if (!mounted) return th; // SSR: return Thai
-    return language === 'EN' ? en : th;
-  };
+  const t = useCallback(
+    (th: string, en: string): string => (language === 'EN' ? en : th),
+    [language]
+  );
 
   return (
     <LanguageContext.Provider value={{ language, setLanguage, t }}>

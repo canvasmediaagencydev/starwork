@@ -39,6 +39,16 @@ export default function BlogPostContent({ html, post }: { html: string; post: Po
                 <dt className="text-gray-500">เผยแพร่</dt>
                 <dd className="mt-1 font-semibold text-gray-950">{formatThaiDate(post.date)}</dd>
               </div>
+              {post.updated ? (
+                <div>
+                  <dt className="text-gray-500">อัปเดตล่าสุด</dt>
+                  <dd className="mt-1 font-semibold text-gray-950">{formatThaiDate(post.updated)}</dd>
+                </div>
+              ) : null}
+              <div>
+                <dt className="text-gray-500">เวลาอ่าน</dt>
+                <dd className="mt-1 font-semibold text-gray-950">{minutes} นาที</dd>
+              </div>
             </dl>
           </div>
         </aside>

@@ -77,6 +77,7 @@ export default function CafeOrder() {
                   src="/images/cafe/ID-Line-cafe-Amazon-300x300.jpg"
                   alt="LINE QR Code - Café Amazon"
                   fill
+                  sizes="260px"
                   className="object-contain"
                 />
               </div>

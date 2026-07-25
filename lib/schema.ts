@@ -22,6 +22,9 @@ export interface JsonLdNode {
   [key: string]: JsonLdValue | undefined;
 }
 
+/** A plain JSON-LD object without the required `@type`/`@context` of a top-level node. */
+type JsonLdObject = { [key: string]: JsonLdValue };
+
 // ---------------------------------------------------------------------------
 // Canonical base URL — www everywhere (see app/layout.tsx metadataBase)
 // ---------------------------------------------------------------------------
@@ -195,22 +198,58 @@ export function getWebSiteSchema(): JsonLdNode {
 // ---------------------------------------------------------------------------
 // 3) Service
 // ---------------------------------------------------------------------------
+/** A single priced tier — used for services with several capacity/price options. */
+export type OfferInput = {
+  price: number;
+  /** Billing unit, e.g. "MON" | "DAY" | "HUR" (UN/CEFACT). */
+  unitCode?: string;
+  unitText?: string;
+  /** Human label for this tier, e.g. a meeting-room capacity "4 persons". */
+  name?: string;
+};
+
 export type ServiceInput = {
   name: string;
   description: string;
   /** Anchor/path on the site for this service, e.g. "/services#serviced-office" */
   url?: string;
-  /** Real starting price. Omit entirely when the price is unknown in the code. */
+  /** Real starting price for a single Offer. Omit when the price is unknown. */
   price?: number;
-  /** Billing unit for the price, e.g. "MON" | "DAY" | "HUR" (UN/CEFACT). */
+  /** Billing unit for `price`, e.g. "MON" | "DAY" | "HUR" (UN/CEFACT). */
   unitCode?: string;
   unitText?: string;
+  /**
+   * Multiple real priced tiers (e.g. meeting rooms by capacity). When present,
+   * the service carries an AggregateOffer with per-tier Offers. Takes precedence
+   * over `price`.
+   */
+  offers?: OfferInput[];
 };
 
+/** Build a UnitPriceSpecification when a billing unit is known, else null. */
+function unitPriceSpec(o: {
+  price: number;
+  unitCode?: string;
+  unitText?: string;
+}): JsonLdObject | null {
+  if (!o.unitCode) return null;
+  return {
+    '@type': 'UnitPriceSpecification',
+    price: o.price,
+    priceCurrency: 'THB',
+    unitCode: o.unitCode,
+    ...(o.unitText ? { unitText: o.unitText } : {}),
+  };
+}
+
 export function getServiceSchema(service: ServiceInput): JsonLdNode {
+  // Absolute URL for this service anchor — used for both `url` and a stable `@id`.
+  const absUrl = service.url ? absoluteUrl(service.url) : undefined;
+
   const node: JsonLdNode = {
     '@context': SCHEMA_CONTEXT,
     '@type': 'Service',
+    ...(absUrl ? { '@id': absUrl } : {}),
     name: service.name,
     description: service.description,
     provider: { '@id': `${SITE_URL}/#localbusiness` },
@@ -220,28 +259,56 @@ export function getServiceSchema(service: ServiceInput): JsonLdNode {
     },
   };
 
-  if (service.url) node.serviceType = service.name;
+  // A canonical URL belongs at the Service level (serviceType is a category label,
+  // never a substitute for url).
+  if (absUrl) {
+    node.url = absUrl;
+    node.serviceType = service.name;
+  }
 
-  // Only attach an Offer when we have a real price — never invent one.
-  if (typeof service.price === 'number') {
-    node.offers = {
+  if (service.offers && service.offers.length > 0) {
+    // Several real priced tiers → AggregateOffer summarising low/high + each Offer.
+    const prices = service.offers.map((o) => o.price);
+    const aggregate: JsonLdObject = {
+      '@type': 'AggregateOffer',
+      priceCurrency: 'THB',
+      lowPrice: Math.min(...prices),
+      highPrice: Math.max(...prices),
+      offerCount: service.offers.length,
+      availability: 'https://schema.org/InStock',
+      ...(absUrl ? { url: absUrl } : {}),
+      offers: service.offers.map((o): JsonLdObject => {
+        const offer: JsonLdObject = {
+          '@type': 'Offer',
+          price: o.price,
+          priceCurrency: 'THB',
+          availability: 'https://schema.org/InStock',
+          ...(o.name ? { name: o.name } : {}),
+          ...(absUrl ? { url: absUrl } : {}),
+        };
+        const spec = unitPriceSpec(o);
+        if (spec) offer.priceSpecification = spec;
+        return offer;
+      }),
+    };
+    node.offers = aggregate;
+  } else if (typeof service.price === 'number') {
+    // Single Offer — only when we have a real price; never invent one.
+    const price = service.price;
+    const offer: JsonLdObject = {
       '@type': 'Offer',
-      price: service.price,
+      price,
       priceCurrency: 'THB',
       availability: 'https://schema.org/InStock',
-      ...(service.url ? { url: absoluteUrl(service.url) } : {}),
-      ...(service.unitCode
-        ? {
-            priceSpecification: {
-              '@type': 'UnitPriceSpecification',
-              price: service.price,
-              priceCurrency: 'THB',
-              unitCode: service.unitCode,
-              ...(service.unitText ? { unitText: service.unitText } : {}),
-            },
-          }
-        : {}),
+      ...(absUrl ? { url: absUrl } : {}),
     };
+    const spec = unitPriceSpec({
+      price,
+      unitCode: service.unitCode,
+      unitText: service.unitText,
+    });
+    if (spec) offer.priceSpecification = spec;
+    node.offers = offer;
   }
 
   return node;
@@ -274,6 +341,19 @@ export const CORE_SERVICES: ServiceInput[] = [
     description: 'ที่อยู่ธุรกิจในทำเลดีโดยไม่ต้องเช่าพื้นที่จริง เหมาะสำหรับธุรกิจที่ต้องการที่อยู่จดทะเบียน',
     url: '/services#virtual-office',
     // price intentionally omitted — Virtual Office pricing is not disclosed.
+  },
+  {
+    // Meeting Room — four real capacity tiers priced by the hour, verified from
+    // the `rooms` array in app/services/page.tsx (200/300/500/800 THB/hr).
+    name: 'Meeting Room',
+    description: 'ห้องประชุมสำหรับการประชุม อบรม และนำเสนอผลงาน',
+    url: '/services#meeting-room',
+    offers: [
+      { price: 200, unitCode: 'HUR', unitText: 'hour', name: '4 persons' },
+      { price: 300, unitCode: 'HUR', unitText: 'hour', name: '8 persons' },
+      { price: 500, unitCode: 'HUR', unitText: 'hour', name: '15 persons' },
+      { price: 800, unitCode: 'HUR', unitText: 'hour', name: '30 persons' },
+    ],
   },
 ];
 
@@ -312,6 +392,8 @@ export type ArticleInput = {
   excerpt: string;
   coverImage: string;
   author: string;
+  /** Real keyword list from frontmatter (built from the article's keyword map). */
+  keywords?: string[];
 };
 
 export function getArticleSchema(post: ArticleInput): JsonLdNode {
@@ -342,9 +424,15 @@ export function getArticleSchema(post: ArticleInput): JsonLdNode {
       '@id': pageUrl,
     },
     url: pageUrl,
+    inLanguage: 'th-TH',
   };
 
   if (post.coverImage) node.image = absoluteUrl(post.coverImage);
+
+  // Only emit keywords when the frontmatter genuinely provides them.
+  if (post.keywords && post.keywords.length > 0) {
+    node.keywords = post.keywords.join(', ');
+  }
 
   return node;
 }
@@ -364,5 +452,99 @@ export function getBreadcrumbSchema(items: BreadcrumbItem[]): JsonLdNode {
       name: item.name,
       item: absoluteUrl(item.url),
     })),
+  };
+}
+
+// ---------------------------------------------------------------------------
+// 7) Café (CafeOrCoffeeShop) — the Café Amazon inside the StarWork building
+// ---------------------------------------------------------------------------
+// Modelled as a CafeOrCoffeeShop that is `containedInPlace` of the StarWork
+// LocalBusiness — a neutral "located within" relationship. We do NOT claim
+// StarWork owns the Café Amazon brand; `brand` simply records the franchise.
+//
+// Café hours are 07:30–19:30 (from app/components/cafe/CafeOrder.tsx), which are
+// deliberately DIFFERENT from the LocalBusiness staffed hours (09:00–18:00), so
+// those are never reused here. Description text mirrors the /cafe <meta>.
+const CAFE_NAME = 'Café Amazon – StarWork Chiang Mai';
+const CAFE_DESCRIPTION =
+  'คาเฟ่อเมซอน สตาร์เวิร์ค เชียงใหม่ ร้านกาแฟพร้อม Wi-Fi ความเร็วสูง ปลั๊กไฟทุกโต๊ะ บรรยากาศสบาย เหมาะสำหรับทำงานและพักผ่อน';
+const CAFE_HOURS = { opens: '07:30', closes: '19:30' };
+
+export function getCafeSchema(): JsonLdNode {
+  return {
+    '@context': SCHEMA_CONTEXT,
+    '@type': 'CafeOrCoffeeShop',
+    '@id': `${SITE_URL}/cafe#cafe`,
+    name: CAFE_NAME,
+    description: CAFE_DESCRIPTION,
+    url: absoluteUrl('/cafe'),
+    brand: { '@type': 'Brand', name: 'Café Amazon' },
+    servesCuisine: ['Coffee', 'Bakery'],
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: ADDRESS.streetAddress,
+      addressLocality: ADDRESS.addressLocality,
+      addressRegion: ADDRESS.addressRegion,
+      postalCode: ADDRESS.postalCode,
+      addressCountry: ADDRESS.addressCountry,
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: GEO.latitude,
+      longitude: GEO.longitude,
+    },
+    openingHoursSpecification: [
+      {
+        '@type': 'OpeningHoursSpecification',
+        dayOfWeek: OPENING_HOURS.days, // café shares the "open every day" schedule
+        opens: CAFE_HOURS.opens,
+        closes: CAFE_HOURS.closes,
+      },
+    ],
+    // Menu items are shown on /cafe (names only, no prices), so we link the menu
+    // page rather than enumerate priced MenuItems we cannot verify.
+    hasMenu: absoluteUrl('/cafe'),
+    // Amenities all shown on the /cafe page (CafeFeatures.tsx).
+    amenityFeature: [
+      { '@type': 'LocationFeatureSpecification', name: 'Free Wi-Fi', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Power outlets', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Parking', value: true },
+      { '@type': 'LocationFeatureSpecification', name: 'Outdoor seating', value: true },
+    ],
+    containedInPlace: { '@id': `${SITE_URL}/#localbusiness` },
+    // TODO(client): no location-specific café photo is shown on /cafe (hero uses a
+    // generic Café Amazon banner) — add a real StarWork café image to set `image`.
+  };
+}
+
+// ---------------------------------------------------------------------------
+// 8) Blog index (CollectionPage + ItemList)
+// ---------------------------------------------------------------------------
+export type CollectionPostInput = { slug: string; title: string };
+
+export function getBlogCollectionSchema(
+  posts: CollectionPostInput[],
+  opts: { name: string; description: string; path: string }
+): JsonLdNode {
+  const pageUrl = absoluteUrl(opts.path);
+  return {
+    '@context': SCHEMA_CONTEXT,
+    '@type': 'CollectionPage',
+    '@id': pageUrl,
+    url: pageUrl,
+    name: opts.name,
+    description: opts.description,
+    inLanguage: 'th-TH',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: posts.map((post, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        url: `${SITE_URL}/blog/${post.slug}`,
+        name: post.title,
+      })),
+    },
   };
 }

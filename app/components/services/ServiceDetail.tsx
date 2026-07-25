@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { FaCheck, FaArrowRight, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -60,10 +61,12 @@ export default function ServiceDetail({ service, index }: ServiceDetailProps) {
           {/* Images */}
           <div className={`${service.reverse ? 'lg:order-2' : ''}`}>
             <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src={service.images[currentImageIndex]}
                 alt={service.title}
-                className="w-full h-full object-cover"
+                fill
+                sizes="(max-width: 1024px) 100vw, 50vw"
+                className="object-cover"
               />
 
               {/* Image Navigation */}

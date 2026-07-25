@@ -3,31 +3,18 @@
 import { FaStar, FaQuoteLeft } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
+import { customerReviews } from '@/lib/testimonials';
 
 export default function HomeTestimonials() {
   const { t } = useLanguage();
 
-  // TODO: แทนที่ด้วย testimonial จากลูกค้าจริง
-  const testimonials = [
-    {
-      initials: 'KS',
-      name: t('คุณสมชาย (ตัวอย่าง)', 'Somchai (Sample)'),
-      role: t('CEO, Tech Startup', 'CEO, Tech Startup'),
-      text: t(
-        'ย้ายทีม 8 คนมาจาก home office ภายใน 1 วัน ไม่ต้องคิดเรื่องเน็ต เรื่องไฟ เรื่องแม่บ้าน — ประหยัดเวลาไปโฟกัสธุรกิจได้เลย',
-        'Moved my team of 8 from a home office in a single day. No worrying about internet, electricity, or cleaning — saved us so much time to focus on the business.'
-      ),
-    },
-    {
-      initials: 'MR',
-      name: t('คุณมนัส (ตัวอย่าง)', 'Manas (Sample)'),
-      role: t('ผู้จัดการ, Digital Agency', 'Manager, Digital Agency'),
-      text: t(
-        'ลูกค้ามาประชุมที่ออฟฟิศ impression ดีมาก ดูมืออาชีพกว่าเช่าตึกเอง แต่ราคาเป็นมิตรกว่ามาก',
-        'Clients who come to meet us at the office are impressed — it looks more professional than renting our own building, but at a far friendlier price.'
-      ),
-    },
-  ];
+  // รีวิวจริงจากลูกค้า (Google Reviews, 5 ดาวทั้งหมด) — ใช้แหล่งข้อมูลกลาง lib/testimonials.ts
+  const testimonials = customerReviews.map((r) => ({
+    letter: r.letter,
+    name: r.name,
+    source: t('รีวิวจาก Google', 'Google Review'),
+    text: t(r.textTh, r.textEn),
+  }));
 
   return (
     <section className="relative py-24 bg-white overflow-hidden">
@@ -51,12 +38,11 @@ export default function HomeTestimonials() {
           </p>
         </div>
 
-        {/* Testimonials Grid — 2 cards */}
-        {/* TODO: แทนที่ด้วย testimonial จากลูกค้าจริง */}
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        {/* Testimonials Grid — 3 real Google reviews */}
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
           {testimonials.map((testimonial, index) => (
             <motion.div
-              key={index}
+              key={testimonial.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -82,12 +68,12 @@ export default function HomeTestimonials() {
 
               {/* Author */}
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-sm flex-shrink-0">
-                  {testimonial.initials}
+                <div className="w-12 h-12 rounded-full bg-green-600 text-white flex items-center justify-center font-bold text-lg flex-shrink-0">
+                  {testimonial.letter}
                 </div>
                 <div>
                   <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.role}</div>
+                  <div className="text-sm text-gray-500">{testimonial.source}</div>
                 </div>
               </div>
             </motion.div>

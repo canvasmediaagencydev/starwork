@@ -94,8 +94,8 @@ export default function Navbar() {
                 src="/images/starwork-logo-4.png"
                 alt="StarWork Chiang Mai"
                 fill
+                sizes="160px"
                 className="object-contain"
-                priority
               />
             </div>
           </Link>
