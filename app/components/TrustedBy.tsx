@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { useLanguage } from '../context/LanguageContext';
 
 const logos = [
+  { src: '/images/clients/ntn.jpg', alt: 'NTN', featured: true },
+  { src: '/images/clients/hikvision.jpg', alt: 'Hikvision', featured: true },
   { src: '/images/clients/dmc-connect.webp', alt: 'DMC Connect' },
   { src: '/images/clients/aroi-desu.webp', alt: 'Aroi Desu' },
   { src: '/images/clients/wp51.webp', alt: 'WP51 Company Limited' },
@@ -41,14 +43,20 @@ export default function TrustedBy() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
-              className="flex items-center justify-center h-20 rounded-xl bg-white ring-1 ring-gray-200/70 shadow-sm px-5 transition-all duration-300 hover:shadow-md hover:ring-gray-300"
+              className={`flex items-center justify-center rounded-xl bg-white ring-1 shadow-sm transition-all duration-300 hover:shadow-md ${
+                logo.featured
+                  ? 'h-28 px-6 ring-emerald-200/80 shadow-md sm:h-32 sm:px-8'
+                  : 'h-20 px-5 ring-gray-200/70 hover:ring-gray-300'
+              }`}
             >
-              <div className="relative h-10 w-full">
+              <div className={`relative w-full ${logo.featured ? 'h-16 sm:h-20' : 'h-10'}`}>
                 <Image
                   src={logo.src}
                   alt={logo.alt}
                   fill
-                  sizes="(max-width: 640px) 40vw, (max-width: 768px) 30vw, 160px"
+                  sizes={logo.featured
+                    ? '(max-width: 640px) 44vw, (max-width: 768px) 30vw, 220px'
+                    : '(max-width: 640px) 40vw, (max-width: 768px) 30vw, 160px'}
                   className="object-contain"
                 />
               </div>
