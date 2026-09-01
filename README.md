@@ -1,3 +1,13 @@
+# StarWork Chiang Mai
+
+Next.js marketing site and blog for StarWork Chiang Mai.
+
+## Content Studio
+
+The protected `/admin/content-studio` route coordinates an Article Agent for Thai SEO/AEO Markdown and a Cover Agent for StarWork CI-aligned cover assets. It renders an HTML review and requires an explicit approval before the server commits the approved Markdown and cover to GitHub (which triggers Vercel).
+
+Production environment variables: `CONTENT_STUDIO_TOKEN`, `OPENAI_API_KEY`, `GITHUB_TOKEN`, optional `GITHUB_REPOSITORY` and `GITHUB_BRANCH`. Local development falls back to a deterministic sample draft, while publishing remains disabled without `GITHUB_TOKEN`.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
